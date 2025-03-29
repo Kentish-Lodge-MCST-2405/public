@@ -5,6 +5,6 @@ title: Policies
 
 # Policies
 
-{% for file in site.policies %}
-- [{{ file.name }}]({{ file.url }})
+{% for file in page.files %}
+- [{{ file }}](/policies/{{ file }})
 {% endfor %}
