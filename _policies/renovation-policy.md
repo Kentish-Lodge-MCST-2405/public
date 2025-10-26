@@ -14,4 +14,4 @@ Applies to all internal unit renovation works that may affect common property, n
 - Deposit of $1,000 refundable upon satisfactory inspection.
 
 ## Contacts
-- Managing Agent: ma@example.com
+- Managing Agent: management@kentishlodge.com

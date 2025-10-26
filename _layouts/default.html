@@ -5,16 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title | default: site.title }}</title>
   <meta name="description" content="{{ page.excerpt | default: site.title | strip_html | strip_newlines }}">
-  <style>
-    :root{--bg:#ffffff;--fg:#222;--muted:#6b7280;--link:#0ea5e9}
-    @media (prefers-color-scheme: dark){:root{--bg:#0b1020;--fg:#e5e7eb;--muted:#94a3b8;--link:#38bdf8}}
-    body{background:var(--bg);color:var(--fg);margin:0}
-    a{color:var(--link)}
-    .container{max-width:960px;margin:0 auto}
-    header.site{padding:1rem 2rem;border-bottom:1px solid rgba(125,125,125,.2);position:sticky;top:0;background:var(--bg);z-index:5}
-    header.site h1{font-size:1.1rem;margin:0}
-    header.site small{color:var(--muted)}
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="{{ '/assets/styles.css' | relative_url }}" rel="stylesheet" />
 </head>
 <body>
   {% include sidebar.html %}
@@ -28,5 +22,11 @@
       {{ content }}
     </div>
   </main>
+  {% assign repo = site.github.repository_url | default: '' %}
+  {% if repo != '' %}
+  <div class="floating-feedback">
+    <a href="{{ repo }}/issues/new?title={{ 'General feedback' | uri_escape }}&labels=feedback" aria-label="Send general feedback">✉️ Feedback</a>
+  </div>
+  {% endif %}
 </body>
 </html>
