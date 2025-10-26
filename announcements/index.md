@@ -5,7 +5,7 @@ title: Announcements
 
 # Current Announcements
 
-{% assign pages = site.pages | where_exp: 'p', "p.dir == '/announcements/'" | sort: 'date' | reverse %}
+{% assign pages = site.announcements | sort: 'date' | reverse %}
 {% if pages.size == 0 %}
 _No announcements yet._
 {% else %}
