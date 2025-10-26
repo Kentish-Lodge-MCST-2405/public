@@ -1,4 +1,5 @@
 title: Kentish Lodge MSCT Bylaws, Policies and Feedback
+baseurl: "/public"
 theme: minima
 plugins:
   - jekyll-optional-front-matter  # Allows files without YAML headers
