@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Announcement Archive
+permalink: /announcements/archive/
 ---
 
 # Past Announcements
