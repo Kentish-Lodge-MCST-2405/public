@@ -8,6 +8,18 @@
       <li><a href="{{ '/' | relative_url }}">Home</a></li>
       <li>
         <details>
+          <summary>Announcements</summary>
+          <ul>
+            <li><a href="{{ '/announcements/' | relative_url }}">All Announcements</a></li>
+            {% assign recent = site.announcements | sort: 'date' | reverse | slice: 0, 5 %}
+            {% for a in recent %}
+              <li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
           <summary>Bylaws</summary>
           <ul>
             <li><a href="{{ '/bylaws/' | relative_url }}">All Bylaws</a></li>

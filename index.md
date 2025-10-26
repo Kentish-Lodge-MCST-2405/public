@@ -7,14 +7,14 @@ title: Kentish Lodge MCST
   <div class="container">
     <h1>Welcome to Kentish Lodge MCST</h1>
     <p>Your hub for bylaws, policies, and community feedback.</p>
-    <div class="actions">
-      <a class="btn" href="{{ '/policies/' | relative_url }}">Browse Policies</a>
+    <!--div class="actions">
       <a class="btn" href="{{ '/bylaws/' | relative_url }}">View Bylaws</a>
+      <a class="btn" href="{{ '/policies/' | relative_url }}">Browse Policies</a>
       {% assign repo = site.github.repository_url | default: '' %}
       {% if repo != '' %}
       <a class="btn secondary" href="{{ '/feedback/' | relative_url }}">General Feedback</a>
       {% endif %}
-    </div>
+    </div-->
   </div>
   
 </section>
@@ -30,6 +30,19 @@ title: Kentish Lodge MCST
       <h3>Policies</h3>
       <p>How bylaws are implemented day-to-day. Practical guidance for residents and management.</p>
       <p><a href="{{ '/policies/' | relative_url }}">Browse policies →</a></p>
+    </div>
+    <div class="card">
+      <h3>Announcements</h3>
+      <p>Latest notices from the council and managing agent.</p>
+      {% assign recent = site.announcements | sort: 'date' | reverse | slice: 0, 3 %}
+      {% if recent and recent.size > 0 %}
+      <ul>
+        {% for a in recent %}
+        <li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <p><a href="{{ '/announcements/' | relative_url }}">All announcements →</a></p>
     </div>
     <div class="card">
       <h3>Give Feedback</h3>

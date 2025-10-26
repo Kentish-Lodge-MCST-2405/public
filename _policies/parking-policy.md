@@ -3,6 +3,8 @@ title: Parking Policy
 category: Parking
 effective: 2023-11-01
 version: 1.0
+bylaws:
+  - parking
 ---
 
 ## Rules

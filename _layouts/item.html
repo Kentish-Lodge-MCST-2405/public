@@ -37,6 +37,24 @@
         <ul>{%- for key in page.policies -%}{%- assign found = false -%}{%- for p in site.policies -%}{%- assign slug = p.path | split:'/' | last | split:'.' | first -%}{%- if slug == key or p.title == key -%}<li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>{%- assign found = true -%}{%- break -%}{%- endif -%}{%- endfor -%}{%- unless found -%}<li>{{ key }}</li>{%- endunless -%}{%- endfor -%}</ul>
       </section>
       {% endif %}
+      {% if page.collection == 'policies' %}
+      {% assign related_bylaws = page.bylaws %}
+      {% if related_bylaws == nil or related_bylaws.size == 0 %}
+        {%- assign related_bylaws = '' | split: '' -%}
+        {%- assign self_slug = page.path | split:'/' | last | split:'.' | first -%}
+        {%- for b in site.bylaws -%}
+          {%- if b.policies and b.policies contains self_slug -%}
+            {%- assign related_bylaws = related_bylaws | push: b.title -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {% endif %}
+      {% if related_bylaws and related_bylaws.size > 0 %}
+      <section class="related">
+        <h2>Related Bylaws</h2>
+        <ul>{%- for key in related_bylaws -%}{%- assign found = false -%}{%- for b in site.bylaws -%}{%- assign slug = b.path | split:'/' | last | split:'.' | first -%}{%- if slug == key or b.title == key -%}<li><a href="{{ b.url | relative_url }}">{{ b.title }}</a></li>{%- assign found = true -%}{%- break -%}{%- endif -%}{%- endfor -%}{%- unless found -%}<li>{{ key }}</li>{%- endunless -%}{%- endfor -%}</ul>
+      </section>
+      {% endif %}
+      {% endif %}
     </div>
   </main>
   {% assign repo = site.github.repository_url | default: '' %}

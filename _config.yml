@@ -10,6 +10,9 @@ collections:
   bylaws:
     output: true
     permalink: /bylaws/:path/
+  announcements:
+    output: true
+    permalink: /announcements/:path/
 
 defaults:
   - scope:
@@ -20,5 +23,10 @@ defaults:
   - scope:
       path: ""
       type: policies
+    values:
+      layout: item
+  - scope:
+      path: ""
+      type: announcements
     values:
       layout: item
