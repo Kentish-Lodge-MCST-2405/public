@@ -24,9 +24,19 @@
   </main>
   {% assign repo = site.github.repository_url | default: '' %}
   {% if repo != '' %}
-  <div class="floating-feedback">
-    <a href="{{ repo }}/issues/new?title={{ 'General feedback' | uri_escape }}&labels=feedback" aria-label="Send general feedback">✉️ Feedback</a>
-  </div>
+    {% assign is_announcement = page.collection == 'announcements' or page.url contains '/announcements/' %}
+    {% assign is_archived = page.status == 'archived' or page.status == 'archive' %}
+    {% if is_announcement %}
+      {% unless is_archived %}
+      <div class="floating-feedback">
+        <a href="{{ repo }}/issues/new?title={{ page.title | default: 'Announcement feedback' | uri_escape }}&labels=feedback" aria-label="Send feedback about this announcement">✉️ Feedback</a>
+      </div>
+      {% endunless %}
+    {% else %}
+      <div class="floating-feedback">
+        <a href="{{ repo }}/issues/new?title={{ 'General feedback' | uri_escape }}&labels=feedback" aria-label="Send general feedback">✉️ Feedback</a>
+      </div>
+    {% endif %}
   {% endif %}
 </body>
 </html>
