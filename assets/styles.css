@@ -70,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 { font-size: 2rem; }
-h2 { font-size: 1.5rem; padding-top:10px; }
+h2 { font-size: 1.5rem; padding-top:15px; }
 h3 { font-size: 1.25rem; }
 
 p {
@@ -179,7 +179,9 @@ a:focus {
 ul {
   padding-inline-start: 22px;
 }
-
+ol {
+  padding-inline-start: 22px;
+}
 .sidebar-content ul {
   list-style: none;
   padding: 0;
