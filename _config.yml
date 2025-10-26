@@ -1,7 +1,7 @@
 title: Kentish Lodge MSCT Bylaws, Policies and Feedback
 theme: minima
 url: "https://info.kentishlodge.com" # e.g. https://your-org.github.io
-baseurl: "" # empty when serving at the root of a custom domain
+baseurl: "/" # if this is a project page, set to "/Kentish-Lodge-MCST-2405" (repo name)
 
 collections:
   policies:
