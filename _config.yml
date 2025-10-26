@@ -1,9 +1,24 @@
 title: Kentish Lodge MSCT Bylaws, Policies and Feedback
 theme: minima
-plugins:
-  - jekyll-optional-front-matter  # Allows files without YAML headers
+url: "" # e.g. https://your-org.github.io
+baseurl: "" # if this is a project page, set to "/Kentish-Lodge-MCST-2405" (repo name)
+
 collections:
   policies:
     output: true
+    permalink: /policies/:path/
   bylaws:
     output: true
+    permalink: /bylaws/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: bylaws
+    values:
+      layout: item
+  - scope:
+      path: ""
+      type: policies
+    values:
+      layout: item

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <style>
+    :root{--bg:#ffffff;--fg:#222;--muted:#6b7280;--link:#0ea5e9;--border:rgba(125,125,125,.2);--btn:#0ea5e9;--btn-fg:#fff}
+    @media (prefers-color-scheme: dark){:root{--bg:#0b1020;--fg:#e5e7eb;--muted:#94a3b8;--link:#38bdf8;--border:rgba(255,255,255,.15)}}
+    body{background:var(--bg);color:var(--fg);margin:0}
+    a{color:var(--link)}
+    .container{max-width:960px;margin:0 auto;padding:2rem}
+    header.item{border-bottom:1px solid var(--border);padding-bottom:1rem;margin-bottom:1.5rem}
+    header.item h1{margin:0;font-size:1.6rem}
+    .meta{color:var(--muted);font-size:.9rem}
+    .toolbar{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem}
+    .btn{display:inline-block;background:var(--btn);color:var(--btn-fg);padding:.5rem .75rem;border-radius:.5rem;text-decoration:none}
+    .tag{display:inline-block;border:1px solid var(--border);padding:.2rem .5rem;border-radius:.5rem;color:var(--muted)}
+    .content{line-height:1.7}
+  </style>
+</head>
+<body>
+  {% include sidebar.html %}
+  <main class="content">
+    <div class="container">
+      <header class="item">
+        <h1>{{ page.title }}</h1>
+        <div class="meta">
+          {% if page.category %}<span class="tag">{{ page.category }}</span>{% endif %}
+          {% if page.version %}<span class="tag">v{{ page.version }}</span>{% endif %}
+          {% if page.effective %}<span class="tag">Effective: {{ page.effective }}</span>{% endif %}
+        </div>
+        <div class="toolbar">
+          {% assign repo = site.github.repository_url | default: '' %}
+          {% if repo != '' %}
+            <a class="btn" href="{{ repo }}/issues/new?title={{ 'Feedback: ' | uri_escape }}{{ page.title | uri_escape }}&labels=feedback&body={{ 'Page: ' | uri_escape }}{{ page.url | absolute_url | uri_escape }}">Give Feedback</a>
+            <a class="btn" href="{{ repo }}/issues/new?title={{ 'Request change: ' | uri_escape }}{{ page.title | uri_escape }}&labels=change-request&body={{ 'Please describe the requested change for ' | uri_escape }}{{ page.url | absolute_url | uri_escape }}">Request Change</a>
+          {% endif %}
+        </div>
+      </header>
+      <article class="content">
+        {{ content }}
+      </article>
+    </div>
+  </main>
+</body>
+</html>

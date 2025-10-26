@@ -5,23 +5,25 @@
   <div class="sidebar-content">
     <h2>Kentish Lodge</h2>
     <ul>
-      <li><a href="/public/">Home</a></li>
+      <li><a href="{{ '/' | relative_url }}">Home</a></li>
       <li>
         <details>
-          <summary><a href="/public/policies">Policies</a></summary>
+          <summary>Policies</summary>
           <ul>
+            <li><a href="{{ '/policies/' | relative_url }}">All Policies</a></li>
             {% for policy in site.policies %}
-              <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
+              <li><a href="{{ policy.url | relative_url }}">{{ policy.title | default: policy.name }}</a></li>
             {% endfor %}
           </ul>
         </details>
       </li>
       <li>
         <details>
-          <summary><a href="/public/bylaws/">Bylaws</a></summary>
+          <summary>Bylaws</summary>
           <ul>
+            <li><a href="{{ '/bylaws/' | relative_url }}">All Bylaws</a></li>
             {% for bylaw in site.bylaws %}
-              <li><a href="{{ bylaw.url }}">{{ bylaw.title }}</a></li>
+              <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
             {% endfor %}
           </ul>
         </details>
@@ -78,6 +80,8 @@
   .content {
     margin-left: var(--sidebar-width);
     padding: 2rem;
+    max-width: 1000px;
+    margin-right: auto;
   }
 
   /* Mobile styles */
@@ -90,7 +94,7 @@
     .sidebar-toggle:checked ~ .sidebar-content {
       transform: translateX(0);
     }
-    .content { margin-left: 0; }
+    .content { margin-left: 0; padding: 1rem; }
   }
 
   /* Folder dropdowns */
