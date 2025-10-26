@@ -1,8 +1,8 @@
 ---
 title: Christmas Office Hours
-date: 2024-12-1
+date: 2024-12-01
 ends_on: 2024-12-25
-status: archive
+status: archived
 layout: item
 ---
 

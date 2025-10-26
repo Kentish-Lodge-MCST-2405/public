@@ -11,10 +11,13 @@
           <summary>Announcements</summary>
           <ul>
             <li><a href="{{ '/announcements/' | relative_url }}">All Announcements</a></li>
+            {% assign now = site.time | date: '%s' %}
             {% assign recent_ann = site.announcements | sort: 'date' | reverse %}
             {% assign count = 0 %}
             {% for a in recent_ann %}
-              {% if count < 5 %}
+              {% assign ends = a.ends_on | default: a.date %}
+              {% assign ends_s = ends | date: '%s' %}
+              {% if (a.status != 'archived' and a.status != 'archive') and ends_s >= now and count < 5 %}
                 <li><a href="{{ a.url | relative_url }}">{{ a.title | default: a.name }}</a></li>
                 {% assign count = count | plus: 1 %}
               {% endif %}
