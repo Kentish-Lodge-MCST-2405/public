@@ -34,8 +34,8 @@ title: Kentish Lodge MCST
     <div class="card">
       <h3>Announcements</h3>
       <p>Latest notices from the council and managing agent.</p>
-      {% assign recent = site.announcements | sort: 'date' | reverse | slice: 0, 3 %}
-      {% if recent and recent.size > 0 %}
+      {% assign recent = site.pages | where_exp: 'p', "p.dir == '/announcements/'" | sort: 'date' | reverse | slice: 0, 3 %}
+      {% if recent.size > 0 %}
       <ul>
         {% for a in recent %}
         <li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>

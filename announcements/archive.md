@@ -6,9 +6,9 @@ title: Announcement Archive
 # Past Announcements
 
 {% assign now = site.time | date: '%s' %}
-{% assign items = site.announcements | sort: 'date' | reverse %}
+{% assign pages = site.pages | where_exp: 'p', "p.dir == '/announcements/'" | sort: 'date' | reverse %}
 {% assign past = '' | split: '' %}
-{% for a in items %}
+{% for a in pages %}
   {% assign ends = a.ends_on | default: a.date %}
   {% assign ends_s = ends | date: '%s' %}
   {% if ends_s < now or a.status == 'archived' %}
