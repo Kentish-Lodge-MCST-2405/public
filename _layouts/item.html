@@ -31,6 +31,12 @@
       <article class="content">
         {{ content }}
       </article>
+      {% if page.collection == 'bylaws' and page.policies and page.policies.size > 0 %}
+      <section class="related">
+        <h2>Related Policies</h2>
+        <ul>{%- for key in page.policies -%}{%- assign found = false -%}{%- for p in site.policies -%}{%- assign slug = p.path | split:'/' | last | split:'.' | first -%}{%- if slug == key or p.title == key -%}<li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>{%- assign found = true -%}{%- break -%}{%- endif -%}{%- endfor -%}{%- unless found -%}<li>{{ key }}</li>{%- endunless -%}{%- endfor -%}</ul>
+      </section>
+      {% endif %}
     </div>
   </main>
   {% assign repo = site.github.repository_url | default: '' %}
