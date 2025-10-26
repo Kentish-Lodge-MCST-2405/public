@@ -6,12 +6,12 @@ title: Announcement Archive
 # Past Announcements
 
 {% assign now = site.time | date: '%s' %}
-{% assign pages = site.pages | where_exp: 'p', "p.dir == '/announcements/'" | sort: 'date' | reverse %}
 {% assign past = '' | split: '' %}
-{% for a in pages %}
+{% assign ann = site.announcements | sort: 'date' | reverse %}
+{% for a in ann %}
   {% assign ends = a.ends_on | default: a.date %}
   {% assign ends_s = ends | date: '%s' %}
-  {% if ends_s < now or a.status == 'archived' %}
+  {% if ends_s < now or a.status == 'archived' or a.status == 'archive' %}
     {% assign past = past | push: a %}
   {% endif %}
 {% endfor %}
@@ -20,7 +20,8 @@ title: Announcement Archive
 _No past announcements yet._
 {% else %}
 <ul>
-  {% for a in past %}
+  {% assign past_sorted = past | sort: 'date' | reverse %}
+  {% for a in past_sorted %}
   <li>
     <a href="{{ a.url | relative_url }}">{{ a.title }}</a>
     <small>({{ a.date | date: '%b %d, %Y' }})</small>
