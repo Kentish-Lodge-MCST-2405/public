@@ -34,12 +34,12 @@ title: Kentish Lodge MCST
     <div class="card">
       <h3>Announcements</h3>
       <p>Latest notices from the council and managing agent.</p>
-      {% assign pages_sorted = site.pages | sort: 'date' | reverse %}
+      {% assign recent_ann = site.announcements | sort: 'date' | reverse %}
       {% assign shown = 0 %}
       <ul>
-        {% for a in pages_sorted %}
-          {% if a.url contains '/announcements/' and a.url != '/announcements/' and shown < 3 %}
-            <li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>
+        {% for a in recent_ann %}
+          {% if shown < 3 %}
+            <li><a href="{{ a.url | relative_url }}">{{ a.title | default: a.name }}</a></li>
             {% assign shown = shown | plus: 1 %}
           {% endif %}
         {% endfor %}

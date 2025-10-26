@@ -11,11 +11,11 @@
           <summary>Announcements</summary>
           <ul>
             <li><a href="{{ '/announcements/' | relative_url }}">All Announcements</a></li>
-            {% assign recent_pages = site.pages | sort: 'date' | reverse %}
+            {% assign recent_ann = site.announcements | sort: 'date' | reverse %}
             {% assign count = 0 %}
-            {% for a in recent_pages %}
-              {% if a.url contains '/announcements/' and a.url != '/announcements/' and count < 5 %}
-                <li><a href="{{ a.url | relative_url }}">{{ a.title }}</a></li>
+            {% for a in recent_ann %}
+              {% if count < 5 %}
+                <li><a href="{{ a.url | relative_url }}">{{ a.title | default: a.name }}</a></li>
                 {% assign count = count | plus: 1 %}
               {% endif %}
             {% endfor %}
