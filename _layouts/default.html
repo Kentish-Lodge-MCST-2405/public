@@ -24,8 +24,14 @@
   </main>
   {% assign repo = site.github.repository_url | default: '' %}
   {% if repo != '' %}
-    {% assign is_announcement = page.collection == 'announcements' or page.url contains '/announcements/' %}
-    {% assign is_archived = page.status == 'archived' or page.status == 'archive' %}
+    {% assign is_announcement = false %}
+    {% if page.collection == 'announcements' or page.url contains '/announcements/' %}
+      {% assign is_announcement = true %}
+    {% endif %}
+    {% assign is_archived = false %}
+    {% if page.status == 'archived' or page.status == 'archive' %}
+      {% assign is_archived = true %}
+    {% endif %}
     {% if is_announcement %}
       {% unless is_archived %}
       <div class="floating-feedback">
