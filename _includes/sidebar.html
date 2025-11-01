@@ -27,8 +27,8 @@
       </li>
       <li>
         {%- assign on_bylaws = page.collection == 'bylaws' or page.url contains '/bylaws/' -%}
-        {%- assign current_category = page.category -%}
-        {%- assign current_subcat = page.subcategory -%}
+        {%- assign current_category = page.category | default: '' -%}
+        {%- assign current_subcat = page.subcategory | default: '' -%}
         <details{% if on_bylaws %} open{% endif %}>
           <summary>Bylaws</summary>
           {%- assign groups = site.bylaws | group_by: 'category' | sort: 'name' -%}
@@ -37,16 +37,24 @@
             {%- for g in groups -%}
               <li>
                 {%- assign subgroups = g.items | group_by: 'subcategory' | sort: 'name' -%}
-                <details{% if current_category == g.name %} open{% endif %}>
+                {%- assign is_current_category = false -%}
+                {%- if current_category != '' and current_category == g.name -%}
+                  {%- assign is_current_category = true -%}
+                {%- endif -%}
+                <details{% if is_current_category %} open{% endif %}>
                   <summary>{{ g.name }}</summary>
                   <ul>
                     {%- for sg in subgroups -%}
                       {%- assign subgroup_name = sg.name | default: '' -%}
-                      {%- assign with_order = sg.items | where_exp: 'i', 'i.order' | sort: 'order' -%}
+                      {%- assign with_order = sg.items | where_exp: 'i', 'i.order' | sort_natural: 'order' -%}
                       {%- assign without_order = sg.items | where_exp: 'i', 'i.order == nil' | sort: 'title' -%}
+                      {%- assign is_current_subcat = false -%}
+                      {%- if subgroup_name != '' and current_subcat != '' and current_subcat == subgroup_name and is_current_category -%}
+                        {%- assign is_current_subcat = true -%}
+                      {%- endif -%}
                       {%- if subgroup_name != '' -%}
                         <li>
-                          <details{% if current_subcat == subgroup_name and current_category == g.name %} open{% endif %}>
+                          <details{% if is_current_subcat %} open{% endif %}>
                             <summary>{{ subgroup_name }}</summary>
                             <ul>
                               {%- for bylaw in with_order -%}
@@ -80,8 +88,8 @@
       </li>
       <li>
         {%- assign on_policies = page.collection == 'policies' or page.url contains '/policies/' -%}
-        {%- assign current_category_p = page.category -%}
-        {%- assign current_subcat_p = page.subcategory -%}
+        {%- assign current_category_p = page.category | default: '' -%}
+        {%- assign current_subcat_p = page.subcategory | default: '' -%}
         <details{% if on_policies %} open{% endif %}>
           <summary>Policies</summary>
           {%- assign groups = site.policies | group_by: 'category' | sort: 'name' -%}
@@ -90,16 +98,24 @@
             {%- for g in groups -%}
               <li>
                 {%- assign subgroups = g.items | group_by: 'subcategory' | sort: 'name' -%}
-                <details{% if current_category_p == g.name %} open{% endif %}>
+                {%- assign is_current_category = false -%}
+                {%- if current_category_p != '' and current_category_p == g.name -%}
+                  {%- assign is_current_category = true -%}
+                {%- endif -%}
+                <details{% if is_current_category %} open{% endif %}>
                   <summary>{{ g.name }}</summary>
                   <ul>
                     {%- for sg in subgroups -%}
                       {%- assign subgroup_name = sg.name | default: '' -%}
-                      {%- assign with_order = sg.items | where_exp: 'i', 'i.order' | sort: 'order' -%}
+                      {%- assign with_order = sg.items | where_exp: 'i', 'i.order' | sort_natural: 'order' -%}
                       {%- assign without_order = sg.items | where_exp: 'i', 'i.order == nil' | sort: 'title' -%}
+                      {%- assign is_current_subcat = false -%}
+                      {%- if subgroup_name != '' and current_subcat_p != '' and current_subcat_p == subgroup_name and is_current_category -%}
+                        {%- assign is_current_subcat = true -%}
+                      {%- endif -%}
                       {%- if subgroup_name != '' -%}
                         <li>
-                          <details{% if current_subcat_p == subgroup_name and current_category_p == g.name %} open{% endif %}>
+                          <details{% if is_current_subcat %} open{% endif %}>
                             <summary>{{ subgroup_name }}</summary>
                             <ul>
                               {%- for p in with_order -%}

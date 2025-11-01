@@ -11,31 +11,25 @@ _No bylaws yet._
 {% else %}
 {% for group in groups %}
 
-<h2>{{ group.name }}</h2>
+## BYLAW
+### {{ group.name }}
 
 {% assign subgroups = group.items | group_by: 'subcategory' | sort: 'name' %}
 {% for sg in subgroups %}
 {% assign subname = sg.name | default: '' %}
 {% if subname != '' %}
-<h3>{{ subname }}</h3>
+#### {{ subname }}
 {% endif %}
-
-{% assign with_order = sg.items | where_exp: 'i', 'i.order' | sort: 'order' %}
+{% assign with_order = sg.items | where_exp: 'i', 'i.order' | sort_natural: 'order' %}
 {% assign without_order = sg.items | where_exp: 'i', 'i.order == nil' | sort: 'title' %}
-<ul>
 {% for bylaw in with_order %}
   {% unless bylaw.title == subname %}
-  <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
-  {% endunless %}
+- {{ bylaw.title | default: bylaw.name }}{% endunless %}
 {% endfor %}
 {% for bylaw in without_order %}
   {% unless bylaw.title == subname %}
-  <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
-  {% endunless %}
+- {{ bylaw.title | default: bylaw.name }}{% endunless %}
 {% endfor %}
-</ul>
-
 {% endfor %}
-
 {% endfor %}
 {% endif %}

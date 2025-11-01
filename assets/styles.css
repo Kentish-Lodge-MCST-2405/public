@@ -81,6 +81,40 @@ h1, h2, h3, h4, h5, h6 {
 h1 { font-size: 2rem; }
 h2 { font-size: 1.5rem; padding-top:15px; }
 h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; font-weight: 500; }
+
+/* Bylaws/Policies hierarchy styling */
+.content h2 {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  background: var(--card-bg);
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+
+.content h3 {
+  color: var(--accent);
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.content h4 {
+  color: var(--muted);
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
+/* Better list styling for bylaws/policies */
+.content ul {
+  padding-left: 1.5rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.content li {
+  margin: 0.15rem 0;
+  padding-left: 0.25rem;
+}
 
 p {
   margin-bottom: 1rem;
