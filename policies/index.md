@@ -5,13 +5,13 @@ title: Policies
 
 # Policies
 
+## POLICY
+
 {% assign groups = site.policies | group_by: 'category' | sort: 'name' %}
 {% if groups.size == 0 %}
 _No policies yet._
 {% else %}
 {% for group in groups %}
-
-## POLICY
 ### {{ group.name }}
 
 {% assign subgroups = group.items | group_by: 'subcategory' | sort: 'name' %}

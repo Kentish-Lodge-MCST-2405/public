@@ -1,6 +1,6 @@
 ---
 title: Renovation Requiring Notification And Deposits To The Management Policy
-category: Renovation Requiring Notification And Deposits To The Management
+category: RENOVATION
 effective: 2025-11-01
 version: 1.0
 order: "04.06"

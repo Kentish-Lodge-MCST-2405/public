@@ -1,6 +1,6 @@
 ---
 title: Building Structure Policy
-category: Building Structure
+category: USE OF HOUSING UNITS AND COMMON AREAS
 effective: 2025-11-01
 version: 1.0
 order: "02.02"

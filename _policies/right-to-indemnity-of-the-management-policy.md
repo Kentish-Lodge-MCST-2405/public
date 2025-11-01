@@ -1,6 +1,6 @@
 ---
 title: Right To Indemnity Of The Management Policy
-category: Right To Indemnity Of The Management
+category: HOUSE REMOVAL
 effective: 2025-11-01
 version: 1.0
 order: "05.05"

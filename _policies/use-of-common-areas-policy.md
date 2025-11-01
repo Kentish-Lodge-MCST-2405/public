@@ -1,6 +1,6 @@
 ---
 title: Use Of Common Areas Policy
-category: Use Of Common Areas
+category: RENOVATION
 effective: 2025-11-01
 version: 1.0
 order: "04.04"

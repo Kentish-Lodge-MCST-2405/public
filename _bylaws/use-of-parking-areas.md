@@ -1,6 +1,6 @@
 ---
 title: Use of Parking Areas Bylaws
-category: Use of Parking Areas
+category: CAR PARKING
 effective: 2025-11-01
 version: 1.0
 order: "03.03"

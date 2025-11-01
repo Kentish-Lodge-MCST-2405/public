@@ -1,6 +1,6 @@
 ---
 title: Liability Of Contractors/Residents Bylaws
-category: Liability Of Contractors/Residents
+category: RENOVATION
 effective: 2025-11-01
 version: 1.0
 order: "04.05"

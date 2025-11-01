@@ -71,6 +71,9 @@ def process_json_data(json_file_path):
 def create_bylaw_file(subcategory, items, slug, file_order_code):
     """Create a bylaw markdown file for the subcategory"""
     
+    # Get the actual category from the first item
+    category = items[0]['category']
+    
     # Extract rule numbers and titles for the front matter
     rule_titles = [item['title'] for item in items]
     
@@ -91,7 +94,7 @@ def create_bylaw_file(subcategory, items, slug, file_order_code):
     # Front matter
     front_matter = f"""---
 title: {subcategory} Bylaws
-category: {subcategory}
+category: {category}
 effective: {datetime.now().strftime('%Y-%m-%d')}
 version: 1.0
 order: "{file_order_code}"
@@ -110,6 +113,9 @@ policies:
 def create_policy_file(subcategory, items, slug, file_order_code):
     """Create a policy markdown file for the subcategory"""
     
+    # Get the actual category from the first item
+    category = items[0]['category']
+    
     # Build the content
     content_parts = []
     
@@ -127,7 +133,7 @@ def create_policy_file(subcategory, items, slug, file_order_code):
     # Front matter
     front_matter = f"""---
 title: {subcategory} Policy
-category: {subcategory}
+category: {category}
 effective: {datetime.now().strftime('%Y-%m-%d')}
 version: 1.0
 order: "{file_order_code}"

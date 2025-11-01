@@ -1,6 +1,6 @@
 ---
 title: Mover's Vehicles Policy
-category: Mover's Vehicles
+category: HOUSE REMOVAL
 effective: 2025-11-01
 version: 1.0
 order: "05.04"

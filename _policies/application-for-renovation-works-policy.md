@@ -1,6 +1,6 @@
 ---
 title: Application For Renovation Works Policy
-category: Application For Renovation Works
+category: RENOVATION
 effective: 2025-11-01
 version: 1.0
 order: "04.01"

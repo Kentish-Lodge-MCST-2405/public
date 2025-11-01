@@ -1,6 +1,6 @@
 ---
 title: Car Park Label Policy
-category: Car Park Label
+category: CAR PARKING
 effective: 2025-11-01
 version: 1.0
 order: "03.01"

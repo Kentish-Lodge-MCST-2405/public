@@ -1,6 +1,6 @@
 ---
 title: Renovation Works That Will Not Be Approved Bylaws
-category: Renovation Works That Will Not Be Approved
+category: RENOVATION
 effective: 2025-11-01
 version: 1.0
 order: "04.07"

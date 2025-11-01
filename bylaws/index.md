@@ -5,13 +5,13 @@ title: Bylaws
 
 # Bylaws
 
+## BYLAW
+
 {% assign groups = site.bylaws | group_by: 'category' | sort: 'name' %}
 {% if groups.size == 0 %}
 _No bylaws yet._
 {% else %}
 {% for group in groups %}
-
-## BYLAW
 ### {{ group.name }}
 
 {% assign subgroups = group.items | group_by: 'subcategory' | sort: 'name' %}

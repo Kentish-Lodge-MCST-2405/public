@@ -1,6 +1,6 @@
 ---
 title: Restrictions On Awnings, Shades, Grilles, Etc. Policy
-category: Restrictions On Awnings, Shades, Grilles, Etc.
+category: USE OF HOUSING UNITS AND COMMON AREAS
 effective: 2025-11-01
 version: 1.0
 order: "02.15"

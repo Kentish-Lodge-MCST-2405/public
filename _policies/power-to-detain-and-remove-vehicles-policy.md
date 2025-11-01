@@ -1,6 +1,6 @@
 ---
 title: Power to Detain and Remove Vehicles Policy
-category: Power to Detain and Remove Vehicles
+category: CAR PARKING
 effective: 2025-11-01
 version: 1.0
 order: "03.07"

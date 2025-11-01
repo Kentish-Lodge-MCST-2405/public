@@ -1,6 +1,6 @@
 ---
 title: General Rules Bylaws
-category: General Rules
+category: GENERAL PROVISIONS
 effective: 2025-11-01
 version: 1.0
 order: "01.01"

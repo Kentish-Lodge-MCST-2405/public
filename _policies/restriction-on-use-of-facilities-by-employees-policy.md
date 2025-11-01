@@ -1,6 +1,6 @@
 ---
 title: Restriction On Use Of Facilities By Employees Policy
-category: Restriction On Use Of Facilities By Employees
+category: USE OF HOUSING UNITS AND COMMON AREAS
 effective: 2025-11-01
 version: 1.0
 order: "02.18"

@@ -1,6 +1,6 @@
 ---
 title: Washing of Vehicles Policy
-category: Washing of Vehicles
+category: CAR PARKING
 effective: 2025-11-01
 version: 1.0
 order: "03.04"
