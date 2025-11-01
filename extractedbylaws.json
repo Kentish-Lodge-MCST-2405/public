@@ -1,0 +1,786 @@
+[
+  {
+    "category": "GENERAL PROVISIONS",
+    "subcategory": "General Rules",
+    "title": "Rule 1 - Compliance with Rules",
+    "bylaw_text": "1) All residents shall observe and comply with the rules, which may from time to time be amended, varied, enhanced or revoked on by The Management.",
+    "implementation": "## Implementation Details\n- Maintain version control of bylaw documents\n- Provide 30-day notice for major rule changes\n- Distribute updated bylaws via email and physical notices\n- Conduct annual review of all rules and amendments"
+  },
+  {
+    "category": "GENERAL PROVISIONS",
+    "subcategory": "General Rules",
+    "title": "Rule 2 - Owner Privileges for Tenants",
+    "bylaw_text": "2) Owners who lease their units shall be considered to have given up their privilege as residents and these privileges shall be automatically assigned to their lessees/tenants.",
+    "implementation": "## Implementation Details\n- Require owners to submit tenant registration forms\n- Issue new resident cards to tenants\n- Update access control systems with tenant information\n- Maintain database of current tenants vs owners"
+  },
+  {
+    "category": "GENERAL PROVISIONS",
+    "subcategory": "General Rules", 
+    "title": "Rule 3 - Management Amendment Rights",
+    "bylaw_text": "3) The Management reserves the right to change any of these rules without prior notice given to residents and owners.",
+    "implementation": "## Implementation Details\n- Document all rule changes with timestamps\n- Post changes on notice boards and online portal\n- Provide grace period for compliance with new rules\n- Maintain change log for audit purposes"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Residential Dwelling / Tenancy",
+    "title": "Rule 1 - Residential Use Only",
+    "bylaw_text": "1) The housing units are private residential dwellings and must not be used for commercial, illegal or other purposes incompatible with a private residential estate.",
+    "implementation": "## Implementation Details\n- Regular unit inspections for compliance\n- Monitor for commercial activities\n- Investigate resident complaints promptly\n- Maintain records of violations and actions taken"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Residential Dwelling / Tenancy",
+    "title": "Rule 2 - Tenancy Notification",
+    "bylaw_text": "2) Owners must notify the Management of any tenancy/lease/sale of their housing units. They are required to furnish details of the tenancy/lease/sale and purchase including particulars of the new owner and date of completion.",
+    "implementation": "## Implementation Details\n- Provide online tenancy notification form\n- Require submission within 7 days of lease/sale\n- Update resident database with new occupant details\n- Issue reminder notices for non-compliance"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Building Structure",
+    "title": "Rule 4 - Structural Protection",
+    "bylaw_text": "4) Residents may not do or keep in the estate anything which may overload or impair the floors, walls or roofs thereof or cause an increase in insurance premium rate or the cancellation, invalidation or non-renewal of existing insurance policies. Residents in violation of this rule shall indemnify the Management against any claims, suits, loss, damage, expense, costs or other liability caused by or arising from such violation, whether directly or otherwise.",
+    "implementation": "## Implementation Details\n- Conduct structural inspections for heavy installations\n- Review insurance policy impacts of resident modifications\n- Maintain records of structural violations\n- Implement penalty system for non-compliance"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Nuisance Act",
+    "title": "Rule 5 - Noise Control",
+    "bylaw_text": "5) Persons within the estate may not create noise or engage in offensive conduct. Any person using the common area of the estate between the hours of 10.00pm and 7.00am shall do so as quietly as possible as not to cause any disturbance or annoyance to others.",
+    "implementation": "## Implementation Details\n- Implement noise complaint hotline\n- Security patrols during quiet hours\n- Issue warning notices for noise violations\n- Escalate to authorities for persistent offenders"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Nuisance Act",
+    "title": "Rule 6 - Audio Equipment Volume",
+    "bylaw_text": "6) Radios, hi-fi equipment, television sets, musical instruments and other like equipment shall be kept at reasonable volume at all time.",
+    "implementation": "## Implementation Details\n- Set decibel level guidelines for common areas\n- Provide soundproofing recommendations\n- Investigate volume complaints within 2 hours\n- Implement temporary equipment confiscation for repeat offenses"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Refuse",
+    "title": "Rule 7 - Proper Refuse Disposal",
+    "bylaw_text": "7) Normal household refuse shall be secured in sealed bags and disposed of through the refuse chute. Residents may not throw or put into the refuse chutes any article or thing, which is likely to cause damage to the chutes or the supporting equipment. Inflammable material, bulky and fragile objects must be carried to the bin centre. No unwanted object may be left in common areas. Residents shall ensure that their contractors remove renovation debris and building materials from within the estate and under no circumstances shall such renovation debris and building materials be disposed of into the refuse chutes, floor traps or left at the common areas.",
+    "implementation": "## Implementation Details\n- Install CCTV monitoring at refuse chutes\n- Provide clear signage on prohibited items\n- Schedule regular chute maintenance and inspection\n- Charge back cleanup costs to violating units"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Refuse",
+    "title": "Rule 8 - No Throwing from Windows",
+    "bylaw_text": "8) Nothing may be thrown or emptied out of the window, door, balcony or yard area into the common areas.",
+    "implementation": "## Implementation Details\n- Security patrols to monitor for violations\n- Install warning signs at high-risk areas\n- Immediate cleanup of hazardous thrown items\n- Issue fines for littering violations"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Plants",
+    "title": "Rule 10 - Plant Maintenance",
+    "bylaw_text": "10) Residents who maintain plants shall ensure that their plants and pots are maintained in a manner that will not degrade the façade of the building, create a nuisance or be a danger to others.",
+    "implementation": "## Implementation Details\n- Quarterly balcony and window sill inspections\n- Provide guidelines for approved plant types\n- Require removal of overgrown or dangerous plants\n- Offer gardening consultation services"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Gatherings/Funerals Wakes",
+    "title": "Rule 11 - Prohibited Gatherings",
+    "bylaw_text": "11) Political gatherings, religious activities, funeral wakes and any other illegal gatherings shall not be held in the estate.",
+    "implementation": "## Implementation Details\n- Security to monitor for unauthorized gatherings\n- Require prior approval for all group events\n- Limit group sizes in common areas\n- Emergency procedures for illegal gatherings"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Gatherings/Funerals Wakes",
+    "title": "Rule 12 - Joss Stick Burning",
+    "bylaw_text": "12) The Management may, on request, permit the burning of joss sticks and incense paper and may designated certain areas for this purpose.",
+    "implementation": "## Implementation Details\n- Designate specific safe burning areas\n- Require 48-hour advance approval\n- Provide fire-safe containers\n- Monitor burning activities for safety compliance"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Pets In The Estate",
+    "title": "Rule 13 - Household Pets Only",
+    "bylaw_text": "13) Resident may keep only household pets. Livestock, poultry and other non-household pets are not permitted.",
+    "implementation": "## Implementation Details\n- Maintain approved pet list (dogs, cats, small caged animals)\n- Require pet registration with management\n- Annual verification of pet compliance\n- Immediate removal order for prohibited animals"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Pets In The Estate",
+    "title": "Rule 14 - Nuisance Pets Removal",
+    "bylaw_text": "14) Pets that cause nuisance or unreasonable disturbance shall be promptly removed from the estate upon notice being given by the Management.",
+    "implementation": "## Implementation Details\n- Document all pet-related complaints\n- Three-strike policy for nuisance pets\n- 7-day notice for pet removal\n- Follow-up inspection to ensure compliance"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Pets In The Estate",
+    "title": "Rule 15 - Pet Restraint in Common Areas",
+    "bylaw_text": "15) Pets are not allowed in the common areas including common corridors, staircases and landscaped areas except when kept in restraint and leashed at all times.",
+    "implementation": "## Implementation Details\n- Designate pet walking routes\n- Require maximum 6-foot leashes\n- Security to enforce leash rules\n- Fine system for unleashed pets"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Pets In The Estate",
+    "title": "Rule 16 - Pet Restricted Areas",
+    "bylaw_text": "16) The recreational facilities, poolside surroundings, children's playground and such designated areas are strictly out-of-bound to pets.",
+    "implementation": "## Implementation Details\n- Install clear 'No Pets' signage\n- Security to monitor restricted areas\n- Immediate removal of pets from prohibited zones\n- Progressive penalties for violations"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Pets In The Estate",
+    "title": "Rule 17 - Elevator Pet Protocol",
+    "bylaw_text": "17) When in transit in elevators, pets shall be carried or be put on a short leash.",
+    "implementation": "## Implementation Details\n- Elevator signage for pet protocols\n- Priority elevator access for pet carriers\n- Training for security on pet handling\n- Incident reporting for pet elevator issues"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Pets In The Estate",
+    "title": "Rule 18 - Pet Damage Responsibility",
+    "bylaw_text": "18) Pet owners shall be responsible for the cost of cleaning or repairing common areas littered or damaged by their pets.",
+    "implementation": "## Implementation Details\n- Document all pet-related damages with photos\n- Immediate billing for cleanup/repair costs\n- Maintain pet owner responsibility agreement\n- Escalate to legal action for unpaid damages"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Pets In The Estate",
+    "title": "Rule 19 - Waste Cleanup",
+    "bylaw_text": "19) Pets' faeces must be cleared and the place tidied immediately by the owners of the pets.",
+    "implementation": "## Implementation Details\n- Provide pet waste stations throughout estate\n- Security patrols to monitor cleanup compliance\n- Fine for failure to clean up pet waste\n- Public listing of repeat offenders"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Pets In The Estate",
+    "title": "Rule 20 - Pet Liability",
+    "bylaw_text": "20) Residents are fully responsible for their pets and shall indemnify the Management against any claims, suits, losses, damages, injuries or other liabilities arising from the behaviour or acts of their pets.",
+    "implementation": "## Implementation Details\n- Require pet liability insurance proof\n- Maintain incident documentation system\n- Legal framework for claim processing\n- Regular review of liability coverage requirements"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Advertisement/ Notices",
+    "title": "Rule 21 - Advertisement Approval",
+    "bylaw_text": "21) No advertisements, circulars or notices may be posted at lift lobbies or in other common areas by any person except with the prior approval of the Management and upon such term as the Management deems fit.",
+    "implementation": "## Implementation Details\n- Designated notice board areas\n- 7-day approval process for postings\n- Regular cleanup of unauthorized postings\n- Digital notice system as alternative"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Auctions/ Garage Sales",
+    "title": "Rule 22 - Sales Restrictions",
+    "bylaw_text": "22) No sale by auction may be conducted within the estate or within any housing unit. The Management may in its discretion permit the garage sales on prior written application, subject to such terms as the Management deems fit, having regard to the well-being and security of the estate and the residents.",
+    "implementation": "## Implementation Details\n- Garage sale permit application form\n- Limit to 2 garage sales per unit annually\n- Security presence during approved sales\n- Neighbor notification requirement"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Storage Of Items",
+    "title": "Rule 23 - Explosives and Flammables",
+    "bylaw_text": "23) No explosives of any nature may be kept, stored or used in the estate or any housing units. Petroleum products, which may be kept stored, shall be limited to the usual quantities incidental to the occupancy of a private residential unit.",
+    "implementation": "## Implementation Details\n- Annual safety inspections for hazardous materials\n- Clear guidelines on permitted quantities\n- Emergency response plan for violations\n- Coordination with fire department"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Storage Of Items",
+    "title": "Rule 24 - Common Area Storage",
+    "bylaw_text": "24) No goods or other items may be stored in the common areas. No personal belongings such as furniture, boxes, newspapers, brooms, bicycles, tricycles, toys, roller skates, skateboards and/or other such articles may be placed or left in common areas in such manner as to be an eyesore or pose an obstruction or hazard.",
+    "implementation": "## Implementation Details\n- Daily security patrols for unauthorized storage\n- 24-hour notice for item removal\n- Designated bicycle parking areas\n- Monthly common area cleanup drives"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Storage Of Items",
+    "title": "Rule 25 - Item Removal Authority",
+    "bylaw_text": "25) If upon reasonable notice being given, a resident refuses, fails or neglects to remove such articles as, in the opinion of the Management, are in violation of the rules above, the Management may arrange for the removal of such articles at the cost of the resident concerned.",
+    "implementation": "## Implementation Details\n- 7-day written notice for violations\n- Photographic evidence of violations\n- Item storage and retrieval process\n- Billing system for removal costs"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Sports",
+    "title": "Rule 26 - Sports Area Restrictions",
+    "bylaw_text": "26) No sports are allowed in the common areas unless those areas have been designated for such particular sport.",
+    "implementation": "## Implementation Details\n- Clear signage for designated sports areas\n- Schedule for sports facility usage\n- Security monitoring of common areas\n- Resident education on approved activities"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Transportation Of Building Material, Furniture, Etc.",
+    "title": "Rule 27 - Lift Usage for Large Items",
+    "bylaw_text": "27) No person may vandalise or dirty the lifts. No person may enter the lifts while wearing a wet bathing suit. No smoking, drinking or eating is permitted in the lifts. Unless otherwise approved, lifts shall be solely for passenger use. Residents may apply to the Management TWO weeks in advance for approval for transportation of building materials, furniture or furnishings, equipment or machinery or any other bulky goods. Approval may be granted on such terms as the Management deems fit. Such transportation will only be allowed between the hours of 9.00am and 6.00pm from Mondays to Saturdays and the hours of 10.00am and 5.00pm on Sundays & Public Holidays.",
+    "implementation": "## Implementation Details\n- Online lift booking system for large items\n- Protective padding available for rent\n- Security supervision during move-ins\n- Cleaning protocol after furniture transport"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Transportation Of Building Material, Furniture, Etc.",
+    "title": "Rule 28 - Lift Protection",
+    "bylaw_text": "28) Residents/Contractors who wish to transport building materials, furniture/furnishings or any other bulky goods must use appropriate coverings for all the sides and floor of the lift car and common areas. Care shall be taken so that equipment or other common property is not damaged or removed from their location.",
+    "implementation": "## Implementation Details\n- Provide protective lift covers for rental\n- Pre-move inspection checklist\n- Damage deposit requirement\n- Post-move inspection and deposit refund process"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Liability",
+    "title": "Rule 29 - Damage Responsibility",
+    "bylaw_text": "29) Residents shall be liable for all costs and expenses incurred in replacing or restoring any damage to the common property if such damage is caused by them, members of their family, their guests, visitors, licensees or invitees or their contractors.",
+    "implementation": "## Implementation Details\n- Incident documentation with photos\n- Three-quote system for repair costs\n- 30-day payment requirement\n- Legal process for unpaid damages"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Liability",
+    "title": "Rule 30 - Rule Compliance",
+    "bylaw_text": "30) All residents, family members of residents, visitors, guests, licensees or invitees shall observe and comply with all restrictions, rules and regulations, which may from time to time be varied or amended by the Management.",
+    "implementation": "## Implementation Details\n- Resident orientation for new occupants\n- Regular rule reminder communications\n- Visitor registration system\n- Compliance monitoring and reporting"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Radio & TV Antennae",
+    "title": "Rule 31 - Antenna Restrictions",
+    "bylaw_text": "31) No radio, television or other antennae may be attached to or hung from the exterior of walls or be allowed to protrude through walls, windows, corridors or roofs.",
+    "implementation": "## Implementation Details\n- Quarterly exterior inspections\n- Approved internal antenna solutions list\n- Removal order process for violations\n- Coordination with telecommunication providers"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Restrictions On Awnings, Shades, Grilles, Etc.",
+    "title": "Rule 32 - Exterior Modifications",
+    "bylaw_text": "32) Residents may not erect any air-conditioning condensers, extractor fans, awnings, shades, sunscreens, venetian blinds, bamboo chicks, window grilles, door grilles and balcony grilles and other like items without prior written approval of the Management. Details on approved designs / patterns, colors, materials (to be non-corrosive), and method of fixing and locations of grilles may be obtained from the Management. Where approved, grilles shall be fixed within the units, i.e. not outside windows or on external walls.",
+    "implementation": "## Implementation Details\n- Pre-approved modification catalog\n- Architectural review committee\n- Installation inspection process\n- Violation correction timeline"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Restrictions On Hanging of Clothes, Linen, Etc.",
+    "title": "Rule 33 - Clothes Drying Restrictions",
+    "bylaw_text": "33) Textile items such as clothes, towels and linen may not be hung or placed in any area so as to be in view from the outside of the housing units. In particular, such textile items may not be hung from poles, which protrude through the windows, balconies, yard areas or roofs of the housing units. The Management reserves the right to inform the resident to comply with the ruling.",
+    "implementation": "## Implementation Details\n- Regular visual inspections of building exterior\n- Approved drying rack specifications\n- Common laundry facility promotion\n- Warning system for violations"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Restrictions On Hanging of Clothes, Linen, Etc.",
+    "title": "Rule 34 - Clothesline Installation",
+    "bylaw_text": "34) Any installation of clotheslines shall be mounted on the internal parapet wall within the service area of the housing units. The mounting of the same at the external common wall is NOT allowed.",
+    "implementation": "## Implementation Details\n- Pre-approved clothesline models list\n- Installation inspection requirement\n- Safety standards compliance check\n- Removal order for non-compliant installations"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Lifts",
+    "title": "Rule 35 - Lift Operation",
+    "bylaw_text": "35) Residents may not ply open, obstruct lift doors or in any way interfere with the normal functioning of the lifts.",
+    "implementation": "## Implementation Details\n- CCTV monitoring of lift areas\n- Emergency response protocol\n- Regular lift maintenance schedule\n- Incident reporting system"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Lifts",
+    "title": "Rule 36 - Fire Emergency Lifts",
+    "bylaw_text": "36) No lifts are to be used in the event of a fire outbreak. All residents shall leave the building by the fire escape staircases.",
+    "implementation": "## Implementation Details\n- Automatic lift recall during fire alarms\n- Fire drill procedures and schedules\n- Emergency signage and lighting\n- Resident fire safety education"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Lifts",
+    "title": "Rule 37 - Child Lift Supervision",
+    "bylaw_text": "37) Children, below the age of 7 years old, must be accompanied by an adult resident when using the lifts.",
+    "implementation": "## Implementation Details\n- Lift area supervision during peak hours\n- Child safety awareness campaign\n- Emergency call button training\n- Incident response protocol"
+  },
+  {
+    "category": "USE OF HOUSING UNITS AND COMMON AREAS",
+    "subcategory": "Restriction On Use Of Facilities By Employees",
+    "title": "Rule 38 - Employee Facility Access",
+    "bylaw_text": "38) No employees of an owner or resident or guest of such employee may use any of the facilities in the estate unless otherwise accompanied by the owner.",
+    "implementation": "## Implementation Details\n- Employee identification system\n- Facility access control\n- Resident responsibility agreement\n- Security enforcement protocol"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Car Park Label",
+    "title": "Rule 1 - Car Park Label Application",
+    "bylaw_text": "1) A resident must obtain a car park label for his motorcar by applying to the Management. Car park label will be issued only to an owner/tenant who is residing in the estate. Each household is entitled to only 1 car park label.",
+    "implementation": "## Implementation Details\n- Online car park label application system\n- Verification of residence through utility bills or tenancy agreement\n- Digital label system with QR codes\n- Monthly audit of label allocations"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Car Park Label",
+    "title": "Rule 2 - Additional Car Park Labels",
+    "bylaw_text": "2) Members of a Household may apply for additional car park label for their 2nd and subsequent motorcars. (a) Subject to availability of car park lots. The Management may at its discretion issue to a Household additional car park label for their 2nd and subsequent motor cars on such terms and charges and limited to such periods as the Management deem fit. (b) Such additional car park label offer to the Household concerned only temporary parking privileges which may be withdrawn at any time as the Management deem fit in fairness to other Households having regard to the sufficiency or otherwise of car park lots. (c) The Management may levy a monthly charge for the 2nd motor car as a condition for the issue of an additional car park label. If imposed, such levy will be applied to all Households that request for additional car park labels. (d) The Management may levy a monthly charge of not more than $50 per month on a Household for each motorcar, exceeding its 1st car park label entitlement, as a condition for the issue of each additional car park label(s). (e) Such levies shall be payable in advance on a quarterly basis in conjunction with the contributions for the maintenance and sinking funds. Arrears of such levies shall be recoverable by way same for the arrears for the contributions for the maintenance and sinking funds adopted during the Annual General Meeting.",
+    "implementation": "## Implementation Details\n- Waiting list system for additional labels\n- Monthly lot availability assessment\n- Automated billing system integrated with maintenance fees\n- Priority system based on seniority and need"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Car Park Label",
+    "title": "Rule 3 - Proof of Ownership",
+    "bylaw_text": "3) In all cases, a resident or member of a Household will only be issued a car park label on satisfactory proof of ownership of a motorcar.",
+    "implementation": "## Implementation Details\n- Vehicle registration document verification\n- Cross-reference with LTA database\n- Annual re-verification requirement\n- Digital document submission portal"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Car Park Label",
+    "title": "Rule 4 - Non-transferable Labels",
+    "bylaw_text": "4) The car park label is not transferable and must be returned to the Management if the motorcar against which it was issued is no longer parked in the estate.",
+    "implementation": "## Implementation Details\n- Unique serial numbers on each label\n- Regular parking lot audits\n- 7-day return requirement after vehicle change\n- Penalty system for non-compliance"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Car Park Label",
+    "title": "Rule 5 - Label Replacement",
+    "bylaw_text": "5) The car park label shall be exchanged for a new updated label upon change of the motorcar. Any replacement for loss of car park label shall be subjected to a charge of $5.00 per label.",
+    "implementation": "## Implementation Details\n- Same-day replacement service\n- Verification process for lost labels\n- Payment integration with management office\n- Temporary permit system during replacement"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Car Park Label",
+    "title": "Rule 6 - Sale of Unit",
+    "bylaw_text": "6) When an owner sells his unit subsequently, he must return all car park labels to the Management so that new car park label can be issued to new owners.",
+    "implementation": "## Implementation Details\n- Integration with legal completion process\n- Clearance certificate requirement\n- New owner orientation package\n- 30-day transition period"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Car Park Label",
+    "title": "Rule 7 - Lease of Unit",
+    "bylaw_text": "7) If an owner subsequently leases out his unit, he has to surrender his car park label to the Management so that new car park label can be issued to his tenant.",
+    "implementation": "## Implementation Details\n- Tenancy agreement verification\n- Temporary suspension of owner privileges\n- Tenant induction process\n- Dual-label system for mixed use"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Car Park Label",
+    "title": "Rule 8 - Label Display",
+    "bylaw_text": "8) The car park label shall be displayed on the top left corner of the front windscreen of a motor car for easy identification by the Security Personnel.",
+    "implementation": "## Implementation Details\n- Standardized display position requirement\n- Security patrol verification checklist\n- Night-time visibility standards\n- Quarterly compliance checks"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Parking",
+    "title": "Rule 9 - Authorized Vehicles",
+    "bylaw_text": "9) Only motorcars and motorcycles and scooters may be parked within the estate. The Management may in its discretion permit the parking of other vehicles.",
+    "implementation": "## Implementation Details\n- Approved vehicle type list\n- Special permission application process\n- Commercial vehicle restrictions\n- Oversized vehicle policy"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Parking",
+    "title": "Rule 10 - Guest Parking",
+    "bylaw_text": "10) Overnight parking for guests' or visitors' motorcar shall be limited to 2 motorcars per Household at the discretion of the Management. The host resident must register the guests' or visitors' motorcars at the Security Guardhouse. For parking beyond 24 hours, approval must be sought from the Management.",
+    "implementation": "## Implementation Details\n- Digital guest registration system\n- Automated 24-hour limit alerts\n- Visitor parking zone designation\n- Extended stay approval process"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Parking",
+    "title": "Rule 11 - Proper Parking",
+    "bylaw_text": "11) All motor vehicles shall be properly parked within the boundaries of the designated vehicle lots and in such manner as not to cause any obstruction or hazard to the flow of traffic in and/or around the parking areas. No motor vehicle may be let unattended in any driveway or other common areas within the estate except for loading and unloading purposes for which prior approval from the Management must be obtained.",
+    "implementation": "## Implementation Details\n- Parking bay marking maintenance\n- Security patrols for obstruction checks\n- Loading zone time limits (20 minutes)\n- Towing protocol for violations"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Parking",
+    "title": "Rule 12 - Motorcycle Parking",
+    "bylaw_text": "12) Motorcycles and scooters may be parked only in areas designated for parking.",
+    "implementation": "## Implementation Details\n- Designated motorcycle parking areas\n- Security chain provision\n- Theft prevention measures\n- Regular area maintenance"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Parking",
+    "title": "Rule 13 - Speed Limit",
+    "bylaw_text": "13) Maximum speed for all vehicles within the estate is 25km/hr.",
+    "implementation": "## Implementation Details\n- Speed bump installation\n- Digital speed display signs\n- Security speed monitoring\n- Progressive penalty system"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Parking",
+    "title": "Rule 14 - Oil Leakage",
+    "bylaw_text": "14) Extensive engine oil leakage for vehicles should be rectified by the owner concerned and that the Management reserves the right to recover all the costs incurred for the cleaning of the stains from the resident or host of the visitors whose vehicle has caused the stains.",
+    "implementation": "## Implementation Details\n- Oil stain inspection protocol\n- Professional cleaning service contracts\n- Cost recovery billing system\n- Prevention awareness campaign"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Use of Parking Areas",
+    "title": "Rule 15 - Parking Area Usage",
+    "bylaw_text": "15) Parking areas may not be used for recreation, storage.",
+    "implementation": "## Implementation Details\n- Security patrols for unauthorized usage\n- Clear signage of permitted uses\n- Immediate intervention protocol\n- Community education on safety"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Use of Parking Areas",
+    "title": "Rule 16 - Vehicle Servicing",
+    "bylaw_text": "16) Servicing and maintenance works of motor vehicles are prohibited within any part of the estate. Simple repairs may be effected in cases of breakdown but only to the extent necessary to get the motor vehicle started and removed from the estate.",
+    "implementation": "## Implementation Details\n- Emergency repair time limit (2 hours)\n- Approved towing company list\n- Prohibition of oil changes and major repairs\n- Security monitoring of repair activities"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Washing of Vehicles",
+    "title": "Rule 17 - Hose Washing Prohibition",
+    "bylaw_text": "17) Washing of vehicles with a hose is not permitted in the car park.",
+    "implementation": "## Implementation Details\n- Water conservation policy enforcement\n- Alternative car wash facility information\n- Security intervention for violations\n- Environmental protection measures"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Washing of Vehicles",
+    "title": "Rule 18 - Bucket Washing Protocol",
+    "bylaw_text": "18) Washing of vehicles parked in car park lots may be carried out only with buckets and in such manner as not to cause any flooding of water at the parking area. The resident responsible shall clear up any flooding or stagnant water which may occur, failing which the Management may arrange for such clearing at the expense of the resident concerned.",
+    "implementation": "## Implementation Details\n- Designated washing hours (9am-5pm weekends only)\n- Water drainage inspection\n- Cleaning charge schedule\n- Environmental compliance monitoring"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Liability",
+    "title": "Rule 19 - Damage Responsibility",
+    "bylaw_text": "19) Residents and their guests, visitors, licensees and invitees shall ensure that no damage is caused to the fittings and fixtures in the parking area and shall be liable for any damage caused.",
+    "implementation": "## Implementation Details\n- Regular parking facility inspections\n- Damage reporting and documentation system\n- Cost recovery process\n- Insurance claim coordination"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Liability",
+    "title": "Rule 20 - No Management Liability",
+    "bylaw_text": "20) Any vehicle entering and/or parked within the estate is at the owner's own risk. Under no circumstances shall the Management be liable for any theft, loss, damage or other misdemeanor however caused to any vehicle and/or its contents.",
+    "implementation": "## Implementation Details\n- Clear signage of disclaimer\n- Incident documentation protocol\n- Police report assistance\n- Insurance requirement recommendations"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Enforcement",
+    "title": "Rule 21 - Vehicle Immobilization",
+    "bylaw_text": "21) The Management may, by the use of wheel clamps or other device to immobilise any motor vehicle and/or tow away any vehicle away from within the estate, to regulate the parking system, to such a place the Management Corporation deems fit under the following circumstances: (a) if the vehicles is indiscriminately or illegal parked or not authorised to park in the premises; (b) if the vehicle is de-registered or unlicensed or abandoned in the premises; (c) if the owner, driver or user of the vehicle breaches any of the regulations stipulated by the Management Corporation.",
+    "implementation": "## Implementation Details\n- Trained security personnel for clamping\n- Clear violation criteria\n- Towing company contracts\n- Emergency vehicle access protection"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Enforcement",
+    "title": "Rule 22 - Release Charges",
+    "bylaw_text": "22) The Management Corporation and/or its agent shall be entitled to release or deliver the vehicle to any person producing evidence of ownership provided the said person settles the following charges or such other charges determined by the Council from time to time: Releasing of immobilised vehicle - $100.00 per vehicle Towing and/or storage of vehicle - Cost incurred by the Management plus 50% for administrative charge",
+    "implementation": "## Implementation Details\n- Secure payment processing\n- Receipt issuance system\n- Ownership verification protocol\n- Cashless payment options"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Enforcement",
+    "title": "Rule 23 - No Liability for Management",
+    "bylaw_text": "23) The Management Corporation, its agents undertakes no responsibility and shall not be liable in any manner whatsoever for any loss, injury, damage or other misdemeanour, however caused to the vehicle, equipment or contents therein while the vehicle is parked, driven, immobilised or moved away from the premise. Payment may be made at the Management Office during office hours.",
+    "implementation": "## Implementation Details\n- Liability waiver documentation\n- Secure vehicle handling procedures\n- Insurance verification for towing contractors\n- 24/7 payment arrangement for emergencies"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Enforcement",
+    "title": "Rule 24 - Immobilisation Device Definition",
+    "bylaw_text": "24) In this By-law, \"immobilisation device\" means any device or appliance designed or adapted to be fixed to any part of a vehicle for the purpose of preventing the vehicle from being driven or otherwise put in motion, being a device or appliance of such type approved by the Management Corporation or their servants or agents.",
+    "implementation": "## Implementation Details\n- Approved device list maintenance\n- Staff training on proper use\n- Safety protocols for device application\n- Regular equipment maintenance schedule"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Power to Detain and Remove Vehicles",
+    "title": "Rule 25 - Vehicle Removal Authority",
+    "bylaw_text": "25) Where any vehicle is parked on any common property, along the driveway or in any open space in contravention of any by-laws, or appears to have been abandoned on any common property or in any open space the Management Corporation may by their servants or agents at their sole discretion: - (a) remove the vehicle to a place of safety or any other place and detain it thereafter; or (b) prevent the removal by fixing an immobilisation device to the vehicle; or (c) dispose or sell the abandoned vehicle by auction after giving the relevant authority one month's notice of the Management's intention to do so when the owner does not claim the vehicle within one month of its detention or immobilisation.",
+    "implementation": "## Implementation Details\n- Abandoned vehicle assessment criteria\n- Legal notice procedures\n- Auction process management\n- Police coordination for stolen vehicles"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Power to Detain and Remove Vehicles",
+    "title": "Rule 26 - Notification Requirements",
+    "bylaw_text": "26) Where the Management Corporation has removed any vehicle to a place of safety or any other place pursuant to paragraph 25(a) above, they shall:- (a) with notice in writing to the owner of the vehicle as to the procedure by which he may secure the release of the vehicle. (b) by affixing the notice onto the windscreen or any conspicuous part of the vehicle, in the case where an immobilisation devise has been fixed to the vehicle.",
+    "implementation": "## Implementation Details\n- Standardized notice templates\n- Multiple notification methods (physical, registered mail)\n- Digital record keeping\n- 7-day response timeline"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Power to Detain and Remove Vehicles",
+    "title": "Rule 27 - Vehicle Release Conditions",
+    "bylaw_text": "27) No vehicle which has been removed or detained by the Management or their servants or agents to which an immobilization device has been fixed in accordance with this by-law shall be released to the owner of the vehicle except: - (a) by or under the direction of the Management Corporation and (b) upon the owner of the vehicle having paid all expenses incurred by the Management Corporation and such other charges as may be imposed under these By-laws.",
+    "implementation": "## Implementation Details\n- Authorized release personnel list\n- Payment verification system\n- Receipt and documentation requirements\n- Security escort during release"
+  },
+  {
+    "category": "CAR PARKING",
+    "subcategory": "Power to Detain and Remove Vehicles",
+    "title": "Rule 28 - Sale Proceeds Distribution",
+    "bylaw_text": "28) Where an abandoned vehicle has been sold or otherwise, the proceeds of the sale of disposal of the vehicle shall be applied in payment of any expenses incurred in carrying out the provisions of this By-law and in payment of all charges and fines payable under these By-laws, costs on an indemnity basis. The surplus, if any, shall be return to the owner of the vehicle.",
+    "implementation": "## Implementation Details\n- Transparent accounting for sale proceeds\n- Owner tracing procedures\n- Escrow account for surplus funds\n- Annual audit of vehicle disposal transactions"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Application For Renovation Works",
+    "title": "Rule 1 - Owner Application Requirement",
+    "bylaw_text": "1) Only owners may apply for approval to carry out renovation works to their housing units. Applications for approval of renovation works must be made at the Management Office during office hours.",
+    "implementation": "## Implementation Details\n- Owner verification process\n- Online application portal development\n- Document submission requirements\n- Application tracking system"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Application For Renovation Works",
+    "title": "Rule 2 - Security Deposit",
+    "bylaw_text": "2) Owners will be required to place a security deposit of $81,000.00 by cheque made payable to \"The Management Corporation Strata Title Plan No. 2405\" at least Seven (7) days before commencement of work. Security deposit will be refunded free from interest upon completion of the renovation works if the Management is satisfied that no damage has been caused to any common areas and that all debris and unused or unwanted or waste materials have been cleared and removed from the estate. In the event of damage to any common area or failure to clear and remove any debris and/or waste materials, the cost incurred by the Management to rectify the damage will be at the expenses of the owner concerned. Such cost may be offset against the security deposit and the balance thereof (if any) refunded to the owner. Where the expenses exceeds the security deposit, the owner shall reimburse the Management the difference. It shall be the responsibility of the owners to inform their contractors of these requirements.",
+    "implementation": "## Implementation Details\n- Escrow account management for deposits\n- Pre-renovation inspection protocol\n- Damage assessment procedure\n- Refund processing timeline (30 days)"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Application For Renovation Works",
+    "title": "Rule 3 - Letter of Undertaking",
+    "bylaw_text": "3) Owners will also be required to submit a Letter of Undertaking to the Management that they shall be responsible for their renovation contractors in complying with the rules stipulated.",
+    "implementation": "## Implementation Details\n- Standard undertaking form\n- Legal review of responsibility clauses\n- Contractor information registry\n- Compliance monitoring system"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Application For Renovation Works",
+    "title": "Rule 4 - Work Schedule Submission",
+    "bylaw_text": "4) Owners and their contractors must inform the Management of their schedules of work TWO (2) weeks before the commencement of work. Works may not commence until written approval has been granted.",
+    "implementation": "## Implementation Details\n- Work schedule template\n- Coordination with other renovations\n- Noise and disruption management\n- Approval certificate issuance"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Period",
+    "title": "Rule 5 - Working Hours",
+    "bylaw_text": "5) Renovation works may be carried out between 9.00am and 6.00pm from Mondays to Fridays and between 9.00am and 1.00pm on Saturdays.",
+    "implementation": "## Implementation Details\n- Security monitoring of work hours\n- Neighbor notification system\n- Emergency work approval process\n- Noise level compliance checks"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Period",
+    "title": "Rule 6 - Weekend and Holiday Restrictions",
+    "bylaw_text": "6) Strictly no work may be carried out on Sundays and Public Holidays.",
+    "implementation": "## Implementation Details\n- Public holiday calendar distribution\n- Security enforcement protocol\n- Emergency contact system\n- Penalty system for violations"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Contractors To Report To Security Personnel",
+    "title": "Rule 7 - Contractor Verification",
+    "bylaw_text": "7) Contractors and their workmen must report to the Security Guardhouse for verification of their identities. The Management reserves the right to refuse entry to any personnel whose identity cannot be verified or to ask any such person to leave the estate.",
+    "implementation": "## Implementation Details\n- Contractor registration system\n- ID verification process\n- Blacklist management\n- Emergency contact requirements"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Contractors To Report To Security Personnel",
+    "title": "Rule 8 - Identification Passes",
+    "bylaw_text": "8) All contractors and their workmen shall obtain from the Security Guardhouse identification passes and shall wear their passes at all times whilst in the estate. Security personnel are authorized to question any person in the estate found without a pass.",
+    "implementation": "## Implementation Details\n- Photo ID pass system\n- Daily check-in/check-out\n- Pass return enforcement\n- Visitor pass differentiation"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Use Of Common Areas",
+    "title": "Rule 9 - Material Disposal",
+    "bylaw_text": "9) Packing and crating materials must be removed and disposed of by the owner concerned and their contractor. Unwanted or unused or waste materials, debris, etc. may not be disposed of into the refuse chutes. Any damage to the chutes shall be repaired at the expense of the owners concerned.",
+    "implementation": "## Implementation Details\n- Waste management plan requirement\n- Approved disposal contractor list\n- Chute protection measures\n- Daily cleanup inspections"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Use Of Common Areas",
+    "title": "Rule 10 - Utility Tapping Prohibition",
+    "bylaw_text": "10) Owners, residents, contractors and workmen are not allowed to tap water and electricity supply from the common areas for their renovation works.",
+    "implementation": "## Implementation Details\n- Common area utility monitoring\n- Temporary utility application process\n- Security patrol checks\n- Violation response protocol"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Use Of Common Areas",
+    "title": "Rule 11 - Common Area Cleanliness",
+    "bylaw_text": "11) No unwanted or unused or waste materials, debris, etc. may be left in the corridors, lift lobbies, fire escape staircases or any other common areas in the estate. If, found such materials will be removed at the expense of the owner concerned.",
+    "implementation": "## Implementation Details\n- Daily common area inspections\n- Immediate removal authorization\n- Cost tracking and billing\n- Cleanliness performance metrics"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Liability Of Contractors/Residents",
+    "title": "Rule 12 - Work Confinement",
+    "bylaw_text": "12) All renovation works shall be confined to the boundaries of an apartment. Hacking of structural slabs, columns and beams are prohibited.",
+    "implementation": "## Implementation Details\n- Structural integrity monitoring\n- Professional engineer consultation\n- Work area containment checks\n- Violation stop-work orders"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Liability Of Contractors/Residents",
+    "title": "Rule 13 - Lift Protection",
+    "bylaw_text": "13) Owners or their contractors must ensure there is adequate lift padding protection to the common property particularly the walls and floors of the lift cars and the lobbies during the delivery or removal of materials and supplies (lift padding are available at the Management Office). The owner or contractor shall use the lifts or staircases designated for that purpose by the Management.",
+    "implementation": "## Implementation Details\n- Lift padding rental system\n- Designated service lift allocation\n- Damage assessment protocol\n- Protective material standards"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Liability Of Contractors/Residents",
+    "title": "Rule 14 - Contractor Responsibility",
+    "bylaw_text": "14) Owners/residents shall be responsible for the conduct and behaviour of their appointed contractors. Any damage to the common property and equipment caused by the moving of furniture, supplies, renovation or building materials or other personal effects shall be restored or repaired at the expense of the owners concerned. Where any equipment is irreparably damaged, it shall be replaced by the owner and/or contractor responsible.",
+    "implementation": "## Implementation Details\n- Contractor performance tracking\n- Damage documentation system\n- Replacement cost assessment\n- Insurance claim coordination"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Liability Of Contractors/Residents",
+    "title": "Rule 15 - Joint Inspection",
+    "bylaw_text": "15) A joint inspection will be carried out between the Management Corporation and owner/agent/contractor before the commencement of renovation works and the release of security deposit.",
+    "implementation": "## Implementation Details\n- Standardized inspection checklist\n- Photo documentation requirement\n- Defect identification process\n- Timeline for inspection scheduling"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Requiring Notification And Deposits To The Management",
+    "title": "Rule 16 - Notifiable Renovation Works",
+    "bylaw_text": "16) Renovation works that require notification and deposits to the Management are: - (a) Changing of wall and floor tiles. (b) Erection and demolition of walls, new partitioning, installation of windows and grilles. (c) Repositioning of internal doors and walls. (d) Installation of false ceilings (e) Installation of built-in cabinets and wardrobes and other large fixtures. (f) All works that involve bringing in of sand or cement. (g) Installation or alterations of electrical and plumbing works. (h) Removal of any major items. (i) Installation of air-con compressor unit on external wall.",
+    "implementation": "## Implementation Details\n- Categorized approval process\n- Technical review for structural works\n- Specialist consultant engagement\n- Progressive inspection schedule"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Works That Will Not Be Approved",
+    "title": "Rule 17 - Prohibited Works",
+    "bylaw_text": "17) Approval will NOT be granted for the following: (a) Works affecting the structural stability of buildings, such as removal of beams, columns or load bearing walls. Where there is doubt, the Management may consult qualified professionals at a fee to be borne by the owner. The owner will be informed before such consultations are made. (b) Erection of awnings at balcony or roof areas. (c) Enclosure of balcony area to enlarge the living room. (d) Laying of multi-split air-conditioning trunking along the external walls of building. (e) Tiling of walls at balcony. (f) Changing of windows, sliding doors and grilles other than the designs approved by the Management.",
+    "implementation": "## Implementation Details\n- Clear prohibition list publication\n- Professional assessment requirement\n- Architectural consistency standards\n- Appeal process for special cases"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Works That Will Not Be Approved",
+    "title": "Rule 18 - Plan Endorsement",
+    "bylaw_text": "18) Plans for partitioning, erection and demolition of walls, drilling of holes on walls or any other renovations, additions/alterations to the existing housing unit must be first endorsed by competent consultants appurtenant to the works and approved by the relevant statutory authorities and the Management.",
+    "implementation": "## Implementation Details\n- Approved consultant directory\n- Statutory approval tracking\n- Plan review timeline (14 days)\n- Revision management process"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Works That Will Not Be Approved",
+    "title": "Rule 19 - Document Submission",
+    "bylaw_text": "19) Copies of such plans, endorsements, approvals and any other supporting documents must be submitted to the Management at least TWO weeks before the commencement of the works.",
+    "implementation": "## Implementation Details\n- Digital document submission system\n- Compliance verification checklist\n- Document retention policy\n- Pre-work meeting requirement"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Works That Will Not Be Approved",
+    "title": "Rule 20 - Consultation Process",
+    "bylaw_text": "20) Owners are advised to consult the Management if in doubt of any procedures necessary in obtaining approval for any additions/alterations or any other renovation works to the existing housing unit.",
+    "implementation": "## Implementation Details\n- Pre-application consultation service\n- FAQ and guideline documents\n- Design advisory service\n- Compliance assistance program"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Works That Will Not Be Approved",
+    "title": "Rule 21 - Equipment Declaration",
+    "bylaw_text": "21) Owners shall furnish the Management with a list of all the electrical or mechanical equipment to be used for the renovation works one week before the commencement of the works. No heavy-duty hacker or air-compressor breaker shall be used under any circumstances.",
+    "implementation": "## Implementation Details\n- Equipment approval process\n- Noise and vibration monitoring\n- Prohibited equipment list\n- Alternative method recommendations"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Works That Will Not Be Approved",
+    "title": "Rule 22 - Contractor Conduct",
+    "bylaw_text": "22) No contractor or workmen may loiter in any common areas. All contractors and workmen are to confine themselves to the housing unit concerned.",
+    "implementation": "## Implementation Details\n- Designated break areas\n- Security monitoring of common areas\n- Contractor conduct guidelines\n- Immediate intervention protocol"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Renovation Works That Will Not Be Approved",
+    "title": "Rule 23 - Misbehavior Protocol",
+    "bylaw_text": "23) Any person found misbehaving or behaving suspiciously may be asked to leave the estate immediately.",
+    "implementation": "## Implementation Details\n- Security intervention procedures\n- Incident documentation\n- Contractor blacklisting process\n- Police liaison for serious incidents"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Refuse Disposal",
+    "title": "Rule 24 - Waste Sealing",
+    "bylaw_text": "24) Loose or wet waste shall be sealed in plastic bags before being disposed of into refuse chutes.",
+    "implementation": "## Implementation Details\n- Waste packaging standards\n- Chute blockage prevention\n- Cleaning supply provision\n- Compliance monitoring"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Refuse Disposal",
+    "title": "Rule 25 - Large Item Disposal",
+    "bylaw_text": "25) Large refuse or fragile items shall be brought to and disposed of at the bin centre.",
+    "implementation": "## Implementation Details\n- Bin center access management\n- Large item disposal schedule\n- Fragile item handling guidelines\n- Waste segregation requirements"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Refuse Disposal",
+    "title": "Rule 26 - Furniture Removal",
+    "bylaw_text": "26) Residents shall arrange for unwanted furniture or any other bulky items to be removed from the estate at their own cost.",
+    "implementation": "## Implementation Details\n- Approved removal contractor list\n- Bulk item collection schedule\n- Cost estimation assistance\n- Donation option information"
+  },
+  {
+    "category": "RENOVATION",
+    "subcategory": "Refuse Disposal",
+    "title": "Rule 27 - Hazardous Material Prohibition",
+    "bylaw_text": "27) No flammable items, wet cement and other adhesive materials may be thrown into the refuse chutes. Offenders shall be liable for the cost of replacement or repair to any damage caused to the refuse chute.",
+    "implementation": "## Implementation Details\n- Hazardous material identification\n- Special disposal arrangements\n- Damage cost assessment\n- Environmental compliance monitoring"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Prior Notice",
+    "title": "Rule 1 - Application and Deposit",
+    "bylaw_text": "1) The owner or resident shall submit to the Management an application in the prescribed form accompanied with a refundable security deposit of $500.00 by cheque payable to \"The Management Corporation Strata Title Plan No. 2405\" at least 7 days prior to any moving in and out of the estate.",
+    "implementation": "## Implementation Details\n- Online moving application system\n- Deposit payment processing\n- Application approval timeline (3 days)\n- Refund processing procedure"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Prior Notice",
+    "title": "Rule 2 - Worker Particulars",
+    "bylaw_text": "2) Particulars of all workers, removal contractors and their workmen must be furnished to the Management. It shall be the duty of the owner or resident to inform their workers and contractors of the rules herein stipulated.",
+    "implementation": "## Implementation Details\n- Worker registration database\n- Rule acknowledgment requirement\n- Contractor briefing session\n- Compliance verification"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Prior Notice",
+    "title": "Rule 3 - Moving Hours",
+    "bylaw_text": "3) Moving in and out may be carried out within the following hours only: Mondays to Saturday - 9.00 am to 6.00 pm Sunday & Public Holiday - 10.00 am to 5.00 pm",
+    "implementation": "## Implementation Details\n- Moving schedule coordination\n- Security supervision during moves\n- Neighbor notification system\n- Emergency move approval process"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Prior Notice",
+    "title": "Rule 4 - Special Hours Approval",
+    "bylaw_text": "4) On special written request, the Management may at its discretion and on such terms as it thinks fit, grant approval for removal outside the specified hours.",
+    "implementation": "## Implementation Details\n- Special approval criteria\n- Additional security cost recovery\n- Impact assessment requirement\n- Limited exception policy"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Security",
+    "title": "Rule 5 - Identity Verification",
+    "bylaw_text": "5) All workers, removal contractors and their workmen must report to the Security Guardhouse for verification of their identities. The Management reserves the right to refuse entry to any person whose identity cannot be verified or to ask such person to leave the estate.",
+    "implementation": "## Implementation Details\n- ID verification protocol\n- Pre-approved worker list\n- Temporary access passes\n- Security escort requirements"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Security",
+    "title": "Rule 6 - Identification Passes",
+    "bylaw_text": "6) All workers, contractors and their workmen shall obtain from the Security Guardhouse identification passes and shall wear the passes at all times whilst in the estate. Security personnel are authorized to question any person found in the estate without a pass.",
+    "implementation": "## Implementation Details\n- Moving day pass system\n- Color-coded pass identification\n- Pass return enforcement\n- Lost pass protocol"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Security",
+    "title": "Rule 7 - Conduct Responsibility",
+    "bylaw_text": "7) The owner or resident concerned shall be responsible for the good conduct and behaviour of all workers, removal contractors and their workmen while they are within the estate.",
+    "implementation": "## Implementation Details\n- Resident supervision requirement\n- Contractor conduct agreement\n- Incident reporting procedure\n- Liability clarification"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Security",
+    "title": "Rule 8 - Area Confinement",
+    "bylaw_text": "8) No worker, contractor or workmen may loiter in any common areas. All workers, contractors and workmen are to confine themselves to the housing unit concerned and to the areas leading from the housing unit to the removal vehicle.",
+    "implementation": "## Implementation Details\n- Designated moving routes\n- Common area time limits\n- Security patrol monitoring\n- Restricted area signage"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Security",
+    "title": "Rule 9 - Misbehavior Protocol",
+    "bylaw_text": "9) Any person found misbehaving or behaving suspiciously may be asked to leave the estate immediately.",
+    "implementation": "## Implementation Details\n- Security intervention procedures\n- Immediate removal authority\n- Incident documentation\n- Police notification protocol"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Lift",
+    "title": "Rule 10 - Lift Protection",
+    "bylaw_text": "10) The owner or resident or his contractor shall ensure there is adequate lift padding protection to the common properties particularly the walls and floors of the lift cars and the lobbies during the removal of items (lift padding are available at the Management Office). The owner or resident or his contractor shall use the lifts and staircase designated for that purpose by the Management.",
+    "implementation": "## Implementation Details\n- Lift padding rental system\n- Designated service lift allocation\n- Damage prevention measures\n- Pre-move lift inspection"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Lift",
+    "title": "Rule 11 - Heavy Item Restriction",
+    "bylaw_text": "11) No heavy items or equipment may be conveyed in the lift.",
+    "implementation": "## Implementation Details\n- Weight limit enforcement\n- Alternative moving methods\n- Structural protection measures\n- Emergency procedures"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Lift",
+    "title": "Rule 12 - Damage Responsibility",
+    "bylaw_text": "12) Any damage to the common property and equipment caused by the removal shall be restored or repaired at the expense of the owner or resident concerned. Where any equipment is damaged, the owner or resident or his contractor shall replace it.",
+    "implementation": "## Implementation Details\n- Damage assessment protocol\n- Repair cost estimation\n- Replacement coordination\n- Insurance claim assistance"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Lift",
+    "title": "Rule 13 - Material Disposal",
+    "bylaw_text": "13) Packing and crating materials must be cleared and removed and disposed of by the owner or resident concerned or his contractor. Unwanted belongings or materials may not be disposed of into the refuse chutes. Any damage to the chutes shall be repaired at the expense of the owner or resident concerned.",
+    "implementation": "## Implementation Details\n- Waste management plan\n- On-site cleanup supervision\n- Chute protection measures\n- Final inspection requirement"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Lift",
+    "title": "Rule 14 - Common Area Cleanliness",
+    "bylaw_text": "14) No unwanted, unused or waste materials may be left in any common areas. If found, such materials will be removed at the expense of the owner or resident concerned.",
+    "implementation": "## Implementation Details\n- Post-move inspection\n- Immediate cleanup requirement\n- Cost recovery process\n- Cleanliness certification"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Lift",
+    "title": "Rule 15 - Security Deposit Refund",
+    "bylaw_text": "15) The security deposit may be refunded free from interest if the Management is satisfied that there has been due compliance with all the conditions stated herein above and subject to all claims for damage to the common property or areas and/ or the property of other owners or residents which may have been occasioned by the removal. In the event of damage to any common property or area or failure to clear and remove all unused or unwanted or waste materials, the Management may arrange for such damaged common property or area to be restored or for the clearance and removal of such materials as the case may be at the expense of the owner concerned, which expense may be offset against the security deposit and the balance thereof refunded to the owner or resident. Where the expense exceeds the deposit the owner or resident shall reimburse the Management the difference.",
+    "implementation": "## Implementation Details\n- Final inspection checklist\n- Damage assessment procedure\n- Refund processing timeline (14 days)\n- Dispute resolution process"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Mover's Vehicles",
+    "title": "Rule 16 - Vehicle Management",
+    "bylaw_text": "16) Mover's vehicle must not obstruct other vehicles when parked in the estate. Such vehicles are not allowed to be park within the estate during the night or overnight. Any vehicle found in breach of the aforesaid shall be dealt with in accordance to paragraph 21-24 of Car Parking enforcement.",
+    "implementation": "## Implementation Details\n- Designated moving vehicle areas\n- Time limit enforcement\n- Traffic management plan\n- Towing protocol for violations"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Mover's Vehicles",
+    "title": "Rule 17 - Container Size Restriction",
+    "bylaw_text": "17) No containers exceeding 20 feet in length are allowed to enter the estate.",
+    "implementation": "## Implementation Details\n- Vehicle size monitoring\n- Alternative logistics planning\n- Access route assessment\n- Emergency access protection"
+  },
+  {
+    "category": "HOUSE REMOVAL",
+    "subcategory": "Right To Indemnity Of The Management",
+    "title": "Rule 18 - Management Indemnity",
+    "bylaw_text": "18) In any case where the Management is put to loss, damage, expense or cost is exposed to any penalty under any prevailing law or regulation as a result of or arising out of any act or omission on the part of any resident or occupant, or any family member of any resident or occupant, the Management shall be indemnified by the resident or occupant concerned in respect of all and any part of such loss, damage, expense, cost or penalty. Should such resident or occupant concerned refuse, fail or neglect to indemnify the Management against such loss, damage, cost or penalty, the same shall be recoverable from the resident or occupant concerned by way of a civil suit, in which event the Management shall further be entitled to costs on an indemnity basis.",
+    "implementation": "## Implementation Details"
+  }
+]

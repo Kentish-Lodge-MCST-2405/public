@@ -5,11 +5,77 @@ title: Policies
 
 # Policies
 
-{% assign items = site.policies | sort: 'title' %}
-{% if items.size == 0 %}
+{% assign groups = site.policies | group_by: 'category' | sort: 'name' %}
+{% if groups.size == 0 %}
 _No policies yet._
 {% else %}
-{% for policy in items %}
-- [{{ policy.title | default: policy.name }}]({{ policy.url | relative_url }})
+{% for group in groups %}
+## {{ group.name }}
+{% for o in (0..99) %}
+  {% for p in group.items %}
+    {% assign ord = p.order %}
+    {% if ord == nil %}
+      {%- assign eff = nil -%}
+      {%- if p.bylaws and p.bylaws.size > 0 -%}
+        {%- assign first_key = p.bylaws[0] -%}
+        {%- for b in site.bylaws -%}
+          {%- assign b_slug = b.path | split:'/' | last | split:'.' | first -%}
+          {%- if b_slug == first_key or b.title == first_key -%}
+            {%- assign eff = b.order -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- assign self_slug = p.path | split:'/' | last | split:'.' | first -%}
+        {%- for b in site.bylaws -%}
+          {%- if b.policies and b.policies contains self_slug -%}
+            {%- assign eff = b.order -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {% assign ord = eff %}
+    {% endif %}
+    {% if ord %}
+      {% assign ord_int = ord | strip | plus: 0 %}
+      {% if ord_int == o %}
+- [{{ p.title | default: p.name }}]({{ p.url | relative_url }})
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign unordered = '' | split: '' %}
+{% for p in group.items %}
+  {% assign ord = p.order %}
+  {% if ord == nil %}
+    {%- assign eff = nil -%}
+    {%- if p.bylaws and p.bylaws.size > 0 -%}
+      {%- assign first_key = p.bylaws[0] -%}
+      {%- for b in site.bylaws -%}
+        {%- assign b_slug = b.path | split:'/' | last | split:'.' | first -%}
+        {%- if b_slug == first_key or b.title == first_key -%}
+          {%- assign eff = b.order -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- assign self_slug = p.path | split:'/' | last | split:'.' | first -%}
+      {%- for b in site.bylaws -%}
+        {%- if b.policies and b.policies contains self_slug -%}
+          {%- assign eff = b.order -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {% if eff == nil %}
+      {% assign unordered = unordered | push: p %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% assign unordered = unordered | sort: 'title' %}
+{% for p in unordered %}
+- [{{ p.title | default: p.name }}]({{ p.url | relative_url }})
+{% endfor %}
 {% endfor %}
 {% endif %}

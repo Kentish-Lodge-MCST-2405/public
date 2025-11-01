@@ -30,8 +30,23 @@
           <summary>Bylaws</summary>
           <ul>
             <li><a href="{{ '/bylaws/' | relative_url }}">All Bylaws</a></li>
-            {% for bylaw in site.bylaws %}
-              <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
+            {% assign groups = site.bylaws | group_by: 'category' | sort: 'name' %}
+            {% for g in groups %}
+              <li>
+                <details>
+                  <summary>{{ g.name }}</summary>
+                  <ul>
+                    {% assign with_order = g.items | where_exp: 'i', 'i.order' | sort: 'order' %}
+                    {% assign without_order = g.items | where_exp: 'i', 'i.order == nil' | sort: 'title' %}
+                    {% for bylaw in with_order %}
+                      <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
+                    {% endfor %}
+                    {% for bylaw in without_order %}
+                      <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </details>
+              </li>
             {% endfor %}
           </ul>
         </details>
@@ -41,8 +56,80 @@
           <summary>Policies</summary>
           <ul>
             <li><a href="{{ '/policies/' | relative_url }}">All Policies</a></li>
-            {% for policy in site.policies %}
-              <li><a href="{{ policy.url | relative_url }}">{{ policy.title | default: policy.name }}</a></li>
+            {% assign groups = site.policies | group_by: 'category' | sort: 'name' %}
+            {% for g in groups %}
+              <li>
+                <details>
+                  <summary>{{ g.name }}</summary>
+                  <ul>
+                    {% for o in (0..99) %}
+                      {% for p in g.items %}
+                        {% assign ord = p.order %}
+                        {% if ord == nil %}
+                          {%- assign eff = nil -%}
+                          {%- if p.bylaws and p.bylaws.size > 0 -%}
+                            {%- assign first_key = p.bylaws[0] -%}
+                            {%- for b in site.bylaws -%}
+                              {%- assign b_slug = b.path | split:'/' | last | split:'.' | first -%}
+                              {%- if b_slug == first_key or b.title == first_key -%}
+                                {%- assign eff = b.order -%}
+                                {%- break -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          {%- else -%}
+                            {%- assign self_slug = p.path | split:'/' | last | split:'.' | first -%}
+                            {%- for b in site.bylaws -%}
+                              {%- if b.policies and b.policies contains self_slug -%}
+                                {%- assign eff = b.order -%}
+                                {%- break -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          {%- endif -%}
+                          {% assign ord = eff %}
+                        {% endif %}
+                        {% if ord %}
+                          {% assign ord_int = ord | strip | plus: 0 %}
+                          {% if ord_int == o %}
+                            <li><a href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endfor %}
+                    {% assign unordered = '' | split: '' %}
+                    {% for p in g.items %}
+                      {% assign ord = p.order %}
+                      {% if ord == nil %}
+                        {%- assign eff = nil -%}
+                        {%- if p.bylaws and p.bylaws.size > 0 -%}
+                          {%- assign first_key = p.bylaws[0] -%}
+                          {%- for b in site.bylaws -%}
+                            {%- assign b_slug = b.path | split:'/' | last | split:'.' | first -%}
+                            {%- if b_slug == first_key or b.title == first_key -%}
+                              {%- assign eff = b.order -%}
+                              {%- break -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+                        {%- else -%}
+                          {%- assign self_slug = p.path | split:'/' | last | split:'.' | first -%}
+                          {%- for b in site.bylaws -%}
+                            {%- if b.policies and b.policies contains self_slug -%}
+                              {%- assign eff = b.order -%}
+                              {%- break -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+                        {%- endif -%}
+                        {% if eff == nil %}
+                          {% assign unordered = unordered | push: p %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                    {% assign unordered = unordered | sort: 'title' %}
+                    {% for p in unordered %}
+                      <li><a href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </details>
+              </li>
             {% endfor %}
           </ul>
         </details>
@@ -51,3 +138,4 @@
     </ul>
   </div>
 </nav>
+
