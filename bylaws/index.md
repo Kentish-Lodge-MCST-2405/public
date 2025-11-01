@@ -24,10 +24,14 @@ _No bylaws yet._
 {% assign without_order = sg.items | where_exp: 'i', 'i.order == nil' | sort: 'title' %}
 <ul>
 {% for bylaw in with_order %}
+  {% unless bylaw.title == subname %}
   <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
+  {% endunless %}
 {% endfor %}
 {% for bylaw in without_order %}
+  {% unless bylaw.title == subname %}
   <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
+  {% endunless %}
 {% endfor %}
 </ul>
 
