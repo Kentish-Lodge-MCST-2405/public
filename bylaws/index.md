@@ -5,26 +5,33 @@ title: Bylaws
 
 # Bylaws
 
-{%- assign groups = site.bylaws | group_by: 'category' | sort: 'name' -%}
+{% assign groups = site.bylaws | group_by: 'category' | sort: 'name' %}
 {% if groups.size == 0 %}
 _No bylaws yet._
 {% else %}
-{%- for group in groups -%}
-## {{ group.name }}
-{%- assign subgroups = group.items | group_by: 'subcategory' | sort: 'name' -%}
-{%- for sg in subgroups -%}
-{%- assign subname = sg.name | default: '' -%}
-{%- if subname != '' -%}
-### {{ subname }}
-{%- endif -%}
-{%- assign with_order = sg.items | where_exp: 'i', 'i.order' | sort: 'order' -%}
-{%- assign without_order = sg.items | where_exp: 'i', 'i.order == nil' | sort: 'title' -%}
-{%- for bylaw in with_order -%}
-- [{{ bylaw.title | default: bylaw.name }}]({{ bylaw.url | relative_url }})
-{%- endfor -%}
-{%- for bylaw in without_order -%}
-- [{{ bylaw.title | default: bylaw.name }}]({{ bylaw.url | relative_url }})
-{%- endfor -%}
-{%- endfor -%}
-{%- endfor -%}
+{% for group in groups %}
+
+<h2>{{ group.name }}</h2>
+
+{% assign subgroups = group.items | group_by: 'subcategory' | sort: 'name' %}
+{% for sg in subgroups %}
+{% assign subname = sg.name | default: '' %}
+{% if subname != '' %}
+<h3>{{ subname }}</h3>
+{% endif %}
+
+{% assign with_order = sg.items | where_exp: 'i', 'i.order' | sort: 'order' %}
+{% assign without_order = sg.items | where_exp: 'i', 'i.order == nil' | sort: 'title' %}
+<ul>
+{% for bylaw in with_order %}
+  <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
+{% endfor %}
+{% for bylaw in without_order %}
+  <li><a href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
+{% endfor %}
+</ul>
+
+{% endfor %}
+
+{% endfor %}
 {% endif %}
