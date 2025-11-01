@@ -5,16 +5,22 @@ title: Policies
 
 # Policies
 
-{% assign groups = site.policies | group_by: 'category' | sort: 'name' %}
+{%- assign groups = site.policies | group_by: 'category' | sort: 'name' -%}
 {% if groups.size == 0 %}
 _No policies yet._
 {% else %}
-{% for group in groups %}
+{%- for group in groups -%}
 ## {{ group.name }}
-{% for o in (0..99) %}
-  {% for p in group.items %}
-    {% assign ord = p.order %}
-    {% if ord == nil %}
+{%- assign subgroups = group.items | group_by: 'subcategory' | sort: 'name' -%}
+{%- for sg in subgroups -%}
+{%- assign subname = sg.name | default: '' -%}
+{%- if subname != '' -%}
+### {{ subname }}
+{%- endif -%}
+{%- for o in (0..99) -%}
+  {%- for p in sg.items -%}
+    {%- assign ord = p.order -%}
+    {%- if ord == nil -%}
       {%- assign eff = nil -%}
       {%- if p.bylaws and p.bylaws.size > 0 -%}
         {%- assign first_key = p.bylaws[0] -%}
@@ -34,21 +40,21 @@ _No policies yet._
           {%- endif -%}
         {%- endfor -%}
       {%- endif -%}
-      {% assign ord = eff %}
-    {% endif %}
-    {% if ord %}
-      {% assign ord_int = ord | strip | plus: 0 %}
-      {% if ord_int == o %}
+      {%- assign ord = eff -%}
+    {%- endif -%}
+    {%- if ord -%}
+      {%- assign ord_int = ord | strip | plus: 0 -%}
+      {%- if ord_int == o -%}
 - [{{ p.title | default: p.name }}]({{ p.url | relative_url }})
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-{% endfor %}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
 
-{% assign unordered = '' | split: '' %}
-{% for p in group.items %}
-  {% assign ord = p.order %}
-  {% if ord == nil %}
+{%- assign unordered = '' | split: '' -%}
+{%- for p in sg.items -%}
+  {%- assign ord = p.order -%}
+  {%- if ord == nil -%}
     {%- assign eff = nil -%}
     {%- if p.bylaws and p.bylaws.size > 0 -%}
       {%- assign first_key = p.bylaws[0] -%}
@@ -68,14 +74,14 @@ _No policies yet._
         {%- endif -%}
       {%- endfor -%}
     {%- endif -%}
-    {% if eff == nil %}
-      {% assign unordered = unordered | push: p %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
-{% assign unordered = unordered | sort: 'title' %}
-{% for p in unordered %}
+    {%- if eff == nil -%}
+      {%- assign unordered = unordered | push: p -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign unordered = unordered | sort: 'title' -%}
+{%- for p in unordered -%}
 - [{{ p.title | default: p.name }}]({{ p.url | relative_url }})
-{% endfor %}
-{% endfor %}
+{%- endfor -%}
+{%- endfor -%}
 {% endif %}

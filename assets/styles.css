@@ -206,6 +206,13 @@ ol {
   padding-left: 1rem;
 }
 
+.sidebar-content a.active {
+  background: var(--card-bg);
+  color: var(--link);
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+
 .sidebar-content details {
   margin-bottom: 0.5rem;
 }
