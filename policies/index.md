@@ -84,4 +84,5 @@ _No policies yet._
 - [{{ p.title | default: p.name }}]({{ p.url | relative_url }})
 {%- endfor -%}
 {%- endfor -%}
+{%- endfor -%}
 {% endif %}
