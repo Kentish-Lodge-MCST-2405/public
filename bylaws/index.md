@@ -7,7 +7,30 @@ title: Bylaws
 
 ## BYLAW
 
-{% assign groups = site.bylaws | group_by: 'category' | sort: 'name' %}
+{% assign groups = site.bylaws | group_by: 'category' %}
+{% assign groups_with_order = "" | split: "" %}
+{% assign groups_without_order = "" | split: "" %}
+{% for group in groups %}
+  {% assign min_order = 9999 %}
+  {% assign has_order = false %}
+  {% for item in group.items %}
+    {% if item.order %}
+      {% assign order_num = item.order | slice: 0, 2 | plus: 0 %}
+      {% if order_num < min_order %}
+        {% assign min_order = order_num %}
+        {% assign has_order = true %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% if has_order %}
+    {% assign group_with_order = group | merge: '{"category_order": "' | append: min_order | append: '"}' %}
+    {% assign groups_with_order = groups_with_order | push: group_with_order %}
+  {% else %}
+    {% assign groups_without_order = groups_without_order | push: group %}
+  {% endif %}
+{% endfor %}
+{% assign sorted_groups = groups_with_order | sort: 'category_order' | concat: groups_without_order | sort: 'name' %}
+{% assign groups = sorted_groups %}
 {% if groups.size == 0 %}
 _No bylaws yet._
 {% else %}
