@@ -265,3 +265,88 @@ The following template should be made available to owners (e.g. via the Manageme
   - Upon receipt, check completeness and supporting documents.
   - Prepare summary and recommendation to Council.
   - If appropriate, include as a specific item on the next AGM agenda for decision.
+
+---
+
+## 9. Resident Information Summary (Plain English)
+
+This section explains in simple terms how this Policy affects residents. It does not replace the formal wording of the AGM Ordinary Resolution or this Policy.
+
+### 9.1 When is a payment considered late?
+
+- **Due Date**  
+  Each invoice or contribution notice shows a **Due Date**.
+- **Grace period**  
+  You have **30 days** from the Due Date to pay.
+- **Overdue**  
+  If payment is not received within **30 days after the Due Date**, the amount becomes **overdue** and **interest will start to run**.
+
+### 9.2 How is late payment interest calculated?
+
+- **Interest rate**  
+  Overdue amounts are charged **15% per year (15% p.a.)**, or such other rate as approved at a General Meeting.
+- **Daily calculation**  
+  Interest is calculated **daily** on the overdue amount, starting from the **31st day after the Due Date** until full payment is received.
+- **Shown on your statement**  
+  Your statement will show separately:
+  - the **original amount**;  
+  - any **interest**; and  
+  - any **legal or administrative fees** (if applicable).
+
+### 9.3 In what order are your payments applied?
+
+When the Management Corporation receives a payment from you, it is applied in this **fixed order**:
+
+1. **Interest** (all outstanding interest first);
+2. **Legal costs** (if any – for example, lawyers fees);
+3. **Management Fund and Sinking Fund** contributions; and
+4. **Any other levies or charges**.
+
+You **cannot choose** a different order (for example, asking us to apply your payment only to levies and ignore interest).
+
+### 9.4 When can legal fees be charged to you?
+
+Legal or other collection costs may be charged to you if:
+
+- you **do not pay** your levies or interest after reminders and a **final demand**; and/or  
+- you **breach bylaws or House Rules**, and the Management Corporation has to take steps to enforce them.
+
+If lawyers or other third parties (for example, debt collectors) are engaged, the **reasonable costs** may be added to your account, on a **solicitor-and-client / full indemnity basis**, as approved at the AGM.
+
+Before this happens, Management will normally send:
+
+- **reminders**; and  
+- a **final demand** stating that legal action and legal costs may follow.
+
+You will receive a **written demand** showing the breakdown of:
+
+- principal levies and contributions;  
+- interest; and  
+- legal / administrative costs.
+
+### 9.5 If you are facing financial difficulty
+
+If you have genuine financial or personal difficulties (for example, illness or loss of employment):
+
+1. **Contact the Management Office early.**  
+   Do not wait until your account is already very overdue.
+
+2. **Request an instalment plan.**  
+   Management and Council may consider a **reasonable payment plan** as long as you provide honest information and the plan will clear the outstanding amount within a reasonable time.
+
+3. **Requesting a waiver of interest and/or legal fees.**  
+   Waivers are **not automatic** and are intended for **exceptional cases only**. To request a waiver, you must:
+   - complete a **Waiver Request Form**; and  
+   - provide supporting documents (for example, medical letters, retrenchment letters, income documents, evidence of error, etc.).
+
+4. **Decision process for waivers.**  
+   Management reviews your request and prepares a summary. The **Council** considers and makes a recommendation. Where the request is significant, the **final decision will be made at a General Meeting of Subsidiary Proprietors** (for example, at an AGM).
+
+Until a waiver is formally approved, **interest and legal fees remain payable**.
+
+### 9.6 How to avoid interest and legal fees
+
+- Pay contributions **on or before the Due Date**.
+- If you cannot pay in full, **speak to Management early** to explore a payment plan.
+- Respond promptly to **reminders and notices**.
+- Follow the **bylaws and House Rules** to avoid enforcement action.
