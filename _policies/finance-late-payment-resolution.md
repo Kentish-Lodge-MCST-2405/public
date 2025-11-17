@@ -8,11 +8,11 @@ order: "02.01"
 
 ## AGM Ordinary Resolution  Interest on Late Payment and Recovery of Legal Fees
 
-*MCST Plan No. 2405  adopted at the Annual General Meeting held on [DATE]*
+*MCST Plan No. 2405  adopted at the Annual General Meeting held on [2025-10-26]*
 
 ### 1. Interest on Late Payment
 
-The meeting RESOLVES that any unpaid contributions to the Management Fund, Sinking Fund, Special Levies, and any other monies (including but not limited to late payment interest and legal fees) owed by any Subsidiary Proprietor and/or First Mortgagee to MCST Plan No. 2405 shall bear interest at the rate of **15% per annum**, or at such other rate as may be determined by Subsidiary Proprietors at a General Meeting.
+Any unpaid contributions to the Management Fund, Sinking Fund, Special Levies, and any other monies (including but not limited to late payment interest and legal fees) owed by any Subsidiary Proprietor and/or First Mortgagee to MCST Plan No. 2405 shall bear interest at the rate of **15% per annum**, or at such other rate as may be determined by Subsidiary Proprietors at a General Meeting.
 
 Such interest shall:
 
@@ -22,7 +22,7 @@ Such interest shall:
 
 ### 2. Order of Deduction
 
-The meeting RESOLVES that all payments received from any Subsidiary Proprietor and/or First Mortgagee shall be applied **strictly in the following order**, and that the payer shall have **no right to appropriate** such payments in any other manner:
+All payments received from any Subsidiary Proprietor and/or First Mortgagee shall be applied **strictly in the following order**, and that the payer shall have **no right to appropriate** such payments in any other manner:
 
 1) firstly, in payment of all **outstanding interest**;
 2) secondly, in payment of all **outstanding legal costs**, including costs on an indemnity basis, owing to the Management Corporation;
@@ -31,7 +31,7 @@ The meeting RESOLVES that all payments received from any Subsidiary Proprietor a
 
 ### 3. Recovery of Legal Fees, Charges and Expenses
 
-The meeting RESOLVES that where any Subsidiary Proprietor(s) and/or occupier(s) of a lot:
+Where any Subsidiary Proprietor(s) and/or occupier(s) of a lot:
 
 - (a) breaches:
   - any prescribed by-law(s) in the Second Schedule of the Building Maintenance (Strata Management) Regulations 2005,
@@ -39,9 +39,7 @@ The meeting RESOLVES that where any Subsidiary Proprietor(s) and/or occupier(s) 
   - any by-law(s) passed by the Management Corporation at its General Meetings, and/or
   - any House Rule(s) or regulation(s) adopted by the Management Council; and/or
 
-- (b) defaults in the payment of any Management Fund or Sinking Fund contribution, any Special Levy contribution, any late payment interest accrued thereon, and/or any other monies owing to the Management Corporation,
-
-and the Management Corporation and/or its Council and/or its agents incur **any consequential or incidental costs, expenses, fees, charges or interest**, whether legal or otherwise, financed from or reimbursed out of the Management Fund, in taking any measure, step or action (including but not limited to issuing reminders and demands, instructing solicitors, and commencing or defending legal proceedings) to:
+- (b) defaults in the payment of any Management Fund or Sinking Fund contribution, any Special Levy contribution, any late payment interest accrued thereon, and/or any other monies owing to the Management Corporation, and the Management Corporation and/or its Council and/or its agents incur **any consequential or incidental costs, expenses, fees, charges or interest**, whether legal or otherwise, financed from or reimbursed out of the Management Fund, in taking any measure, step or action (including but not limited to issuing reminders and demands, instructing solicitors, and commencing or defending legal proceedings) to:
 
 - enforce compliance with the aforesaid laws, by-laws, rules and regulations; and/or
 - demand and recover the outstanding sums referred to above,
