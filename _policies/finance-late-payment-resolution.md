@@ -1,14 +1,14 @@
 ---
-title: AGM Ordinary Resolution  Interest on Late Payment and Recovery of Legal Fees
+title: AGM Ordinary Resolution - Interest on Late Payment and Recovery of Legal Fees
 category: FINANCE & LEVIES
 effective: 2025-11-01
 version: 1.0
 order: "02.01"
 ---
 
-## AGM Ordinary Resolution  Interest on Late Payment and Recovery of Legal Fees
+## AGM Ordinary Resolution - Interest on Late Payment and Recovery of Legal Fees
 
-*MCST Plan No. 2405  adopted at the Annual General Meeting held on [2025-10-26]*
+*MCST Plan No. 2405 - adopted at the Annual General Meeting held on [2025-10-26]*
 
 ### 1. Interest on Late Payment
 

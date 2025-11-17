@@ -1,5 +1,5 @@
 ---
-title: Policy  Interest on Late Payment and Recovery of Legal Fees
+title: Policy - Interest on Late Payment and Recovery of Legal Fees
 category: FINANCE & LEVIES
 effective: 2025-11-01
 version: 1.0
@@ -104,7 +104,7 @@ This Policy is **not itself a bylaw**. It explains how the Council, Managing Age
   - Proposed next step (e.g. letter of demand by solicitors, filing of claim);
   - Estimated costs and basis of recovery (solicitor-and-client or full indemnity);
   - Any known hardship circumstances.
-- Councils decision (approve / modify / reject) must be recorded in **Council minutes**.
+- Council's decision (approve / modify / reject) must be recorded in **Council minutes**.
 
 ### 4.3 Written Demand to Owner for Legal Costs
 
@@ -122,7 +122,7 @@ This Policy is **not itself a bylaw**. It explains how the Council, Managing Age
 - Keep copies of:
   - All notices and reminders;
   - Council approval memo for legal action;
-  - Solicitors invoices and statements;
+  - Solicitors' invoices and statements;
   - Any payment plans agreed with the owner.
 
 ---
@@ -163,21 +163,21 @@ This Policy is **not itself a bylaw**. It explains how the Council, Managing Age
 
 - Council will consider the waiver request having regard to:
   - The reasons and evidence provided;
-  - The owners payment history;
+  - The owner's payment history;
   - The impact on other Subsidiary Proprietors; and
   - Any precedent that may be set.
 - Council may recommend:
   - Full waiver;
   - Partial waiver; or
   - No waiver.
-- Councils recommendation should be recorded in **Council minutes**.
+- Council's recommendation should be recorded in **Council minutes**.
 
 ### 6.4 AGM / General Meeting Approval
 
 - Waivers that materially depart from the approved interest and legal fee regime should, where practical, be **endorsed at a General Meeting**.
 - The waiver request may be listed as a **specific agenda item** in the AGM Notice, for example:
   - "To consider the request by the Subsidiary Proprietor of Unit #XX-XX for waiver of late payment interest and legal fees".
-- The agenda item should be accompanied by a **concise summary of Councils recommendation**, avoiding unnecessary personal details.
+- The agenda item should be accompanied by a **concise summary of Council's recommendation**, avoiding unnecessary personal details.
 - The General Meeting may resolve to:
   - (a) waive interest and/or legal fees in full;
   - (b) waive them in part; or
@@ -186,13 +186,13 @@ This Policy is **not itself a bylaw**. It explains how the Council, Managing Age
 
 ---
 
-## 7. Waiver Request Form  Template
+## 7. Waiver Request Form - Template
 
 The following template should be made available to owners (e.g. via the Management Office or the estate website). It may be adapted as needed but the key information should be retained.
 
 ---
 
-### MCST Plan No. 2405  Request for Waiver / Reduction of Interest and Legal Fees
+### MCST Plan No. 2405 - Request for Waiver / Reduction of Interest and Legal Fees
 
 1. **Applicant Details**
    - Name of Subsidiary Proprietor:  
