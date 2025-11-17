@@ -7,7 +7,9 @@ title: Policies
 
 ## POLICY
 
-{% assign groups = site.policies | group_by: 'category' %}
+{% assign empty_array = '' | split: '' %}
+{% assign policies_docs = site.policies | default: site.collections['policies'].docs | default: empty_array %}
+{% assign groups = policies_docs | group_by: 'category' %}
 {% assign groups_with_order = "" | split: "" %}
 {% assign groups_without_order = "" | split: "" %}
 {% for group in groups %}
