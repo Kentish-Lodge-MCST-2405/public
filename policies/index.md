@@ -40,7 +40,8 @@ _No policies yet._
 {% for group in groups %}
 ### {{ group.name }}
 
-{% assign subgroups = group.items | group_by: 'subcategory' | sort: 'name' %}
+{% assign group_items = group.items | default: empty_array %}
+{% assign subgroups = group_items | group_by: 'subcategory' | sort: 'name' %}
 {% for sg in subgroups %}
 {% assign subname = sg.name | default: '' %}
 {% if subname != '' %}
