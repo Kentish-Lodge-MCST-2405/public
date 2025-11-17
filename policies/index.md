@@ -31,8 +31,9 @@ title: Policies
     {% assign groups_without_order = groups_without_order | push: group %}
   {% endif %}
 {% endfor %}
-{% assign sorted_groups = groups_with_order | sort: 'category_order' | concat: groups_without_order | sort: 'name' %}
-{% assign groups = sorted_groups %}
+{% assign sorted_with_order = groups_with_order | sort: 'category_order' %}
+{% assign sorted_without_order = groups_without_order | sort: 'name' %}
+{% assign groups = sorted_with_order | concat: sorted_without_order %}
 {% if groups.size == 0 %}
 _No policies yet._
 {% else %}
