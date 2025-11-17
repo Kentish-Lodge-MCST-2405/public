@@ -4,13 +4,13 @@
   <label for="sidebar-toggle" class="sidebar-button">☰ Menu</label>
   <div class="sidebar-content">
     <h2>Kentish Lodge</h2>
-    <ul>
-      <li><a href="{{ '/' | relative_url }}">Home</a></li>
+    <ul class="sidebar-menu">
+      <li><a class="sidebar-link" href="{{ '/' | relative_url }}">Home</a></li>
       <li>
         <details>
           <summary>Announcements</summary>
           <ul>
-            <li><a href="{{ '/announcements/' | relative_url }}">All Announcements</a></li>
+            <li><a class="sidebar-link sidebar-link--all" href="{{ '/announcements/' | relative_url }}">All Announcements</a></li>
             {%- assign now = site.time | date: '%s' -%}
             {%- assign recent_ann = site.announcements | sort: 'date' | reverse -%}
             {%- assign count = 0 -%}
@@ -18,7 +18,7 @@
               {%- assign ends = a.ends_on | default: a.date -%}
               {%- assign ends_s = ends | date: '%s' -%}
               {%- if (a.status != 'archived' and a.status != 'archive') and ends_s >= now and count < 5 -%}
-                <li><a href="{{ a.url | relative_url }}">{{ a.title | default: a.name }}</a></li>
+                <li><a class="sidebar-link" href="{{ a.url | relative_url }}">{{ a.title | default: a.name }}</a></li>
                 {%- assign count = count | plus: 1 -%}
               {%- endif -%}
             {%- endfor -%}
@@ -29,53 +29,57 @@
         {%- assign on_bylaws = page.collection == 'bylaws' or page.url contains '/bylaws/' -%}
         {%- assign current_category = page.category | default: '' -%}
         {%- assign current_subcat = page.subcategory | default: '' -%}
-        <details{% if on_bylaws %} open{% endif %}>
-          <summary>Bylaws</summary>
+        <details class="sidebar-section"{% if on_bylaws %} open{% endif %}>
+          <summary>
+            <span class="sidebar-label">Bylaws</span>
+            <span class="sidebar-badge">{{ site.bylaws | size }}</span>
+          </summary>
           {%- assign groups = site.bylaws | group_by: 'category' | sort: 'name' -%}
-          <ul>
-            <li><a href="{{ '/bylaws/' | relative_url }}">All Bylaws</a></li>
+          <ul class="sidebar-section-list">
+            <li><a class="sidebar-link sidebar-link--all" href="{{ '/bylaws/' | relative_url }}">All Bylaws</a></li>
             {%- for g in groups -%}
               <li>
                 {%- assign subgroups = g.items | group_by: 'subcategory' | sort: 'name' -%}
+                {%- assign group_count = g.items | size -%}
                 {%- assign is_current_category = false -%}
                 {%- if current_category != '' and current_category == g.name -%}
                   {%- assign is_current_category = true -%}
                 {%- endif -%}
-                <details{% if is_current_category %} open{% endif %}>
-                  <summary>{{ g.name }}</summary>
-                  <ul>
+                <details class="sidebar-group"{% if is_current_category %} open{% endif %}>
+                  <summary>
+                    <span class="sidebar-label">{{ g.name }}</span>
+                    <span class="sidebar-badge">{{ group_count }}</span>
+                  </summary>
+                  <ul class="sidebar-sublist">
                     {%- for sg in subgroups -%}
                       {%- assign subgroup_name = sg.name | default: '' -%}
                       {%- assign with_order = sg.items | where_exp: 'i', 'i.order' | sort_natural: 'order' -%}
                       {%- assign without_order = sg.items | where_exp: 'i', 'i.order == nil' | sort: 'title' -%}
+                      {%- assign ordered_bylaws = with_order | concat: without_order -%}
+                      {%- assign subgroup_count = ordered_bylaws | size -%}
                       {%- assign is_current_subcat = false -%}
                       {%- if subgroup_name != '' and current_subcat != '' and current_subcat == subgroup_name and is_current_category -%}
                         {%- assign is_current_subcat = true -%}
                       {%- endif -%}
                       {%- if subgroup_name != '' -%}
                         <li>
-                          <details{% if is_current_subcat %} open{% endif %}>
-                            <summary>{{ subgroup_name }}</summary>
-                            <ul>
-                              {%- for bylaw in with_order -%}
+                          <details class="sidebar-subgroup"{% if is_current_subcat %} open{% endif %}>
+                            <summary>
+                              <span class="sidebar-label">{{ subgroup_name }}</span>
+                              <span class="sidebar-badge">{{ subgroup_count }}</span>
+                            </summary>
+                            <ul class="sidebar-leaf-list">
+                              {%- for bylaw in ordered_bylaws -%}
                                 {%- unless bylaw.title == subgroup_name -%}
-                                <li><a class="{% if page.url == bylaw.url %}active{% endif %}" href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
-                                {%- endunless -%}
-                              {%- endfor -%}
-                              {%- for bylaw in without_order -%}
-                                {%- unless bylaw.title == subgroup_name -%}
-                                <li><a class="{% if page.url == bylaw.url %}active{% endif %}" href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
+                                <li><a class="sidebar-link {% if page.url == bylaw.url %}active{% endif %}" href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
                                 {%- endunless -%}
                               {%- endfor -%}
                             </ul>
                           </details>
                         </li>
                       {%- else -%}
-                        {%- for bylaw in with_order -%}
-                          <li><a class="{% if page.url == bylaw.url %}active{% endif %}" href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
-                        {%- endfor -%}
-                        {%- for bylaw in without_order -%}
-                          <li><a class="{% if page.url == bylaw.url %}active{% endif %}" href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
+                        {%- for bylaw in ordered_bylaws -%}
+                          <li><a class="sidebar-link {% if page.url == bylaw.url %}active{% endif %}" href="{{ bylaw.url | relative_url }}">{{ bylaw.title | default: bylaw.name }}</a></li>
                         {%- endfor -%}
                       {%- endif -%}
                     {%- endfor -%}
@@ -90,53 +94,57 @@
         {%- assign on_policies = page.collection == 'policies' or page.url contains '/policies/' -%}
         {%- assign current_category_p = page.category | default: '' -%}
         {%- assign current_subcat_p = page.subcategory | default: '' -%}
-        <details{% if on_policies %} open{% endif %}>
-          <summary>Policies</summary>
+        <details class="sidebar-section"{% if on_policies %} open{% endif %}>
+          <summary>
+            <span class="sidebar-label">Policies</span>
+            <span class="sidebar-badge">{{ site.policies | size }}</span>
+          </summary>
           {%- assign groups = site.policies | group_by: 'category' | sort: 'name' -%}
-          <ul>
-            <li><a href="{{ '/policies/' | relative_url }}">All Policies</a></li>
+          <ul class="sidebar-section-list">
+            <li><a class="sidebar-link sidebar-link--all" href="{{ '/policies/' | relative_url }}">All Policies</a></li>
             {%- for g in groups -%}
               <li>
                 {%- assign subgroups = g.items | group_by: 'subcategory' | sort: 'name' -%}
+                {%- assign group_count = g.items | size -%}
                 {%- assign is_current_category = false -%}
                 {%- if current_category_p != '' and current_category_p == g.name -%}
                   {%- assign is_current_category = true -%}
                 {%- endif -%}
-                <details{% if is_current_category %} open{% endif %}>
-                  <summary>{{ g.name }}</summary>
-                  <ul>
+                <details class="sidebar-group"{% if is_current_category %} open{% endif %}>
+                  <summary>
+                    <span class="sidebar-label">{{ g.name }}</span>
+                    <span class="sidebar-badge">{{ group_count }}</span>
+                  </summary>
+                  <ul class="sidebar-sublist">
                     {%- for sg in subgroups -%}
                       {%- assign subgroup_name = sg.name | default: '' -%}
                       {%- assign with_order = sg.items | where_exp: 'i', 'i.order' | sort_natural: 'order' -%}
                       {%- assign without_order = sg.items | where_exp: 'i', 'i.order == nil' | sort: 'title' -%}
+                      {%- assign ordered_policies = with_order | concat: without_order -%}
+                      {%- assign subgroup_count = ordered_policies | size -%}
                       {%- assign is_current_subcat = false -%}
                       {%- if subgroup_name != '' and current_subcat_p != '' and current_subcat_p == subgroup_name and is_current_category -%}
                         {%- assign is_current_subcat = true -%}
                       {%- endif -%}
                       {%- if subgroup_name != '' -%}
                         <li>
-                          <details{% if is_current_subcat %} open{% endif %}>
-                            <summary>{{ subgroup_name }}</summary>
-                            <ul>
-                              {%- for p in with_order -%}
+                          <details class="sidebar-subgroup"{% if is_current_subcat %} open{% endif %}>
+                            <summary>
+                              <span class="sidebar-label">{{ subgroup_name }}</span>
+                              <span class="sidebar-badge">{{ subgroup_count }}</span>
+                            </summary>
+                            <ul class="sidebar-leaf-list">
+                              {%- for p in ordered_policies -%}
                                 {%- unless p.title == subgroup_name -%}
-                                <li><a class="{% if page.url == p.url %}active{% endif %}" href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
-                                {%- endunless -%}
-                              {%- endfor -%}
-                              {%- for p in without_order -%}
-                                {%- unless p.title == subgroup_name -%}
-                                <li><a class="{% if page.url == p.url %}active{% endif %}" href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
+                                <li><a class="sidebar-link {% if page.url == p.url %}active{% endif %}" href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
                                 {%- endunless -%}
                               {%- endfor -%}
                             </ul>
                           </details>
                         </li>
                       {%- else -%}
-                        {%- for p in with_order -%}
-                          <li><a class="{% if page.url == p.url %}active{% endif %}" href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
-                        {%- endfor -%}
-                        {%- for p in without_order -%}
-                          <li><a class="{% if page.url == p.url %}active{% endif %}" href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
+                        {%- for p in ordered_policies -%}
+                          <li><a class="sidebar-link {% if page.url == p.url %}active{% endif %}" href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a></li>
                         {%- endfor -%}
                       {%- endif -%}
                     {%- endfor -%}
@@ -147,7 +155,7 @@
           </ul>
         </details>
       </li>
-      <li><a href="{{ '/feedback/' | relative_url }}">Feedback</a></li>
+      <li><a class="sidebar-link" href="{{ '/feedback/' | relative_url }}">Feedback</a></li>
     </ul>
   </div>
 </nav>
