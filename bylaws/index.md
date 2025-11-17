@@ -5,6 +5,13 @@ title: Bylaws
 
 # Bylaws
 
+This page lists the **bylaws** of MCST Plan No. 2405. Certain **AGM ordinary resolutions** and **policies** that affect how bylaws are administered (for example, interest on late payment and recovery of legal fees) are recorded separately but are referenced here for convenience.
+
+## Related AGM Resolution and Policy (Not Bylaws)
+
+- [AGM Ordinary Resolution  Interest on Late Payment and Recovery of Legal Fees]({{ site.baseurl }}/policies/finance-late-payment-resolution/)
+- [Policy  Interest on Late Payment and Recovery of Legal Fees]({{ site.baseurl }}/policies/finance-late-payment-policy/)
+
 ## BYLAW
 
 {% assign groups = site.bylaws | group_by: 'category' %}
