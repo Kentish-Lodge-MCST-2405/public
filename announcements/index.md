@@ -6,8 +6,10 @@ permalink: /announcements/
 
 # Current Announcements
 
+{% assign empty_array = '' | split: '' %}
 {% assign now = site.time | date: '%s' %}
-{% assign pages = site.announcements | sort: 'date' | reverse %}
+{% assign pages_source = site.announcements | default: site.collections['announcements'].docs | default: empty_array %}
+{% assign pages = pages_source | sort: 'date' | reverse %}
 {% assign current = '' | split: '' %}
 {% for a in pages %}
   {% assign ends = a.ends_on | default: a.date %}

@@ -6,9 +6,11 @@ permalink: /announcements/archive/
 
 # Past Announcements
 
+{% assign empty_array = '' | split: '' %}
 {% assign now = site.time | date: '%s' %}
 {% assign past = '' | split: '' %}
-{% assign ann = site.announcements | sort: 'date' | reverse %}
+{% assign ann_source = site.announcements | default: site.collections['announcements'].docs | default: empty_array %}
+{% assign ann = ann_source | sort: 'date' | reverse %}
 {% for a in ann %}
   {% assign ends = a.ends_on | default: a.date %}
   {% assign ends_s = ends | date: '%s' %}

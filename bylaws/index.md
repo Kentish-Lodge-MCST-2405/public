@@ -14,7 +14,9 @@ This page lists the **bylaws** of MCST Plan No. 2405. Certain **AGM ordinary res
 
 ## BYLAW
 
-{% assign groups = site.bylaws | group_by: 'category' | sort: 'name' %}
+{% assign empty_array = '' | split: '' %}
+{% assign bylaws_docs = site.bylaws | default: site.collections['bylaws'].docs | default: empty_array %}
+{% assign groups = bylaws_docs | group_by: 'category' | sort: 'name' %}
 {% if groups.size == 0 %}
 _No bylaws yet._
 {% else %}

@@ -34,8 +34,10 @@ title: Kentish Lodge MCST
     <div class="card">
       <h3>Announcements</h3>
       <p>Latest notices from the council and managing agent.</p>
+      {% assign empty_array = '' | split: '' %}
       {% assign now = site.time | date: '%s' %}
-      {% assign recent_ann = site.announcements | sort: 'date' | reverse %}
+      {% assign announcement_docs = site.announcements | default: site.collections['announcements'].docs | default: empty_array %}
+      {% assign recent_ann = announcement_docs | sort: 'date' | reverse %}
       {% assign shown = 0 %}
       <ul>
         {% for a in recent_ann %}

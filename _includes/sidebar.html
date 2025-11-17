@@ -3,6 +3,7 @@
   <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle">
   <label for="sidebar-toggle" class="sidebar-button">☰ Menu</label>
   <div class="sidebar-content">
+    {%- assign empty_array = '' | split: '' -%}
     <h2>Kentish Lodge</h2>
     <ul class="sidebar-menu">
       <li><a class="sidebar-link" href="{{ '/' | relative_url }}">Home</a></li>
@@ -12,7 +13,8 @@
           <ul>
             <li><a class="sidebar-link sidebar-link--all" href="{{ '/announcements/' | relative_url }}">All Announcements</a></li>
             {%- assign now = site.time | date: '%s' -%}
-            {%- assign recent_ann = site.announcements | sort: 'date' | reverse -%}
+            {%- assign announcement_docs = site.announcements | default: site.collections['announcements'].docs | default: empty_array -%}
+            {%- assign recent_ann = announcement_docs | sort: 'date' | reverse -%}
             {%- assign count = 0 -%}
             {%- for a in recent_ann -%}
               {%- assign ends = a.ends_on | default: a.date -%}
@@ -34,7 +36,8 @@
             <span class="sidebar-label">Bylaws</span>
             <span class="sidebar-badge">{{ site.bylaws | size }}</span>
           </summary>
-          {%- assign groups = site.bylaws | group_by: 'category' | sort: 'name' -%}
+          {%- assign bylaws_docs = site.bylaws | default: site.collections['bylaws'].docs | default: empty_array -%}
+          {%- assign groups = bylaws_docs | group_by: 'category' | sort: 'name' -%}
           <ul class="sidebar-section-list">
             <li><a class="sidebar-link sidebar-link--all" href="{{ '/bylaws/' | relative_url }}">All Bylaws</a></li>
             {%- for g in groups -%}
@@ -99,7 +102,8 @@
             <span class="sidebar-label">Policies</span>
             <span class="sidebar-badge">{{ site.policies | size }}</span>
           </summary>
-          {%- assign groups = site.policies | group_by: 'category' | sort: 'name' -%}
+          {%- assign policy_docs = site.policies | default: site.collections['policies'].docs | default: empty_array -%}
+          {%- assign groups = policy_docs | group_by: 'category' | sort: 'name' -%}
           <ul class="sidebar-section-list">
             <li><a class="sidebar-link sidebar-link--all" href="{{ '/policies/' | relative_url }}">All Policies</a></li>
             {%- for g in groups -%}
