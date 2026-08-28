@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kentish Lodge — Forms</title>
+<meta name="description" content="Fill and submit Kentish Lodge MCST forms online, or print the blank official form.">
+<style>
+  :root{
+    --ink:#111; --paper:#fff; --mut:#666; --line:#d7d7d7; --bg:#f4f4f2;
+    --accent:#0f4c81; --ok:#1a7f37; --err:#b42318;
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font:15px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+  .app-bar{background:#0e0e0e;color:#fff;padding:10px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .app-bar strong{font-weight:600}
+  .app-bar a{color:#cfe3ff;text-decoration:none;font-size:13px}
+  main{max-width:880px;margin:0 auto;padding:16px}
+  .tabs{display:flex;gap:8px;margin:6px 0 14px;flex-wrap:wrap}
+  .tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;cursor:pointer;font-size:14px}
+  .tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
+  .head h1{font-size:20px;margin:0 0 2px}
+  .head .meta{color:var(--mut);font-size:13px}
+  .docmatrix{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0}
+  .docmatrix th,.docmatrix td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+  .docmatrix th{background:#f7f7f7}
+  h2.sec{font-size:15px;text-transform:uppercase;letter-spacing:.04em;margin:22px 0 8px;border-bottom:2px solid var(--ink);padding-bottom:4px}
+  .field{margin:0 0 14px}
+  .field>label,.field>.lbl{display:block;font-weight:600;font-size:13.5px;margin-bottom:4px}
+  .req::after{content:" *";color:var(--err)}
+  input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{
+    width:100%;max-width:460px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+  input:focus,select:focus,textarea:focus,canvas:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  .opts{display:flex;gap:8px;flex-wrap:wrap}
+  .opt{border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;background:#fff;font-size:13.5px}
+  .opt input{position:absolute;opacity:0;pointer-events:none}
+  .opt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .check-row{display:flex;gap:9px;align-items:flex-start;cursor:pointer}
+  .check-row input{margin-top:3px;width:16px;height:16px;accent-color:var(--ink)}
+  .drop{border:1.5px dashed var(--line);border-radius:8px;padding:12px;font-size:13.5px;color:var(--mut);cursor:pointer;background:#fafafa}
+  .drop.drag{border-color:var(--accent);color:var(--accent)}
+  .filelist{list-style:none;margin:6px 0 0;padding:0;font-size:13px}
+  .filelist li{display:flex;justify-content:space-between;gap:8px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;margin-top:4px;background:#fff}
+  .filelist button{border:none;background:none;color:var(--err);cursor:pointer;font-size:13px}
+  .pad-wrap{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;max-width:520px}
+  canvas.sig{display:block;width:100%;height:150px;touch-action:none;cursor:crosshair;background:#fff}
+  .pad-btns{display:flex;gap:8px;margin-top:6px}
+  button{font:inherit;cursor:pointer}
+  .btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:8px 14px;font-size:14px}
+  .btn:hover{background:#f2f2f2}
+  .btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+  .btn.primary:hover{background:#000}
+  .btn.danger-ghost{color:var(--err);border-color:#e5b6b0}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+  .hint{color:var(--mut);font-size:13px}
+  .err-msg{color:var(--err);font-size:12.5px;margin-top:4px;display:none}
+  .field.invalid .err-msg{display:block}
+  .field.invalid input,.field.invalid .pad-wrap,.field.invalid .drop{border-color:var(--err)}
+  .banner{border:1px solid var(--line);border-left:4px solid var(--accent);background:#fff;border-radius:8px;padding:10px 14px;font-size:13.5px;margin-bottom:14px}
+  .banner.ok{border-left-color:var(--ok)}
+  .banner.err{border-left-color:var(--err)}
+  #resultPanel h2{margin:2px 0 6px;font-size:18px}
+  .refbox{font-family:Consolas,monospace;background:#f7f7f7;border:1px dashed var(--line);border-radius:8px;padding:8px 12px;display:inline-block}
+  /* ---------- print sheet (screen preview look) ---------- */
+  #printArea{display:none}
+  .sheet{background:#fff;color:#000;width:210mm;min-height:297mm;margin:14px auto;padding:14mm 13mm;box-shadow:0 2px 14px rgba(0,0,0,.15);font-family:"Times New Roman",Times,serif;font-size:12.5pt}
+  .sheet .docmatrix th{background:#efefef}
+  .sheet .docmatrix th,.sheet .docmatrix td{border:1px solid #000}
+  .ps-head{text-align:center;border-bottom:2.5px solid #000;padding-bottom:8px;margin-bottom:10px}
+  .ps-head .estate{font-size:14pt;font-weight:bold;letter-spacing:.02em}
+  .ps-head .ftitle{font-size:13pt;font-weight:bold;margin-top:2px}
+  .ps-head .fno{font-size:10.5pt}
+  .ps-head .ref{font-size:9.5pt;color:#000;margin-top:3px}
+  .sheet h3{font-size:11.5pt;margin:12px 0 4px;text-transform:uppercase;letter-spacing:.03em;border-bottom:1.5px solid #000}
+  .sheet table.ftab{width:100%;border-collapse:collapse}
+  .sheet table.ftab td{padding:4px 2px;vertical-align:bottom}
+  .sheet td.lbl{width:38%;font-weight:bold}
+  .sheet td.val{border-bottom:1px solid #000;min-height:1.2em;padding-left:4px}
+  .sheet tr.sigrow td.val{border:none;padding:0}
+  .sheet .sigimg{height:52px;display:block}
+  .sheet .sigline{display:inline-block;border-bottom:1px solid #000;width:100%;height:52px}
+  .sheet .note{font-size:10pt;margin:6px 0}
+  .sheet .office{border:1.5px solid #000;margin-top:14px;padding:6px 8px}
+  .sheet .office .t{font-weight:bold;font-size:10.5pt;text-transform:uppercase}
+  .sheet .foot{margin-top:10px;font-size:9pt;color:#000;border-top:1px solid #000;padding-top:5px}
+  /* ---------- print media ---------- */
+  @page{size:A4;margin:0}
+  @media print{
+    body{background:#fff}
+    .app-bar,main,.tabs,.banner,#toast{display:none !important}
+    #printArea{display:block}
+    .sheet{width:auto;min-height:auto;margin:0;box-shadow:none;padding:12mm 12mm}
+    .sheet tr,.sheet .docmatrix tr,.sheet .office{break-inside:avoid;page-break-inside:avoid}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  .sheet-screen{overflow:auto}
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:9px 16px;border-radius:999px;font-size:13.5px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:50}
+  #toast.show{opacity:1}
+  @media (max-width:640px){
+    .sheet{width:100%;padding:16px;margin:0;box-shadow:none}
+    input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{max-width:100%}
+  }
+</style>
+</head>
+<body>
+<header class="app-bar">
+  <strong>Kentish Lodge — Forms</strong>
+  <span id="formSwitch"></span>
+  <a href="/forms/">All forms</a>
+</header>
+<main>
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tabFill" role="tab" aria-selected="true">Fill online</button>
+    <button class="tab" id="tabBlank" role="tab" aria-selected="false">Blank form (print)</button>
+  </div>
+  <div id="notice"></div>
+
+  <section id="fillView">
+    <div id="formHeader" class="card head"></div>
+    <form id="theForm" novalidate autocomplete="on"></form>
+    <div class="actions">
+      <button class="btn primary" id="btnSubmit">Submit</button>
+      <button class="btn" id="btnPrintFilled">Print filled form</button>
+      <button class="btn" id="btnDownload">Download copy</button>
+      <button class="btn danger-ghost" id="btnReset" type="button">Clear form</button>
+    </div>
+    <p class="hint">Drafts auto-save in this browser (files are not saved — re-attach them if you return later).</p>
+    <div id="resultPanel"></div>
+  </section>
+
+  <section id="blankView" hidden>
+    <div class="actions">
+      <button class="btn primary" id="btnPrintBlank">Print</button>
+      <button class="btn" id="btnBackFill">Back to “Fill online”</button>
+    </div>
+    <p class="hint">Blank official form — print single-sided on A4. A black-and-white printer is fine.</p>
+    <div id="blankPreview" class="sheet-screen"></div>
+  </section>
+</main>
+
+<div id="printArea" aria-hidden="true"></div>
+<div id="toast" role="status"></div>
+
+<script>
+"use strict";
+/* ============================================================
+   Kentish Lodge MCST — form processor
+   - One self-contained page; forms are defined in FORMS below.
+   - To add a future form: add an entry to FORMS. No other change.
+   - Email delivery: set FORMS_ENDPOINT below to the deployed
+     backend/form-submit.php URL (see backend/README.md).
+     Leave it empty to use the built-in email/print fallback.
+   ============================================================ */
+var FORMS_ENDPOINT = ""; // e.g. "https://kentishlodge.com/form-submit.php"
+var MANAGEMENT_EMAIL = "management@kentishlodge.com";
+
+/* ---------------- form definitions ---------------- */
+var FORMS = {
+  "vr-01": {
+    formNo: "Form VR-01",
+    title: "Vehicle & RFID Tag Registration Form",
+    estate: "KENTISH LODGE (MCST PLAN NO. 2405)",
+    subjectTag: "VR-01 Vehicle RFID Registration",
+    fileSlug: "VR-01",
+    intro: "All vehicles entering Kentish Lodge must be registered with the Management before an RFID tag for the barrier/gantry system can be issued, under the Car Park Label Bylaws (Rule 3 — Proof of Ownership) and the Parking Bylaws. One form per vehicle.",
+    notes: [
+      {type:"matrix", head:["Your situation","Document to submit"], rows:[
+        ["Vehicle is registered in your name","Copy of the vehicle log card (LTA Vehicle Registration Card) showing your name"],
+        ["Vehicle is rented or leased","Copy of the valid rental / lease agreement showing the lessee's name, vehicle registration number and period"],
+        ["Vehicle was recently purchased","Copy of the invoice / sales & purchase agreement showing the buyer's name and vehicle details"]]},
+      {type:"p", html:"<strong>If your name does NOT appear on the document:</strong> also submit a Letter of Authorisation signed by the person named on it (available on the Forms page), a copy of that person's NRIC/FIN (front) and their contact number. Applications without the required documents will be rejected."}
+    ],
+    sections: [
+      {no:"A", title:"Unit & applicant details", fields:[
+        {k:"unit_no", label:"Unit No.", type:"text", req:true},
+        {k:"applicant_name", label:"Full name (as in NRIC/FIN)", type:"text", req:true},
+        {k:"nric_fin", label:"NRIC / FIN No.", type:"text", req:true},
+        {k:"applicant_role", label:"I am the", type:"radio", opts:["Owner","Co-owner","Tenant","Occupant / Household member"], req:true},
+        {k:"mobile", label:"Mobile No.", type:"tel", req:true},
+        {k:"email", label:"Email — a copy of this submission will be sent to this address", type:"email", req:true}
+      ]},
+      {no:"B", title:"Vehicle details", fields:[
+        {k:"vehicle_reg_no", label:"Vehicle registration No.", type:"text", req:true},
+        {k:"make_model", label:"Make & model", type:"text", req:true},
+        {k:"colour", label:"Colour", type:"text", req:true},
+        {k:"vehicle_type", label:"Type", type:"radio", opts:["Car","Motorcycle / Scooter","Other"], other:{key:"vehicle_type_other", label:"If Other, specify"}, req:true},
+        {k:"logcard_ref", label:"LTA log card reference No. (if any)", type:"text"},
+        {k:"lot_no", label:"Season parking lot No. (if allocated)", type:"text"}
+      ]},
+      {no:"C", title:"Supporting documents", fields:[
+        {k:"doc_route", label:"Document submitted", type:"radio",
+         opts:["Vehicle log card (LTA) — my name appears on it",
+               "Rental / lease agreement — I am the named lessee",
+               "Invoice / sales & purchase agreement — I am the named buyer"], req:true},
+        {k:"doc_upload", label:"Upload that document (PDF or image, max 10 MB)", type:"file", req:true},
+        {k:"named_on_doc", label:"Is your name printed on that document?", type:"radio", opts:["Yes","No"], req:true},
+        {k:"loa_signatory_name", label:"Authorising person — full name (as in NRIC/FIN)", type:"text", showIf:{f:"named_on_doc", eq:"No"}, reqIf:{f:"named_on_doc", eq:"No"}},
+        {k:"loa_signatory_nric", label:"Authorising person — NRIC / FIN No.", type:"text", showIf:{f:"named_on_doc", eq:"No"}, reqIf:{f:"named_on_doc", eq:"No"}},
+        {k:"loa_signatory_contact", label:"Authorising person — mobile No. (for verification)", type:"tel", showIf:{f:"named_on_doc", eq:"No"}, reqIf:{f:"named_on_doc", eq:"No"}},
+        {k:"loa_upload", label:"Upload signed Letter of Authorisation (Form VR-02)", type:"file", showIf:{f:"named_on_doc", eq:"No"}, reqIf:{f:"named_on_doc", eq:"No"}},
+        {k:"owner_id_upload", label:"Upload authorising person's NRIC / FIN (front only)", type:"file", showIf:{f:"named_on_doc", eq:"No"}, reqIf:{f:"named_on_doc", eq:"No"}}
+      ]},
+      {no:"D", title:"RFID tag", fields:[
+        {k:"rfid_serial", label:"RFID tag serial No. (if already installed)", type:"text"},
+        {k:"rfid_vendor_date", label:"Installation date / vendor (if applicable)", type:"text"},
+        {k:"need_tag", label:"RFID tag issuance", type:"radio", opts:["Yes — please issue a tag","No — tag already installed"], req:true}
+      ]},
+      {no:"E", title:"Declaration & consent", fields:[
+        {k:"decl_truth", label:"I declare the information and documents provided are true and complete, and I will notify the Management of any change (vehicle, ownership, tenancy) within 7 days.", type:"check", req:true},
+        {k:"decl_bylaws", label:"I agree to abide by the bylaws, policies and directions of the Management (including the Car Park Label and Parking bylaws) and to pay any applicable charges.", type:"check", req:true},
+        {k:"decl_pdpa", label:"I consent to the Management collecting, using and verifying my personal data for processing this application and administering vehicle access (PDPA 2012).", type:"check", req:true},
+        {k:"signature", label:"Signature of applicant", type:"signature", req:true},
+        {k:"signed_date", label:"Date", type:"date", req:true}
+      ]}
+    ],
+    officeUse:true
+  },
+
+  "vr-02": {
+    formNo: "Form VR-02",
+    title: "Letter of Authorisation — Vehicle RFID Registration",
+    estate: "KENTISH LODGE (MCST PLAN NO. 2405)",
+    subjectTag: "VR-02 Letter of Authorisation",
+    fileSlug: "VR-02",
+    intro: "Use this letter only when the person applying for the vehicle RFID tag is not the person named on the vehicle log card, rental/lease agreement or invoice. The named owner/lessee/purchaser must sign and attach a copy of their NRIC/FIN (front). One letter per vehicle.",
+    notes: [],
+    sections: [
+      {no:"A", title:"Authoriser — owner / lessee / purchaser", fields:[
+        {k:"auth_name", label:"Full name (as in NRIC/FIN)", type:"text", req:true},
+        {k:"auth_nric", label:"NRIC / FIN No.", type:"text", req:true},
+        {k:"auth_contact", label:"Contact No.", type:"tel", req:true},
+        {k:"auth_email", label:"Email — a copy of this submission will be sent to this address", type:"email", req:true},
+        {k:"capacity", label:"I am the", type:"radio", opts:["Registered owner (log card attached)","Lessee (rental / lease agreement attached)","Purchaser (invoice / S&P agreement attached)"], req:true},
+        {k:"doc_date", label:"That document is dated", type:"date", req:true}
+      ]},
+      {no:"B", title:"Vehicle", fields:[
+        {k:"vehicle_reg_no", label:"Vehicle registration No.", type:"text", req:true},
+        {k:"make_model", label:"Make & model", type:"text", req:true}
+      ]},
+      {no:"C", title:"Authorised person", fields:[
+        {k:"ap_name", label:"Full name (as in NRIC/FIN)", type:"text", req:true},
+        {k:"ap_nric", label:"NRIC / FIN No.", type:"text", req:true},
+        {k:"relationship", label:"Relationship to me (e.g. spouse, parent, child, household member)", type:"text", req:true},
+        {k:"ap_unit", label:"Unit No. of residence", type:"text", req:true},
+        {k:"ap_contact", label:"Contact No.", type:"tel", req:true}
+      ]},
+      {no:"D", title:"Authorisation period", fields:[
+        {k:"valid_from", label:"Valid from", type:"date", req:true},
+        {k:"valid_to", label:"Valid to (or until revoked in writing)", type:"date", req:true}
+      ]},
+      {no:"E", title:"Declarations & attachments", fields:[
+        {k:"decl_true", label:"The particulars and attached documents are true and correct, and I am the legal owner / lessee / purchaser of the vehicle described above.", type:"check", req:true},
+        {k:"decl_resp", label:"This authorisation does not transfer my obligations — I remain responsible for the vehicle, any charges levied under the bylaws, and any breach committed in connection with it.", type:"check", req:true},
+        {k:"decl_change", label:"I will notify the Management within 7 days of any change affecting this authorisation (termination of lease, sale of vehicle, change of residence).", type:"check", req:true},
+        {k:"doc_copy_upload", label:"Upload the log card / agreement / invoice (PDF or image)", type:"file", req:true},
+        {k:"auth_id_upload", label:"Upload my NRIC / FIN (front only)", type:"file", req:true}
+      ]},
+      {no:"F", title:"Signatures", fields:[
+        {k:"sig_authoriser", label:"Signature of authoriser (owner / lessee / purchaser)", type:"signature", req:true},
+        {k:"auth_date", label:"Date", type:"date", req:true},
+        {k:"sig_authorised", label:"Signature of authorised person (applicant)", type:"signature", req:true},
+        {k:"ap_date", label:"Date", type:"date", req:true}
+      ]}
+    ],
+    officeUse:true
+  }
+};
+
+/* ---------------- utilities ---------------- */
+function $(s,el){return (el||document).querySelector(s)}
+function $all(s,el){return Array.prototype.slice.call((el||document).querySelectorAll(s))}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function toast(msg){var t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toast._h);toast._h=setTimeout(function(){t.classList.remove("show")},2600)}
+function todayStr(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function fmtDate(s){if(!s)return "";var p=String(s).split("-");return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:s}
+function qs(name){var m=new RegExp("[?&]"+name+"=([^&]*)").exec(location.search);return m?decodeURIComponent(m[1]):null}
+function refNo(slug){return "KL-"+slug.toUpperCase().replace(/[^A-Z0-9]/g,"")+"-"+Date.now().toString(36).toUpperCase()}
+
+var ACCEPTED_EXT=["pdf","jpg","jpeg","png","webp","heic"];
+var MAX_FILE_MB=10;
+
+/* ---------------- state ---------------- */
+var formId=null, def=null;
+var values={}, files={}, errors={}, sigs={};
+var PAGE_LOADED=Date.now();
+
+function fieldVisible(f){
+  if(f.showIf){return values[f.showIf.f]===f.showIf.eq}
+  return true;
+}
+function fieldRequired(f){
+  if(f.req)return true;
+  if(f.reqIf&&values[f.reqIf.f]===f.reqIf.eq)return true;
+  return false;
+}
+
+/* ---------------- fill view rendering ---------------- */
+function renderForm(){
+  values.signed_date=values.signed_date||todayStr();
+  var h="";
+  h+='<h2 class="sec">Instructions &amp; supporting documents</h2>';
+  h+='<div class="card"><p style="margin:0 0 6px">'+esc(def.intro)+'</p>';
+  def.notes.forEach(function(n){
+    if(n.type==="matrix"){
+      h+='<table class="docmatrix"><tr>'+n.head.map(function(x){return "<th>"+esc(x)+"</th>"}).join("")+"</tr>";
+      n.rows.forEach(function(r){h+="<tr>"+r.map(function(c){return "<td>"+esc(c)+"</td>"}).join("")+"</tr>"});
+      h+="</table>";
+    } else if(n.type==="p"){h+='<p style="margin:6px 0 0;font-size:13.5px">'+n.html+"</p>"}
+  });
+  h+="</div>";
+  def.sections.forEach(function(sec){
+    h+='<h2 class="sec">Section '+esc(sec.no)+" — "+esc(sec.title)+"</h2>";
+    h+='<div class="card" data-sec="'+esc(sec.no)+'">';
+    sec.fields.forEach(function(f){h+=renderField(f)});
+    h+="</div>";
+  });
+  $("#theForm").innerHTML=h;
+  $all("#theForm .field").forEach(function(){});
+  bindFieldEvents();
+  refreshVisibility();
+}
+
+function renderField(f){
+  var v=values[f.k]||"";
+  var wrap='<div class="field" data-k="'+esc(f.k)+'">';
+  if(f.type==="check"){
+    wrap+='<label class="check-row"><input type="checkbox" data-k="'+esc(f.k)+'" '+(v?"checked":"")+'><span>'+esc(f.label)+"</span></label>";
+  }else{
+    wrap+='<label class="lbl'+(f.req?" req":"")+'" for="in_'+esc(f.k)+'">'+esc(f.label)+"</label>";
+    if(f.type==="radio"){
+      wrap+='<div class="opts" role="radiogroup" aria-label="'+esc(f.label)+'">';
+      f.opts.forEach(function(o){
+        wrap+='<label class="opt'+(v===o?" on":"")+'"><input type="radio" name="'+esc(f.k)+'" value="'+esc(o)+'" '+(v===o?"checked":"")+">"+esc(o)+"</label>";
+      });
+      wrap+="</div>";
+      if(f.other){
+        var ov=values[f.other.key]||"";
+        wrap+='<input type="text" id="in_'+esc(f.other.key)+'" data-k="'+esc(f.other.key)+'" placeholder="'+esc(f.other.label)+'" value="'+esc(ov)+'" style="margin-top:6px;'+(v===f.opts[f.opts.length-1]?"":"display:none")+'">';
+      }
+    }else if(f.type==="file"){
+      wrap+='<div class="drop" tabindex="0" role="button" aria-label="Upload file">Click to upload or drag a file here <input type="file" hidden accept="'+(f.accept||"")+'"></div>';
+      wrap+='<ul class="filelist"></ul>';
+    }else if(f.type==="signature"){
+      wrap+='<div class="pad-wrap"><canvas class="sig" data-k="'+esc(f.k)+'" aria-label="Signature box"></canvas></div>';
+      wrap+='<div class="pad-btns"><button type="button" class="btn" data-pad="clear">Clear</button><button type="button" class="btn" data-pad="undo">Undo</button><span class="hint" style="align-self:center">Draw with mouse, finger or stylus</span></div>';
+    }else{
+      var t=f.type==="tel"?"tel":(f.type||"text");
+      wrap+='<input type="'+t+'" id="in_'+esc(f.k)+'" data-k="'+esc(f.k)+'" value="'+esc(v)+'">';
+    }
+  }
+  wrap+='<div class="err-msg"></div></div>';
+  return wrap;
+}
+
+function bindFieldEvents(){
+  $all("#theForm input[data-k],#theForm textarea[data-k]").forEach(function(inp){
+    inp.addEventListener("input",function(){
+      values[inp.dataset.k]=inp.type==="checkbox"?(inp.checked?"yes":""):inp.value;
+      if(inp.type==="checkbox"){/* handled below too */}
+      saveDraft();
+    });
+    if(inp.type==="checkbox"){inp.addEventListener("change",function(){values[inp.dataset.k]=inp.checked?"yes":"";saveDraft()})}
+    if(inp.type==="radio"){inp.addEventListener("change",function(){
+      values[inp.name]=inp.value;
+      $all('.opt input[name="'+inp.name+'"]').forEach(function(r){r.closest(".opt").classList.toggle("on",r.checked)});
+      var sec=inp.closest(".card");if(sec){var f=findField(inp.name);if(f&&f.other){var oi=$('[data-k="'+f.other.key+'"]',sec);if(oi){oi.style.display=(inp.value===f.opts[f.opts.length-1])?"":"none"}}}
+      refreshVisibility();saveDraft();
+    })}
+  });
+  // dropzones
+  $all("#theForm .drop").forEach(function(dz){
+    var fieldEl=dz.closest(".field"),k=fieldEl.dataset.k;
+    var fi=$("input[type=file]",dz);
+    function take(list){
+      var file=list&&list[0];
+      if(!file)return;
+      var ext=(file.name.split(".").pop()||"").toLowerCase();
+      if(ACCEPTED_EXT.indexOf(ext)<0){toast("Unsupported file type (."+ext+")");return}
+      if(file.size>MAX_FILE_MB*1024*1024){toast("File too large — max "+MAX_FILE_MB+" MB");return}
+      files[k]=file;paintFileRow(fieldEl);clearErr(k);saveDraft();
+    }
+    dz.addEventListener("click",function(){fi.click()});
+    dz.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fi.click()}});
+    fi.addEventListener("change",function(){take(fi.files)});
+    ["dragover","dragenter"].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.add("drag")})});
+    ["dragleave","drop"].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.remove("drag")})});
+    dz.addEventListener("drop",function(e){take(e.dataTransfer.files)});
+  });
+  // signature pads
+  $all("#theForm canvas.sig").forEach(function(cv){initPad(cv,cv.dataset.k)});
+  $all("#theForm [data-pad]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var cv=b.closest(".field").querySelector("canvas.sig");
+      var pad=cv._pad;
+      if(b.dataset.pad==="clear"){pad.strokes=[];pad.redraw()}
+      else if(b.dataset.pad==="undo"){pad.strokes.pop();pad.redraw()}
+      sigs[cv.dataset.k]=pad.strokes;
+      clearErr(cv.dataset.k);saveDraft();
+    });
+  });
+}
+
+function findField(k){
+  var out=null;
+  def.sections.forEach(function(s){s.fields.forEach(function(f){if(f.k===k)out=f;if(f.other&&f.other.key===k)out=f.other})});
+  return out;
+}
+function paintFileRow(fieldEl){
+  var k=fieldEl.dataset.k,ul=$(".filelist",fieldEl),f=files[k];
+  ul.innerHTML=f?'<li><span>'+esc(f.name)+" ("+Math.round(f.size/1024)+" KB)</span><button type=\"button\" aria-label=\"Remove file\">Remove</button></li>":"";
+  var btn=$("button",ul);
+  if(btn){btn.addEventListener("click",function(){delete files[k];$("input[type=file]",fieldEl).value="";paintFileRow(fieldEl);saveDraft()})}
+  var dz=$(".drop",fieldEl);
+  dz.firstChild.textContent=f?"Replace file — click or drop":"Click to upload or drag a file here ";
+}
+
+function refreshVisibility(){
+  $all("#theForm .field").forEach(function(el){
+    var f=findField(el.dataset.k);
+    if(!f)return;
+    el.style.display=fieldVisible(f)?"":"none";
+  });
+}
+
+/* ---------------- signature pad ---------------- */
+function initPad(cv,key){
+  var ctx=cv.getContext("2d");
+  var pad={strokes:sigs[key]||[],cur:null};
+  function size(){
+    var r=cv.getBoundingClientRect(),dpr=window.devicePixelRatio||1;
+    if(!r.width)return;
+    cv.width=Math.round(r.width*dpr);cv.height=Math.round(r.height*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    pad.redraw();
+  }
+  pad.redraw=function(){
+    var r=cv.getBoundingClientRect();
+    ctx.clearRect(0,0,r.width,r.height);
+    ctx.strokeStyle="#111";ctx.lineWidth=2;ctx.lineCap="round";ctx.lineJoin="round";
+    pad.strokes.forEach(function(s){
+      ctx.beginPath();
+      s.forEach(function(p,i){i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)});
+      ctx.stroke();
+    });
+    if(pad.cur&&pad.cur.length){ctx.beginPath();pad.cur.forEach(function(p,i){i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)});ctx.stroke()}
+  };
+  cv._pad=pad;
+  function pos(e){var r=cv.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
+  cv.addEventListener("pointerdown",function(e){e.preventDefault();cv.setPointerCapture(e.pointerId);pad.cur=[pos(e)]});
+  cv.addEventListener("pointermove",function(e){
+    if(!pad.cur)return;
+    pad.cur.push(pos(e));
+    var r=cv.getBoundingClientRect();ctx.strokeStyle="#111";ctx.lineWidth=2;ctx.lineCap="round";
+    ctx.beginPath();
+    var s=pad.cur,n=s.length;
+    if(n>1){ctx.moveTo(s[n-2].x,s[n-2].y);ctx.lineTo(s[n-1].x,s[n-1].y);ctx.stroke()}
+  });
+  ["pointerup","pointercancel","pointerleave"].forEach(function(ev){
+    cv.addEventListener(ev,function(){if(pad.cur){pad.strokes.push(pad.cur);pad.cur=null;sigs[key]=pad.strokes;clearErr(key);saveDraft()}});
+  });
+  requestAnimationFrame(size);
+  window.addEventListener("resize",size);
+}
+
+/* ---------------- validation ---------------- */
+function setErr(k,msg){
+  errors[k]=msg;
+  var el=$('.field[data-k="'+k+'"]');
+  if(el){el.classList.add("invalid");var m=$(".err-msg",el);if(m)m.textContent=msg}
+}
+function clearErr(k){
+  delete errors[k];
+  var el=$('.field[data-k="'+k+'"]');
+  if(el){el.classList.remove("invalid")}
+}
+function validate(){
+  errors={};$all("#theForm .field").forEach(function(el){el.classList.remove("invalid")});
+  var firstBad=null;
+  def.sections.forEach(function(sec){
+    sec.fields.forEach(function(f){
+      if(!fieldVisible(f))return;
+      var v=values[f.k];
+      if(f.type==="file"){
+        if(fieldRequired(f)&&!files[f.k]){setErr(f.k,"Please attach a file");firstBad=firstBad||f.k}
+        return;
+      }
+      if(f.type==="signature"){
+        if(fieldRequired(f)&&(!sigs[f.k]||!sigs[f.k].length)){setErr(f.k,"Please sign in the box");firstBad=firstBad||f.k}
+        return;
+      }
+      if(f.type==="radio"&&f.other&&v===f.opts[f.opts.length-1]&&fieldRequired(f)&&!(values[f.other.key]||"").trim()){
+        setErr(f.other.key,"Please specify");setErr(f.k,"Please specify the “Other” option");firstBad=firstBad||f.k;
+      }
+      if(!fieldRequired(f))return;
+      var empty=(v==null||String(v).trim()==="");
+      if(empty){setErr(f.k,"This field is required");firstBad=firstBad||f.k}
+      else if(f.type==="email"&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v).trim())){setErr(f.k,"Please enter a valid email address");firstBad=firstBad||f.k}
+    });
+  });
+  if(firstBad){
+    var el=$('.field[data-k="'+firstBad+'"]');
+    if(el)el.scrollIntoView({behavior:"smooth",block:"center"});
+    toast("Please complete the highlighted fields");
+    return false;
+  }
+  return true;
+}
+
+/* ---------------- print sheet ---------------- */
+function renderSheet(blank){
+  var V=blank?{}:values;
+  var h='<div class="sheet"><div class="ps-head">';
+  h+='<div class="estate">'+esc(def.estate)+'</div><div class="ftitle">'+esc(def.title)+'</div><div class="fno">'+esc(def.formNo)+"</div>";
+  if(!blank)h+='<div class="ref">Submission ref: '+esc(values._ref||"")+" &nbsp;·&nbsp; Submitted: "+esc(fmtDate(todayStr()))+"</div>";
+  h+="</div>";
+  h+='<p class="note">'+esc(def.intro)+"</p>";
+  if(def.notes.length){
+    def.notes.forEach(function(n){
+      if(n.type==="matrix"){
+        h+='<table class="docmatrix"><tr>'+n.head.map(function(x){return "<th>"+esc(x)+"</th>"}).join("")+"</tr>";
+        n.rows.forEach(function(r){h+="<tr>"+r.map(function(c){return "<td>"+esc(c)+"</td>"}).join("")+"</tr>"});
+        h+="</table>";
+      }else if(n.type==="p"){h+='<p class="note">'+n.html+"</p>"}
+    });
+  }
+  def.sections.forEach(function(sec){
+    h+="<h3>Section "+esc(sec.no)+" — "+esc(sec.title)+"</h3>";
+    h+='<table class="ftab">';
+    sec.fields.forEach(function(f){
+      var vis=blank?true:fieldVisible(f);
+      if(!vis)return;
+      var v=V[f.k]||"";
+      if(f.type==="check"){
+        h+='<tr><td colspan="2" style="padding:3px 2px">'+(v?"☑":"☐")+" &nbsp;"+esc(f.label)+"</td></tr>";
+      }else if(f.type==="signature"){
+        h+='<tr class="sigrow"><td class="lbl">'+esc(f.label)+'</td><td class="val">';
+        if(!blank&&sigs[f.k]&&sigs[f.k].length){h+='<img class="sigimg" alt="signature" src="'+sigDataUrl(f.k)+'">'}
+        else{h+='<span class="sigline"></span>'}
+        h+="</td></tr>";
+      }else if(f.type==="radio"){
+        var line=f.opts.map(function(o){return (v===o?"☑":"☐")+" "+esc(o)}).join("&nbsp;&nbsp; ");
+        h+='<tr><td class="lbl">'+esc(f.label)+'</td><td class="val" style="border-bottom:'+(blank?"1px solid #000":"none")+'">'+line+"</td></tr>";
+        if(f.other){
+          var ov=V[f.other.key]||"";
+          h+='<tr><td class="lbl">'+esc(f.other.label)+'</td><td class="val">'+esc(ov)+"</td></tr>";
+        }
+      }else if(f.type==="date"){
+        h+='<tr><td class="lbl">'+esc(f.label)+'</td><td class="val">'+esc(blank?"":fmtDate(v))+"</td></tr>";
+      }else if(f.type==="file"){
+        var fl=blank?null:files[f.k];
+        h+='<tr><td class="lbl">'+esc(f.label)+'</td><td class="val">'+(fl?"Attached: "+esc(fl.name)+" (not printed — retained by Management)":"")+"</td></tr>";
+      }else{
+        h+='<tr><td class="lbl">'+esc(f.label)+'</td><td class="val">'+esc(blank?"":v)+"</td></tr>";
+      }
+    });
+    h+="</table>";
+  });
+  if(def.officeUse){
+    h+='<div class="office"><div class="t">For office use only</div><table class="ftab">';
+    [["Received by / date",""],["Documents verified by",""],["Approved by / date",""],["RFID tag serial issued / remarks",""]].forEach(function(r){
+      h+='<tr><td class="lbl" style="width:34%">'+esc(r[0])+'</td><td class="val">&nbsp;</td></tr>';
+    });
+    h+="</table></div>";
+  }
+  h+='<div class="foot">'+esc(def.estate)+" — "+esc(def.formNo)+" v1.0 · info.kentishlodge.com</div>";
+  h+="</div>";
+  return h;
+}
+function sigDataUrl(k){
+  var cv=$('canvas.sig[data-k="'+k+'"]');
+  if(cv&&cv._pad&&cv._pad.strokes.length){return cv.toDataURL("image/png")}
+  return "";
+}
+function showPrint(blank){
+  $("#printArea").innerHTML=renderSheet(blank);
+  window.print();
+}
+
+/* ---------------- download copy ---------------- */
+function downloadCopy(){
+  var html="<!DOCTYPE html><html><head><meta charset='utf-8'><title>"+esc(def.formNo)+" — "+esc(def.title)+"</title><style>"+
+    "body{font-family:'Times New Roman',Times,serif;color:#000;margin:0}"+
+    ".sheet{width:210mm;min-height:297mm;margin:0 auto;padding:14mm 13mm;font-size:12.5pt}"+
+    ".ps-head{text-align:center;border-bottom:2.5px solid #000;padding-bottom:8px;margin-bottom:10px}"+
+    ".estate{font-size:14pt;font-weight:bold}.ftitle{font-size:13pt;font-weight:bold;margin-top:2px}.fno{font-size:10.5pt}.ref{font-size:9.5pt;margin-top:3px}"+
+    "h3{font-size:11.5pt;margin:12px 0 4px;text-transform:uppercase;border-bottom:1.5px solid #000}"+
+    "table.ftab{width:100%;border-collapse:collapse}table.ftab td{padding:4px 2px;vertical-align:bottom}"+
+    "td.lbl{width:38%;font-weight:bold}td.val{border-bottom:1px solid #000;padding-left:4px}"+
+    ".sigimg{height:52px;display:block}.sigline{display:inline-block;border-bottom:1px solid #000;width:100%;height:52px}"+
+    ".note{font-size:10pt;margin:6px 0}.docmatrix{width:100%;border-collapse:collapse;font-size:10.5pt;margin:8px 0}"+
+    ".docmatrix th,.docmatrix td{border:1px solid #000;padding:4px 6px;text-align:left}.docmatrix th{background:#efefef}"+
+    ".office{border:1.5px solid #000;margin-top:14px;padding:6px 8px}.office .t{font-weight:bold;text-transform:uppercase;font-size:10.5pt}"+
+    ".foot{margin-top:10px;font-size:9pt;border-top:1px solid #000;padding-top:5px}"+
+    "@page{size:A4;margin:0}@media print{.sheet{padding:12mm}}"+
+    "</style></head><body>"+renderSheet(false)+"</body></html>";
+  var blob=new Blob([html],{type:"text/html"});
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=def.fileSlug+"-"+(values.vehicle_reg_no||values.unit_no||"form").replace(/[^A-Za-z0-9]/g,"")+"-"+todayStr()+".html";
+  document.body.appendChild(a);a.click();a.remove();
+  toast("Copy downloaded — open it and press Ctrl+P to print or save as PDF");
+}
+
+/* ---------------- draft persistence ---------------- */
+function draftKey(){return "kl-form-draft-"+formId}
+function saveDraft(){
+  try{
+    localStorage.setItem(draftKey(),JSON.stringify({v:values,s:sigs,at:Date.now()}));
+  }catch(e){}
+}
+function loadDraft(){
+  try{
+    var raw=localStorage.getItem(draftKey());
+    if(!raw)return false;
+    var d=JSON.parse(raw);
+    if(!d||!d.v)return false;
+    values=d.v||{};sigs=d.s||{};
+    return true;
+  }catch(e){return false}
+}
+function clearDraft(){try{localStorage.removeItem(draftKey())}catch(e){}}
+
+/* ---------------- submit ---------------- */
+function mailtoLink(){
+  var lines=[];
+  lines.push(def.formNo+" — "+def.title);
+  lines.push("");
+  def.sections.forEach(function(sec){
+    lines.push("-- "+sec.no+". "+sec.title);
+    sec.fields.forEach(function(f){
+      if(f.type==="file")return;
+      if(!fieldVisible(f))return;
+      var v=values[f.k]||"";
+      if(f.type==="check")v=v?"Yes":"No";
+      if(f.type==="signature")v=sigs[f.k]&&sigs[f.k].length?"(signed)":"(not signed)";
+      if(f.type==="date")v=fmtDate(v);
+      if(v)lines.push(f.label+": "+v);
+    });
+    lines.push("");
+  });
+  lines.push("Files must be attached manually to this email (browser forms cannot attach them via mailto).");
+  return "mailto:"+MANAGEMENT_EMAIL+"?subject="+encodeURIComponent("["+def.subjectTag+"] "+(values.unit_no||values.ap_unit||"")+" "+(values.vehicle_reg_no||""))+"&body="+encodeURIComponent(lines.join("\n"))+"&cc="+encodeURIComponent(values.email||values.auth_email||"");
+}
+function showFallback(reason){
+  values._ref=refNo(def.fileSlug);
+  var panel=$("#resultPanel");
+  panel.innerHTML='<div class="banner err"><strong>Online submission unavailable.</strong> '+esc(reason)+
+    '<br>Your entries are safe — use either option below:</div>'+
+    '<div class="card"><h2 style="font-size:16px;margin:0 0 8px">Option 1 — email the form yourself</h2>'+
+    '<p class="hint" style="margin:0 0 8px">Download the completed form, then email it with your document scans to <strong>'+esc(MANAGEMENT_EMAIL)+'</strong>. A copy is addressed to your email automatically.</p>'+
+    '<div class="actions" style="margin:8px 0 0"><button class="btn primary" id="fbDownload">Download completed form</button>'+
+    '<a class="btn" id="fbMail" href="'+esc(mailtoLink())+'">Open email draft</a></div></div>';
+  panel.hidden=false;
+  panel.scrollIntoView({behavior:"smooth",block:"center"});
+  $("#fbDownload").addEventListener("click",downloadCopy);
+}
+function showSuccess(ref){
+  clearDraft();
+  var panel=$("#resultPanel");
+  panel.innerHTML='<div class="card"><h2 style="color:var(--ok)">✓ Submitted</h2>'+
+    '<p>Your form has been emailed to the Management ('+esc(MANAGEMENT_EMAIL)+') and a copy sent to your email.</p>'+
+    '<p>Reference: <span class="refbox">'+esc(ref)+'</span></p>'+
+    '<div class="actions" style="margin:8px 0 0"><button class="btn" id="okPrint">Print a copy</button>'+
+    '<button class="btn primary" id="okNew">Submit another form</button></div></div>';
+  panel.hidden=false;
+  panel.scrollIntoView({behavior:"smooth",block:"center"});
+  $("#okPrint").addEventListener("click",function(){showPrint(false)});
+  $("#okNew").addEventListener("click",function(){location.reload()});
+}
+function submitForm(){
+  if(!validate())return;
+  values._ref=refNo(def.fileSlug);
+  if(!values.signed_date)values.signed_date=todayStr();
+  var btn=$("#btnSubmit");btn.disabled=true;btn.textContent="Submitting…";
+  if(!FORMS_ENDPOINT){
+    btn.disabled=false;btn.textContent="Submit";
+    showFallback("No submission endpoint is configured yet.");
+    return;
+  }
+  var fd=new FormData();
+  fd.append("form_id",formId);
+  fd.append("form_no",def.formNo);
+  fd.append("form_title",def.title);
+  fd.append("subject_tag",def.subjectTag);
+  fd.append("page_url",location.href);
+  fd.append("ts",String(PAGE_LOADED));
+  fd.append("website",""); // honeypot
+  def.sections.forEach(function(sec){
+    sec.fields.forEach(function(f){
+      if(f.type==="file"){
+        if(files[f.k])fd.append("file_"+f.k,files[f.k],files[f.k].name);
+        return;
+      }
+      if(f.type==="signature"){
+        if(sigs[f.k]&&sigs[f.k].length){
+          var durl=sigDataUrl(f.k);
+          var b64=durl.split(",")[1];
+          var bin=atob(b64),arr=new Uint8Array(bin.length);
+          for(var i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);
+          fd.append("sig_"+f.k,new Blob([arr],{type:"image/png"}),f.k+"-signature.png");
+        }
+        return;
+      }
+      if(!fieldVisible(f))return;
+      var v=values[f.k];
+      if(f.other&&values[f.k]===f.opts[f.opts.length-1]&&values[f.other.key]){fd.append("f_"+f.k,String(v)+" — "+values[f.other.key])}
+      else{fd.append("f_"+f.k,String(v==null?"":v))}
+      if(f.other&&values[f.other.key])fd.append("f_"+f.other.key,String(values[f.other.key]));
+    });
+  });
+  fd.append("cc_email",String(values.email||values.auth_email||""));
+  fetch(FORMS_ENDPOINT,{method:"POST",body:fd})
+    .then(function(r){return r.json().catch(function(){throw new Error("bad response")})})
+    .then(function(j){
+      if(j&&j.ok){showSuccess(j.ref||values._ref)}
+      else{btn.disabled=false;btn.textContent="Submit";showFallback((j&&j.error)||"The server rejected the submission.")}
+    })
+    .catch(function(){
+      btn.disabled=false;btn.textContent="Submit";
+      showFallback("Could not reach the submission server.");
+    });
+}
+
+/* ---------------- mode switching / boot ---------------- */
+function setMode(mode){
+  var fill=mode!=="blank";
+  $("#tabFill").setAttribute("aria-selected",fill?"true":"false");
+  $("#tabBlank").setAttribute("aria-selected",fill?"false":"true");
+  $("#fillView").hidden=!fill;
+  $("#blankView").hidden=fill;
+  if(!fill){$("#blankPreview").innerHTML=renderSheet(true)}
+  var u=new URL(location.href);
+  if(mode==="blank"){u.searchParams.set("mode","print")}else{u.searchParams.delete("mode")}
+  history.replaceState(null,"",u);
+}
+function switchForm(id){
+  location.href=location.pathname+"?form="+id;
+}
+function boot(){
+  formId=(qs("form")||"vr-01").toLowerCase();
+  if(!FORMS[formId])formId="vr-01";
+  def=FORMS[formId];
+  document.title=def.formNo+" — "+def.title+" — Kentish Lodge";
+  var sw='<select id="swForm" aria-label="Choose form" style="margin-left:auto;color:#111;border:1px solid #555;border-radius:6px;padding:4px 6px">';
+  Object.keys(FORMS).forEach(function(k){
+    sw+='<option value="'+k+'"'+(k===formId?" selected":"")+">"+esc(FORMS[k].formNo)+" — "+esc(FORMS[k].title)+"</option>";
+  });
+  sw+="</select>";
+  $("#formSwitch").innerHTML=sw;
+  $("#swForm").addEventListener("change",function(e){switchForm(e.target.value)});
+
+  var had=loadDraft();
+  if(had&&(values._touched)){} // noop guard
+  renderForm();
+  if(had){Object.keys(sigs).forEach(function(k){var cv=$('canvas.sig[data-k="'+k+'"]');if(cv&&cv._pad){cv._pad.strokes=sigs[k]||[];cv._pad.redraw()}})}
+  if(had){
+    // repaint file rows (files are never persisted)
+    $all("#theForm .field").forEach(function(el){if(el.dataset.k&&files[el.dataset.k])paintFileRow(el)});
+    $("#notice").innerHTML='<div class="banner">Draft restored from this browser. Remember to re-attach any document files — they are not saved.</div>';
+    // hide banner if everything is empty
+    if(!Object.keys(values).filter(function(k){return values[k]}).length){$("#notice").innerHTML=""}
+  }
+  if(!values.signed_date&&formId==="vr-01")values.signed_date=todayStr();
+  if(!values.auth_date&&formId==="vr-02")values.auth_date=todayStr();
+  if(!values.ap_date&&formId==="vr-02")values.ap_date=todayStr();
+  $all('#theForm input[type="date"][data-k]').forEach(function(i){if(values[i.dataset.k])i.value=values[i.dataset.k]});
+
+  $("#tabFill").addEventListener("click",function(){setMode("fill")});
+  $("#tabBlank").addEventListener("click",function(){setMode("blank")});
+  $("#btnBackFill").addEventListener("click",function(){setMode("fill")});
+  $("#btnPrintBlank").addEventListener("click",function(){showPrint(true)});
+  $("#btnPrintFilled").addEventListener("click",function(){if(validate())showPrint(false)});
+  $("#btnDownload").addEventListener("click",function(){if(validate()){values._ref=values._ref||refNo(def.fileSlug);downloadCopy()}});
+  $("#btnSubmit").addEventListener("click",submitForm);
+  $("#btnReset").addEventListener("click",function(){
+    if(confirm("Clear all entries in this form?")){clearDraft();location.reload()}
+  });
+  if(qs("mode")==="print")setMode("blank");
+}
+boot();
+</script>
+</body>
+</html>

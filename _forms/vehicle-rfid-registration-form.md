@@ -8,6 +8,8 @@ order: "03.08"
 
 > **Form VR-01** — Complete all sections in blue or black ink. Submit the completed form with the required supporting documents to the Management Office (or as instructed by the Management). One form per vehicle.
 >
+> **Apply online:** [Fill & submit online](/forms/apply.html?form=vr-01) · [Print blank form (A4, B&W)](/forms/apply.html?form=vr-01&mode=print)
+>
 > Please do **not** post completed forms or personal documents publicly (e.g. GitHub Issues). Submit them directly to the Management Office.
 
 ## 1. Why you must register

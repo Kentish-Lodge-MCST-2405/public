@@ -7,6 +7,8 @@ order: "03.09"
 ---
 
 > **Form VR-02** — Use this letter only when the person applying for the vehicle RFID tag is **not** the person named on the vehicle log card, rental/lease agreement, or invoice. The named owner/lessee/purchaser must complete and sign this letter and attach a copy of their NRIC/FIN (front only). One letter per vehicle.
+>
+> **Apply online:** [Fill & submit online](/forms/apply.html?form=vr-02) · [Print blank letter (A4, B&W)](/forms/apply.html?form=vr-02&mode=print)
 
 ---
 
