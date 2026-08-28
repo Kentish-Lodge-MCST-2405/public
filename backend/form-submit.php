@@ -172,8 +172,8 @@ function sparkpost_send($cfg, $to, $cc, $subject, $plain, $htmlBody, $attach, &$
         $data = base64_encode(file_get_contents($a['path']));
         $b64total += strlen($data);
         if ($b64total > 9 * 1024 * 1024) { $err = 'Attachments too large for email transport.'; return false; }
-        if ($a['cid']) $inlines[] = ['name' => $a['cid'], 'type' => $a['mime'], 'content' => $data];
-        else $atts[] = ['name' => $a['name'], 'type' => $a['mime'], 'content' => $data];
+        if ($a['cid']) $inlines[] = ['name' => $a['cid'], 'type' => $a['mime'], 'data' => $data];
+        else $atts[] = ['name' => $a['name'], 'type' => $a['mime'], 'data' => $data];
     }
     $body = [
         'options' => ['open_tracking' => false, 'click_tracking' => false, 'transactional' => true],
@@ -183,10 +183,9 @@ function sparkpost_send($cfg, $to, $cc, $subject, $plain, $htmlBody, $attach, &$
             'subject' => $subject,
             'text' => $plain,
             'html' => $htmlBody,
+            'reply_to' => $cc ?: null,
             'headers' => array_filter([
-                'To' => $to,
                 'Cc' => ($cc && $cc !== $to) ? $cc : null,
-                'Reply-To' => $cc ?: null,
             ], function($v){ return $v !== null; }),
             'attachments' => $atts ?: null,
             'inline_images' => $inlines ?: null,
