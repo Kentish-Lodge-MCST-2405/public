@@ -171,6 +171,7 @@
           {%- assign form_groups = forms_docs | group_by: 'category' | sort: 'name' -%}
           <ul class="sidebar-section-list">
             <li><a class="sidebar-link sidebar-link--all" href="{{ '/forms/' | relative_url }}">All Forms</a></li>
+            <li><a class="sidebar-link" href="{{ '/forms/apply.html' | relative_url }}">Fill a form online</a></li>
             {%- for g in form_groups -%}
               {%- assign with_order = g.items | where_exp: 'i', 'i.order' | sort_natural: 'order' -%}
               {%- assign without_order = g.items | where_exp: 'i', 'i.order == nil' | sort: 'title' -%}

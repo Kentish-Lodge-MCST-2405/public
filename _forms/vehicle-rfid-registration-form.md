@@ -4,6 +4,7 @@ category: CAR PARKING
 effective: 2026-08-28
 version: 1.0
 order: "03.08"
+description: Register a vehicle and apply for an RFID access tag at Kentish Lodge. Submit your vehicle log card, rental or lease agreement, or purchase invoice with the application.
 ---
 
 > **Form VR-01** — Complete all sections in blue or black ink. Submit the completed form with the required supporting documents to the Management Office (or as instructed by the Management). One form per vehicle.

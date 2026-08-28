@@ -4,6 +4,7 @@ category: CAR PARKING
 effective: 2026-08-28
 version: 1.0
 order: "03.09"
+description: Authorise another resident to register a vehicle and obtain an RFID tag at Kentish Lodge on behalf of the owner or lessee named on the vehicle documents.
 ---
 
 > **Form VR-02** — Use this letter only when the person applying for the vehicle RFID tag is **not** the person named on the vehicle log card, rental/lease agreement, or invoice. The named owner/lessee/purchaser must complete and sign this letter and attach a copy of their NRIC/FIN (front only). One letter per vehicle.

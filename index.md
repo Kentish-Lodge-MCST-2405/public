@@ -35,6 +35,7 @@ title: Kentish Lodge MCST
       <h3>Forms</h3>
       <p>Application forms for residents — vehicle &amp; RFID tag registration, authorisation letters, and more.</p>
       <p><a href="{{ '/forms/' | relative_url }}">Browse forms →</a></p>
+      <p><a href="{{ '/forms/apply.html' | relative_url }}">Fill a form online →</a></p>
     </div>
     <div class="card">
       <h3>Announcements</h3>
