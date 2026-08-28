@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Kentish Lodge MCST
+description: Official bylaws, policies, announcements, and resident forms for Kentish Lodge MCST (Plan No. 2405).
 ---
 
 <section class="hero">
