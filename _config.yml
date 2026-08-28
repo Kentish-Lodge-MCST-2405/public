@@ -13,6 +13,9 @@ collections:
   announcements:
     output: true
     permalink: /announcements/:path/
+  forms:
+    output: true
+    permalink: /forms/:path/
 
 defaults:
   - scope:
@@ -28,5 +31,10 @@ defaults:
   - scope:
       path: ""
       type: announcements
+    values:
+      layout: item
+  - scope:
+      path: ""
+      type: forms
     values:
       layout: item

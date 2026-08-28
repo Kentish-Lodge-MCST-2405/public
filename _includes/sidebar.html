@@ -159,6 +159,43 @@
           </ul>
         </details>
       </li>
+      <li>
+        {%- assign on_forms = page.collection == 'forms' or page.url contains '/forms/' -%}
+        {%- assign current_category_f = page.category | default: '' -%}
+        <details class="sidebar-section"{% if on_forms %} open{% endif %}>
+          <summary>
+            <span class="sidebar-label">Forms</span>
+            <span class="sidebar-badge">{{ site.forms | size }}</span>
+          </summary>
+          {%- assign forms_docs = site.forms | default: site.collections['forms'].docs | default: empty_array -%}
+          {%- assign form_groups = forms_docs | group_by: 'category' | sort: 'name' -%}
+          <ul class="sidebar-section-list">
+            <li><a class="sidebar-link sidebar-link--all" href="{{ '/forms/' | relative_url }}">All Forms</a></li>
+            {%- for g in form_groups -%}
+              {%- assign with_order = g.items | where_exp: 'i', 'i.order' | sort_natural: 'order' -%}
+              {%- assign without_order = g.items | where_exp: 'i', 'i.order == nil' | sort: 'title' -%}
+              {%- assign ordered_forms = with_order | concat: without_order -%}
+              {%- assign is_current_category_f = false -%}
+              {%- if on_forms and current_category_f == g.name -%}
+                {%- assign is_current_category_f = true -%}
+              {%- endif -%}
+              <li>
+                <details class="sidebar-group"{% if is_current_category_f %} open{% endif %}>
+                  <summary>
+                    <span class="sidebar-label">{{ g.name }}</span>
+                    <span class="sidebar-badge">{{ ordered_forms | size }}</span>
+                  </summary>
+                  <ul class="sidebar-sublist">
+                    {%- for f in ordered_forms -%}
+                      <li><a class="sidebar-link {% if page.url == f.url %}active{% endif %}" href="{{ f.url | relative_url }}">{{ f.title | default: f.name }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                </details>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </details>
+      </li>
       <li><a class="sidebar-link" href="{{ '/feedback/' | relative_url }}">Feedback</a></li>
     </ul>
   </div>

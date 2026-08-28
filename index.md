@@ -32,6 +32,11 @@ title: Kentish Lodge MCST
       <p><a href="{{ '/policies/' | relative_url }}">Browse policies →</a></p>
     </div>
     <div class="card">
+      <h3>Forms</h3>
+      <p>Application forms for residents — vehicle &amp; RFID tag registration, authorisation letters, and more.</p>
+      <p><a href="{{ '/forms/' | relative_url }}">Browse forms →</a></p>
+    </div>
+    <div class="card">
       <h3>Announcements</h3>
       <p>Latest notices from the council and managing agent.</p>
       {% assign empty_array = '' | split: '' %}
