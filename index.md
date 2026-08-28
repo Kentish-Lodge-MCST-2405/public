@@ -6,8 +6,9 @@ description: Official bylaws, policies, announcements, and resident forms for Ke
 
 <section class="hero">
   <div class="container">
-    <h1>Welcome to Kentish Lodge MCST</h1>
-    <p>Your hub for bylaws, policies, and community feedback.</p>
+    <p class="eyebrow">MCST Plan No. 2405 · Singapore</p>
+    <h1>Kentish Lodge</h1>
+    <p>Official bylaws, policies, announcements and resident forms for our estate — clear, versioned and open to every resident.</p>
     <!--div class="actions">
       <a class="btn" href="{{ '/bylaws/' | relative_url }}">View Bylaws</a>
       <a class="btn" href="{{ '/policies/' | relative_url }}">Browse Policies</a>

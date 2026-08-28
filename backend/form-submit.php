@@ -90,7 +90,26 @@ $allowedMime = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'ima
 $attach = []; // [name, path, mime, cid]
 $finfo = function_exists('finfo_open') ? finfo_open(FILEINFO_MIME_TYPE) : false;
 $totalBytes = 0;
+
+/* Primary input since 2026-08-28: one combined PDF (form + attachments), field name "pdf" */
+$pdfName = null; $pdfPath = null;
+if (isset($_FILES['pdf']) && ($_FILES['pdf']['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
+    $p = $_FILES['pdf'];
+    if (($p['size'] ?? 0) > 0 && $p['size'] <= $maxBytes) {
+        $pn = basename($p['name']);
+        $pm = $finfo ? (finfo_file($finfo, $p['tmp_name']) ?: 'application/pdf') : 'application/pdf';
+        if (strtolower(pathinfo($pn, PATHINFO_EXTENSION)) === 'pdf' && in_array($pm, ['application/pdf', 'application/octet-stream'], true)) {
+            $pdfPath = tempnam(sys_get_temp_dir(), 'klpdf_');
+            if (move_uploaded_file($p['tmp_name'], $pdfPath)) {
+                $pdfName = preg_replace('/[^A-Za-z0-9._\-]/', '_', $_POST['pdf_name'] ?? $pn) ?: $pn;
+                $attach[] = ['name' => $pdfName, 'path' => $pdfPath, 'mime' => 'application/pdf', 'cid' => null];
+            } else { $pdfPath = null; }
+        } else { json_fail(400, 'Submission must be a PDF file.'); }
+    } else { json_fail(400, 'PDF too large or empty.'); }
+}
+
 foreach ($_FILES as $inputName => $f) {
+    if ($inputName === 'pdf') continue; // already handled
     if (($f['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) continue;
     if (($f['size'] ?? 0) <= 0 || $f['size'] > $maxBytes) json_fail(400, 'File too large or empty: ' . basename($f['name']));
     if (count($attach) >= $maxFiles) json_fail(400, 'Too many files.');
@@ -147,7 +166,7 @@ $htmlBody = '<html><body style="font-family:Arial,sans-serif;font-size:13px;colo
     . '<h2 style="font-size:16px">' . htmlspecialchars($_POST['form_title'] ?? $formId) . '</h2>'
     . '<table border="1" cellpadding="6" cellspacing="0" style="border-collapse:collapse;border-color:#999">'
     . implode('', $htmlRows) . '</table>'
-    . (count(array_filter($attach, function($a){return $a['cid'];})) ? '<p>Signatures are attached/embedded as PNG images.</p>' : '')
+    . ($pdfName ? '<p>The complete submission — form, signatures and supporting documents — is attached as a single PDF: <strong>' . htmlspecialchars($pdfName) . '</strong>' . (isset($_POST['pdf_pages']) && $_POST['pdf_pages'] !== '' ? ' (' . (int)$_POST['pdf_pages'] . ' pages)' : '') . '.</p>' : '')
     . '</body></html>';
 
 /* ---------------- optional local archive ---------------- */

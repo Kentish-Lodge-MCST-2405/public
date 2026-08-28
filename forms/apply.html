@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kentish Lodge — Forms</title>
+<script src="/assets/pdf-form.js" defer></script>
 <meta name="description" content="Fill and submit Kentish Lodge MCST forms online, or print the blank official form.">
 <meta property="og:title" content="Kentish Lodge — Forms">
 <meta property="og:description" content="Fill and submit estate forms online — vehicle and RFID tag registration, authorisation letters — or print the blank official form.">
@@ -244,7 +245,7 @@
     <div class="actions">
       <button class="btn primary" id="btnSubmit">Submit to Management Office</button>
       <button class="btn" id="btnPrintFilled">Print filled form</button>
-      <button class="btn" id="btnDownload">Download copy</button>
+      <button class="btn" id="btnDownload">Download PDF copy</button>
       <button class="btn danger-ghost" id="btnReset" type="button">Clear form</button>
     </div>
     <p class="hint">Drafts auto-save in this browser (files are not saved — re-attach them if you return later).</p>
@@ -754,29 +755,96 @@ function showPrint(blank){
   window.print();
 }
 
-/* ---------------- download copy ---------------- */
+/* ---------------- download copy (PDF) ---------------- */
 function downloadCopy(){
-  var html="<!DOCTYPE html><html><head><meta charset='utf-8'><title>"+esc(def.formNo)+" — "+esc(def.title)+"</title><style>"+
-    "body{font-family:'Times New Roman',Times,serif;color:#000;margin:0}"+
-    ".sheet{width:210mm;min-height:297mm;margin:0 auto;padding:14mm 13mm;font-size:12.5pt}"+
-    ".ps-head{text-align:center;border-bottom:2.5px solid #000;padding-bottom:8px;margin-bottom:10px}"+
-    ".estate{font-size:14pt;font-weight:bold}.ftitle{font-size:13pt;font-weight:bold;margin-top:2px}.fno{font-size:10.5pt}.ref{font-size:9.5pt;margin-top:3px}"+
-    "h3{font-size:11.5pt;margin:12px 0 4px;text-transform:uppercase;border-bottom:1.5px solid #000}"+
-    "table.ftab{width:100%;border-collapse:collapse}table.ftab td{padding:4px 2px;vertical-align:bottom}"+
-    "td.lbl{width:38%;font-weight:bold}td.val{border-bottom:1px solid #000;padding-left:4px}"+
-    ".sigimg{height:52px;display:block}.sigline{display:inline-block;border-bottom:1px solid #000;width:100%;height:52px}"+
-    ".note{font-size:10pt;margin:6px 0}.docmatrix{width:100%;border-collapse:collapse;font-size:10.5pt;margin:8px 0}"+
-    ".docmatrix th,.docmatrix td{border:1px solid #000;padding:4px 6px;text-align:left}.docmatrix th{background:#efefef}"+
-    ".office{border:1.5px solid #000;margin-top:14px;padding:6px 8px}.office .t{font-weight:bold;text-transform:uppercase;font-size:10.5pt}"+
-    ".foot{margin-top:10px;font-size:9pt;border-top:1px solid #000;padding-top:5px}"+
-    "@page{size:A4;margin:0}@media print{.sheet{padding:12mm}}"+
-    "</style></head><body>"+renderSheet(false)+"</body></html>";
-  var blob=new Blob([html],{type:"text/html"});
+  if(!validate())return;
+  values._ref=values._ref||refNo(def.fileSlug);
+  var btn=eventTarget();
+  if(btn){btn.disabled=true;btn.textContent="Preparing PDF…"}
+  gatherSubmissionPdf().then(function(r){
+    savePdfCopy(r.bytes,pdfFileName());
+  }).catch(function(e){
+    toast(e.message||"Could not build the PDF");
+  }).then(function(){
+    if(btn){btn.disabled=false;btn.textContent="Download PDF copy"}
+  });
+}
+function eventTarget(){return null}
+
+
+/* ---------------- PDF submission ---------------- */
+function loadPdfLib(){
+  return new Promise(function(res,rej){
+    if(window.pdfLib)return res();
+    if(!window.KLForms)return rej(new Error("pdf-form.js missing"));
+    var s=document.createElement("script");
+    s.src="/assets/pdf-lib.min.js";
+    s.onload=function(){window.pdfLib?res():rej(new Error("pdf-lib unavailable"))};
+    s.onerror=function(){rej(new Error("pdf-lib failed to load"))};
+    document.head.appendChild(s);
+  });
+}
+function pdfFileName(){
+  var who=(values.applicant_name||values.auth_name||values.ap_name||"Resident").trim();
+  var slug=who.replace(/[^A-Za-z0-9]+/g,"").slice(0,30);
+  if(!slug)slug="Resident";
+  return def.fileSlug+"-"+todayStr().replace(/-/g,"")+"-"+slug+".pdf";
+}
+function fileToBytes(f){
+  return new Promise(function(res,rej){
+    var r=new FileReader();
+    r.onload=function(){res(new Uint8Array(r.result))};
+    r.onerror=function(){rej(new Error("could not read "+f.name))};
+    r.readAsArrayBuffer(f);
+  });
+}
+function ensureEmbeddable(file){
+  var ext=(file.name.split(".").pop()||"").toLowerCase();
+  if(ext=="jpg"||ext=="jpeg"||ext=="png"||ext=="pdf")return Promise.resolve(file);
+  // webp/heic/other images -> convert to jpeg via canvas so it can be embedded in the PDF
+  return convertToJpeg(file).catch(function(){
+    return Promise.reject(new Error(file.name+" cannot be embedded — please upload PDF, JPG or PNG"));
+  });
+}
+function convertToJpeg(file){
+  if(!window.createImageBitmap)return Promise.reject(new Error("unsupported"));
+  return createImageBitmap(file).then(function(bm){
+    var cv=document.createElement("canvas"),max=1600,sc=Math.min(1,max/Math.max(bm.width,bm.height));
+    cv.width=Math.max(1,Math.round(bm.width*sc));cv.height=Math.max(1,Math.round(bm.height*sc));
+    cv.getContext("2d").drawImage(bm,0,0,cv.width,cv.height);
+    return new Promise(function(res,rej){cv.toBlob(function(b){
+      b?res(new File([b],file.name.replace(/\.[^.]+$/,"")+".jpg",{type:"image/jpeg"})):rej(new Error("convert failed"));
+    },"image/jpeg",0.88)});
+  });
+}
+function gatherSubmissionPdf(){
+  return loadPdfLib().then(function(){
+    var jobs=[];
+    def.sections.forEach(function(sec){
+      sec.fields.forEach(function(f){
+        if(f.type==="file"&&files[f.k]&&fieldVisible(f)){
+          jobs.push(ensureEmbeddable(files[f.k]).then(function(fe){f._fileName=fe.name;return fileToBytes(fe)}).then(function(bytes){
+            return {name:f._fileName,bytes:bytes};
+          }));
+        }
+      });
+    });
+    return Promise.all(jobs).then(function(atts){
+      var sigImages={};
+      def.sections.forEach(function(sec){sec.fields.forEach(function(f){
+        if(f.type==="signature"&&sigs[f.k]&&sigs[f.k].length){sigImages[f.k]=sigDataUrl(f.k)}
+      })});
+      var input={def:def,values:values,sigImages:sigImages,attachments:atts,ref:values._ref||"",submitted:fmtDate(todayStr())};
+      return window.KLForms.buildPdf(window.pdfLib,input);
+    });
+  });
+}
+function savePdfCopy(bytes,name){
+  var blob=new Blob([bytes],{type:"application/pdf"});
   var a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download=def.fileSlug+"-"+(values.vehicle_reg_no||values.unit_no||"form").replace(/[^A-Za-z0-9]/g,"")+"-"+todayStr()+".html";
+  a.href=URL.createObjectURL(blob);a.download=name||pdfFileName();
   document.body.appendChild(a);a.click();a.remove();
-  toast("Copy downloaded — open it and press Ctrl+P to print or save as PDF");
+  toast("PDF saved — open it to print or keep for your records");
 }
 
 /* ---------------- draft persistence ---------------- */
@@ -820,24 +888,28 @@ function mailtoLink(){
   lines.push("Files must be attached manually to this email (browser forms cannot attach them via mailto).");
   return "mailto:"+MANAGEMENT_EMAIL+"?subject="+encodeURIComponent("["+def.subjectTag+"] "+(values.unit_no||values.ap_unit||"")+" "+(values.vehicle_reg_no||""))+"&body="+encodeURIComponent(lines.join("\n"))+"&cc="+encodeURIComponent(values.email||values.auth_email||"");
 }
-function showFallback(reason){
-  values._ref=refNo(def.fileSlug);
+function showFallback(reason,pdfBytes){
+  values._ref=values._ref||refNo(def.fileSlug);
   var panel=$("#resultPanel");
   panel.innerHTML='<div class="banner err"><strong>Online submission unavailable.</strong> '+esc(reason)+
     '<br>Your entries are safe — use either option below:</div>'+
-    '<div class="card"><h2 style="font-size:16px;margin:0 0 8px">Option 1 — email the form yourself</h2>'+
-    '<p class="hint" style="margin:0 0 8px">Download the completed form, then email it with your document scans to <strong>'+esc(MANAGEMENT_EMAIL)+'</strong>. A copy is addressed to your email automatically.</p>'+
-    '<div class="actions" style="margin:8px 0 0"><button class="btn primary" id="fbDownload">Download completed form</button>'+
+    '<div class="card"><h2 style="font-size:16px;margin:0 0 8px;font-family:var(--serif)">Option 1 — email the PDF yourself</h2>'+
+    '<p class="hint" style="margin:0 0 8px">Download the completed PDF (form + attachments in one file), then email it to <strong>'+esc(MANAGEMENT_EMAIL)+'</strong> and CC yourself.</p>'+
+    '<div class="actions" style="margin:8px 0 0">'+
+    (pdfBytes?'<button class="btn primary" id="fbDownload">Download submission PDF</button>':'<button class="btn primary" id="fbBuild">Build PDF</button>')+
     '<a class="btn" id="fbMail" href="'+esc(mailtoLink())+'">Open email draft</a></div></div>';
   panel.hidden=false;
   panel.scrollIntoView({behavior:"smooth",block:"center"});
-  $("#fbDownload").addEventListener("click",downloadCopy);
+  var dl=$("#fbDownload");
+  if(dl&&pdfBytes)dl.addEventListener("click",function(){savePdfCopy(pdfBytes,pdfFileName())});
+  var bb=$("#fbBuild");
+  if(bb)bb.addEventListener("click",downloadCopy);
 }
-function showSuccess(ref){
+function showSuccess(ref,pages){
   clearDraft();
   var panel=$("#resultPanel");
   panel.innerHTML='<div class="card"><h2 style="color:var(--ok)">✓ Submitted</h2>'+
-    '<p>Your form has been emailed to the Management ('+esc(MANAGEMENT_EMAIL)+') and a copy sent to your email.</p>'+
+    '<p>Your form has been sent to the Management ('+esc(MANAGEMENT_EMAIL)+') as a single PDF'+(pages?' — '+pages+' page'+(pages>1?"s":"")+' including your attachments':'')+' — a copy went to your email.</p>'+
     '<p>Reference: <span class="refbox">'+esc(ref)+'</span></p>'+
     '<div class="actions" style="margin:8px 0 0"><button class="btn" id="okPrint">Print a copy</button>'+
     '<button class="btn primary" id="okNew">Submit another form</button></div></div>';
@@ -850,54 +922,42 @@ function submitForm(){
   if(!validate())return;
   values._ref=refNo(def.fileSlug);
   if(!values.signed_date)values.signed_date=todayStr();
-  var btn=$("#btnSubmit");btn.disabled=true;btn.textContent="Submitting…";
-  if(!FORMS_ENDPOINT){
-    btn.disabled=false;btn.textContent="Submit";
-    showFallback("No submission endpoint is configured yet.");
-    return;
-  }
-  var fd=new FormData();
-  fd.append("form_id",formId);
-  fd.append("form_no",def.formNo);
-  fd.append("form_title",def.title);
-  fd.append("subject_tag",def.subjectTag);
-  fd.append("page_url",location.href);
-  fd.append("ts",String(PAGE_LOADED));
-  fd.append("website",""); // honeypot
-  def.sections.forEach(function(sec){
-    sec.fields.forEach(function(f){
-      if(f.type==="file"){
-        if(files[f.k])fd.append("file_"+f.k,files[f.k],files[f.k].name);
-        return;
-      }
-      if(f.type==="signature"){
-        if(sigs[f.k]&&sigs[f.k].length){
-          var durl=sigDataUrl(f.k);
-          var b64=durl.split(",")[1];
-          var bin=atob(b64),arr=new Uint8Array(bin.length);
-          for(var i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);
-          fd.append("sig_"+f.k,new Blob([arr],{type:"image/png"}),f.k+"-signature.png");
-        }
-        return;
-      }
-      if(!fieldVisible(f))return;
-      var v=values[f.k];
-      if(f.other&&values[f.k]===f.opts[f.opts.length-1]&&values[f.other.key]){fd.append("f_"+f.k,String(v)+" — "+values[f.other.key])}
-      else{fd.append("f_"+f.k,String(v==null?"":v))}
-      if(f.other&&values[f.other.key])fd.append("f_"+f.other.key,String(values[f.other.key]));
+  var btn=$("#btnSubmit");btn.disabled=true;btn.textContent="Building PDF…";
+  gatherSubmissionPdf().then(function(r){
+    if(!FORMS_ENDPOINT){btn.disabled=false;btn.textContent="Submit to Management Office";showFallback("No submission endpoint is configured yet.",r.bytes);return}
+    var fd=new FormData();
+    fd.append("form_id",formId);
+    fd.append("form_no",def.formNo);
+    fd.append("form_title",def.title);
+    fd.append("subject_tag",def.subjectTag);
+    fd.append("pdf_name",pdfFileName());
+    fd.append("page_url",location.href);
+    fd.append("ts",String(PAGE_LOADED));
+    fd.append("website",""); // honeypot
+    def.sections.forEach(function(sec){
+      sec.fields.forEach(function(f){
+        if(f.type==="file"||f.type==="signature")return;
+        if(!fieldVisible(f))return;
+        var v=values[f.k];
+        if(f.other&&values[f.k]===f.opts[f.opts.length-1]&&values[f.other.key]){fd.append("f_"+f.k,String(v)+" — "+values[f.other.key])}
+        else{fd.append("f_"+f.k,String(v==null?"":v))}
+        if(f.other&&values[f.other.key])fd.append("f_"+f.other.key,String(values[f.other.key]));
+      });
     });
+    fd.append("pdf_pages",String(r.pages));
+    fd.append("cc_email",String(values.email||values.auth_email||""));
+    try{fd.append("pdf",new Blob([r.bytes],{type:"application/pdf"}),pdfFileName())}catch(e){fd.append("pdf",r.bytes,pdfFileName())}
+    btn.textContent="Submitting…";
+    return fetch(FORMS_ENDPOINT,{method:"POST",body:fd})
+      .then(function(r2){return r2.json().catch(function(){throw new Error("bad response")})})
+      .then(function(j){
+        if(j&&j.ok){showSuccess(j.ref||values._ref,r.pages)}
+        else{btn.disabled=false;btn.textContent="Submit to Management Office";showFallback((j&&j.error)||"The server rejected the submission.",r.bytes)}
+      });
+  }).catch(function(e){
+    btn.disabled=false;btn.textContent="Submit to Management Office";
+    toast(e.message||"Could not build the PDF");
   });
-  fd.append("cc_email",String(values.email||values.auth_email||""));
-  fetch(FORMS_ENDPOINT,{method:"POST",body:fd})
-    .then(function(r){return r.json().catch(function(){throw new Error("bad response")})})
-    .then(function(j){
-      if(j&&j.ok){showSuccess(j.ref||values._ref)}
-      else{btn.disabled=false;btn.textContent="Submit";showFallback((j&&j.error)||"The server rejected the submission.")}
-    })
-    .catch(function(){
-      btn.disabled=false;btn.textContent="Submit";
-      showFallback("Could not reach the submission server.");
-    });
 }
 
 /* ---------------- mode switching / boot ---------------- */
