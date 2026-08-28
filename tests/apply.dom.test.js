@@ -1,11 +1,11 @@
 "use strict";
-/* DOM smoke test for forms/apply.html â€” verifies radio pills, conditional
+/* DOM smoke test for forms/apply.html — verifies radio pills, conditional
    fields, and validation behavior in a real DOM (jsdom). */
 const fs = require("fs");
 const path = require("path");
 const { JSDOM } = require("jsdom");
 
-const htmlPath = path.join(__dirname, "..", "forms", "apply.html");
+const htmlPath = "C:\\Users\\Desktop\\.openclaw-autoclaw\\agents\\kentish-agent\\workspace\\mcst-public\\forms\\apply.html";
 const html = fs.readFileSync(htmlPath, "utf8");
 
 let failures = 0;
@@ -95,7 +95,7 @@ check("draft persisted to localStorage", !!draft && draft.indexOf("12-34") !== -
 w1.values._ref = "KL-TEST";
 const sheet = w1.renderSheet(false);
 check("print sheet contains filled value", sheet.indexOf("12-34") !== -1);
-check("print sheet shows â˜‘ for selected radio", sheet.indexOf("â˜‘ Owner") !== -1);
+check("print sheet shows ☑ for selected radio", sheet.indexOf("☑ Owner") !== -1);
 const blankSheet = w1.renderSheet(true);
 check("blank sheet has no filled value", blankSheet.indexOf("12-34") === -1);
 
