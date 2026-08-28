@@ -14,67 +14,142 @@
 <meta name="twitter:title" content="Kentish Lodge — Forms">
 <meta name="twitter:description" content="Fill and submit estate forms online, or print the blank official form.">
 <style>
+  /* ============ Kentish Lodge forms — civic editorial system ============ */
   :root{
-    --ink:#111; --paper:#fff; --mut:#666; --line:#d7d7d7; --bg:#f4f4f2;
-    --accent:#0f4c81; --ok:#1a7f37; --err:#b42318;
-    --radius:10px;
+    --serif: Georgia, 'Times New Roman', Times, serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    --mono: Consolas, 'SF Mono', Menlo, monospace;
+    --bg:#F6F5F0; --surface:#FFFFFF; --surface2:#FBFAF6;
+    --ink:#1D1B16; --ink2:#514E46; --mut:#7B786D;
+    --line:#E4E2D8; --line2:#C8C5B8;
+    --accent:#29533F; --accent-strong:#1E4030; --accent-ink:#EDF3EE; --accent-tint:#EAF0EA;
+    --ok:#2C6E49; --err:#A63528; --errbg:#FAEFEC;
+    --focus:#29533F;
+    --shadow:0 1px 2px rgba(29,27,22,.05), 0 8px 28px rgba(29,27,22,.07);
+    color-scheme: light;
+  }
+  :root[data-theme="dark"]{
+    --bg:#15140F; --surface:#1D1C16; --surface2:#242318;
+    --ink:#ECEAE1; --ink2:#B7B4A8; --mut:#8B887C;
+    --line:#33312A; --line2:#4A4739;
+    --accent:#3F7059; --accent-strong:#4E8268; --accent-ink:#EDF3EE; --accent-tint:#26322B;
+    --ok:#7CB494; --err:#E28B7B; --errbg:#2C1F1B;
+    --focus:#9FC5AF;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 32px rgba(0,0,0,.45);
+    color-scheme: dark;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{font:15px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-  .app-bar{background:#0e0e0e;color:#fff;padding:10px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-  .app-bar strong{font-weight:600}
-  .app-bar a{color:#cfe3ff;text-decoration:none;font-size:13px}
-  main{max-width:880px;margin:0 auto;padding:16px}
-  .tabs{display:flex;gap:8px;margin:6px 0 14px;flex-wrap:wrap}
-  .tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;cursor:pointer;font-size:14px}
-  .tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
-  .head h1{font-size:20px;margin:0 0 2px}
-  .head .meta{color:var(--mut);font-size:13px}
-  .docmatrix{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0}
-  .docmatrix th,.docmatrix td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
-  .docmatrix th{background:#f7f7f7}
-  h2.sec{font-size:15px;text-transform:uppercase;letter-spacing:.04em;margin:22px 0 8px;border-bottom:2px solid var(--ink);padding-bottom:4px}
-  .field{margin:0 0 14px}
-  .field>label,.field>.lbl{display:block;font-weight:600;font-size:13.5px;margin-bottom:4px}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important} }
+  body{font:15.5px/1.6 var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:var(--accent-ink)}
+
+  /* ---------- masthead ---------- */
+  .mast{border-bottom:1px solid var(--line);background:var(--surface)}
+  .mast-inner{max-width:880px;margin:0 auto;padding:0 20px}
+  .mast-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .mast-estate{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);font-weight:600}
+  .mast-nav{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .mast-nav a{color:var(--ink2);text-decoration:none;font-size:13px;border-bottom:1px solid transparent}
+  .mast-nav a:hover{color:var(--ink);border-bottom-color:var(--line2)}
+  #formSwitch select{background:var(--surface2);color:var(--ink);border:1px solid var(--line);border-radius:3px;padding:5px 8px;font:12.5px var(--sans);max-width:240px}
+  .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--line);background:var(--surface);border-radius:50%;cursor:pointer;color:var(--ink2)}
+  .icon-btn:hover{color:var(--ink);border-color:var(--line2)}
+  .icon-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  :root[data-theme="light"] .ic-sun{display:none}
+  :root:not([data-theme="light"]) .ic-moon{display:none}
+  .mast-main{padding:30px 0 26px}
+  .eyebrow{margin:0 0 10px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .mast-main h1{margin:0;font-family:var(--serif);font-size:clamp(26px,4.5vw,36px);line-height:1.15;font-weight:700;letter-spacing:-.01em;max-width:18em}
+  .mast-sub{margin:12px 0 0;color:var(--ink2);font-size:14.5px;max-width:44em}
+
+  /* ---------- toolbar + stepper ---------- */
+  .toolbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .toolbar-inner{max-width:880px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .tabs{display:inline-flex;border:1px solid var(--line2);border-radius:3px;overflow:hidden;background:var(--surface)}
+  .tab{border:0;background:transparent;color:var(--ink2);padding:8px 16px;cursor:pointer;font:600 13px var(--sans);letter-spacing:.02em}
+  .tab + .tab{border-left:1px solid var(--line)}
+  .tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+  .tab:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+  .stepper{max-width:880px;margin:0 auto;padding:14px 20px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+  .stepper:empty{display:none}
+  .step{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink2);text-decoration:none;font-size:12.5px;white-space:nowrap;cursor:pointer}
+  .step .n{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;border:1px solid var(--line2);font:700 11px var(--sans);color:var(--ink2)}
+  .step.done .n{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .step.active{border-color:var(--ink);color:var(--ink)}
+  .step.active .n{border-color:var(--ink)}
+  .step:hover{border-color:var(--line2)}
+
+  /* ---------- layout ---------- */
+  main{max-width:880px;margin:0 auto;padding:8px 20px 40px}
+  .secblock{margin:26px 0}
+  .sechead{display:flex;align-items:baseline;gap:12px;margin:0 0 12px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+  .sechead .secno{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--accent);line-height:1}
+  .sechead h2.sec{margin:0;font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:.01em;text-transform:none}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:22px 24px;margin-bottom:0;box-shadow:var(--shadow)}
+  h2.sec{font-size:15px;text-transform:uppercase;letter-spacing:.06em;margin:26px 0 10px;border-bottom:2px solid var(--ink);padding-bottom:8px;font-family:var(--serif)}
+
+  /* ---------- fields ---------- */
+  .field{margin:0 0 20px}
+  .field>label,.field>.lbl{display:block;font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-bottom:7px}
   .req::after{content:" *";color:var(--err)}
   input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{
-    width:100%;max-width:460px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
-  input:focus,select:focus,textarea:focus,canvas:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+    width:100%;max-width:460px;padding:8px 2px;border:0;border-bottom:1px solid var(--line2);border-radius:0;
+    font:16px/1.4 var(--sans);background:transparent;color:var(--ink);transition:border-color .15s}
+  input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--accent);box-shadow:0 1px 0 var(--accent)}
+  input::placeholder{color:var(--mut)}
+  :root[data-theme="dark"] input,:root[data-theme="dark"] select{color-scheme:dark}
   .opts{display:flex;gap:8px;flex-wrap:wrap}
-  .opt{border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;background:#fff;font-size:13.5px}
+  .opt{position:relative;display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);border-radius:3px;padding:9px 14px 9px 11px;cursor:pointer;background:var(--surface);font-size:14px;color:var(--ink2);transition:border-color .15s,background .15s}
+  .opt::before{content:"";width:15px;height:15px;border-radius:50%;border:1.5px solid var(--line2);flex:none;transition:all .15s}
+  .opt:hover{border-color:var(--ink2)}
+  .opt.on{border-color:var(--accent);background:var(--accent-tint);color:var(--ink)}
+  .opt.on::before{border-color:var(--accent);background:radial-gradient(circle at center, var(--accent) 0 4px, transparent 4.5px)}
   .opt input{position:absolute;opacity:0;pointer-events:none}
-  .opt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .check-row{display:flex;gap:9px;align-items:flex-start;cursor:pointer}
-  .check-row input{margin-top:3px;width:16px;height:16px;accent-color:var(--ink)}
-  .drop{border:1.5px dashed var(--line);border-radius:8px;padding:12px;font-size:13.5px;color:var(--mut);cursor:pointer;background:#fafafa}
-  .drop.drag{border-color:var(--accent);color:var(--accent)}
-  .filelist{list-style:none;margin:6px 0 0;padding:0;font-size:13px}
-  .filelist li{display:flex;justify-content:space-between;gap:8px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;margin-top:4px;background:#fff}
-  .filelist button{border:none;background:none;color:var(--err);cursor:pointer;font-size:13px}
-  .pad-wrap{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;max-width:520px}
-  canvas.sig{display:block;width:100%;height:150px;touch-action:none;cursor:crosshair;background:#fff}
-  .pad-btns{display:flex;gap:8px;margin-top:6px}
+  .opt:has(input:focus-visible){outline:2px solid var(--focus);outline-offset:2px}
+  .check-row{display:flex;gap:11px;align-items:flex-start;cursor:pointer;font-size:14.5px;color:var(--ink);line-height:1.5}
+  .check-row input{margin-top:3px;width:17px;height:17px;flex:none;accent-color:var(--accent)}
+  .drop{border:1.5px dashed var(--line2);border-radius:4px;padding:16px;font-size:13.5px;color:var(--mut);cursor:pointer;background:var(--surface2);transition:border-color .15s}
+  .drop:hover,.drop:focus-visible{border-color:var(--accent);color:var(--ink2)}
+  .drop.drag{border-color:var(--accent);color:var(--accent);background:var(--accent-tint)}
+  .filelist{list-style:none;margin:8px 0 0;padding:0;font-size:13px}
+  .filelist li{display:flex;justify-content:space-between;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:3px;margin-top:6px;background:var(--surface)}
+  .filelist button{border:none;background:none;color:var(--err);cursor:pointer;font-size:13px;text-decoration:underline}
+  .pad-wrap{border:1px solid var(--line2);border-radius:4px;overflow:hidden;background:#FFFFFF;max-width:520px}
+  canvas.sig{display:block;width:100%;height:150px;touch-action:none;cursor:crosshair;background:#FFFFFF}
+  .pad-btns{display:flex;gap:8px;margin-top:8px;align-items:center}
+  .pad-hint{color:var(--mut);font-size:12.5px}
+
+  /* ---------- buttons ---------- */
   button{font:inherit;cursor:pointer}
-  .btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:8px 14px;font-size:14px}
-  .btn:hover{background:#f2f2f2}
-  .btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
-  .btn.primary:hover{background:#000}
-  .btn.danger-ghost{color:var(--err);border-color:#e5b6b0}
-  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+  .btn{border:1px solid var(--line2);background:var(--surface);color:var(--ink);border-radius:3px;padding:10px 18px;font:600 13.5px var(--sans);letter-spacing:.02em;transition:border-color .15s,background .15s}
+  .btn:hover{border-color:var(--ink2);background:var(--surface2)}
+  .btn:focus-visible,.icon-btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .btn.primary:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
+  .btn.danger-ghost{color:var(--err);border-color:var(--err)}
+  .btn.danger-ghost:hover{background:var(--errbg)}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 6px;padding:14px 0;position:sticky;bottom:0;background:linear-gradient(to top, var(--bg) 55%, transparent)}
   .hint{color:var(--mut);font-size:13px}
-  .err-msg{color:var(--err);font-size:12.5px;margin-top:4px;display:none}
+
+  /* ---------- states ---------- */
+  .err-msg{color:var(--err);font-size:12.5px;margin-top:6px;display:none}
   .field.invalid .err-msg{display:block}
   .field.invalid input,.field.invalid .pad-wrap,.field.invalid .drop{border-color:var(--err)}
-  .banner{border:1px solid var(--line);border-left:4px solid var(--accent);background:#fff;border-radius:8px;padding:10px 14px;font-size:13.5px;margin-bottom:14px}
+  .field.invalid .opt{border-color:var(--err)}
+  .banner{border:1px solid var(--line);border-left:3px solid var(--accent);background:var(--surface);border-radius:3px;padding:14px 16px;font-size:14px;margin:16px 0;box-shadow:var(--shadow)}
   .banner.ok{border-left-color:var(--ok)}
-  .banner.err{border-left-color:var(--err)}
-  #resultPanel h2{margin:2px 0 6px;font-size:18px}
-  .refbox{font-family:Consolas,monospace;background:#f7f7f7;border:1px dashed var(--line);border-radius:8px;padding:8px 12px;display:inline-block}
+  .banner.err{border-left-color:var(--err);background:var(--errbg)}
+  #resultPanel h2{margin:4px 0 8px;font-family:var(--serif);font-size:24px}
+  .refbox{font-family:var(--mono);background:var(--surface2);border:1px dashed var(--line2);border-radius:3px;padding:8px 14px;display:inline-block;font-size:14px}
+  .docmatrix{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0}
+  .docmatrix th,.docmatrix td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+  .docmatrix th{background:var(--surface2);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+
   /* ---------- print sheet (screen preview look) ---------- */
   #printArea{display:none}
-  .sheet{background:#fff;color:#000;width:210mm;min-height:297mm;margin:14px auto;padding:14mm 13mm;box-shadow:0 2px 14px rgba(0,0,0,.15);font-family:"Times New Roman",Times,serif;font-size:12.5pt}
+  .sheet{background:#fff;color:#000;width:210mm;min-height:297mm;margin:18px auto;padding:14mm 13mm;box-shadow:var(--shadow);font-family:"Times New Roman",Times,serif;font-size:12.5pt}
   .sheet .docmatrix th{background:#efefef}
   .sheet .docmatrix th,.sheet .docmatrix td{border:1px solid #000}
   .ps-head{text-align:center;border-bottom:2.5px solid #000;padding-bottom:8px;margin-bottom:10px}
@@ -94,43 +169,80 @@
   .sheet .office{border:1.5px solid #000;margin-top:14px;padding:6px 8px}
   .sheet .office .t{font-weight:bold;font-size:10.5pt;text-transform:uppercase}
   .sheet .foot{margin-top:10px;font-size:9pt;color:#000;border-top:1px solid #000;padding-top:5px}
+
   /* ---------- print media ---------- */
   @page{size:A4;margin:0}
   @media print{
     body{background:#fff}
-    .app-bar,main,.tabs,.banner,#toast{display:none !important}
+    .mast,.toolbar,.stepper,main,.banner,#toast{display:none !important}
     #printArea{display:block}
     .sheet{width:auto;min-height:auto;margin:0;box-shadow:none;padding:12mm 12mm}
     .sheet tr,.sheet .docmatrix tr,.sheet .office{break-inside:avoid;page-break-inside:avoid}
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
-  .sheet-screen{overflow:auto}
-  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:9px 16px;border-radius:999px;font-size:13.5px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:50}
+  .sheet-screen{overflow:auto;padding-bottom:24px}
+  #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:3px;font-size:13.5px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:60;box-shadow:var(--shadow)}
   #toast.show{opacity:1}
+  .blank-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:22px 0 4px}
+  .blank-head h2{margin:0;font-family:var(--serif);font-size:22px}
   @media (max-width:640px){
     .sheet{width:100%;padding:16px;margin:0;box-shadow:none}
     input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{max-width:100%}
+    .mast-main{padding:22px 0 18px}
+    .card{padding:18px 16px}
+    .toolbar-inner{padding:8px 14px;justify-content:flex-start;overflow-x:auto}
+    .stepper{padding:12px 14px 0}
+    main{padding:6px 14px 32px}
+    .actions{padding-bottom:10px}
+    .btn{padding:11px 16px}
   }
 </style>
+<script>
+  /* theme boot — before first paint */
+  (function(){try{var t=localStorage.getItem("kl-form-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="light"}})();
+</script>
 </head>
 <body>
-<header class="app-bar">
-  <strong>Kentish Lodge — Forms</strong>
-  <span id="formSwitch"></span>
-  <a href="/forms/">All forms</a>
-</header>
-<main>
-  <div class="tabs" role="tablist">
-    <button class="tab" id="tabFill" role="tab" aria-selected="true">Fill online</button>
-    <button class="tab" id="tabBlank" role="tab" aria-selected="false">Blank form (print)</button>
+<header class="mast">
+  <div class="mast-inner">
+    <div class="mast-top">
+      <div class="mast-estate">Kentish Lodge · MCST Plan No. 2405</div>
+      <div class="mast-nav">
+        <span id="formSwitch"></span>
+        <a href="/forms/">All forms</a>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch light or dark theme" title="Light / dark">
+          <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mast-main" id="mastMain">
+      <p class="eyebrow" id="mastEyebrow">Official estate form</p>
+      <h1 id="mastTitle">Forms</h1>
+      <p class="mast-sub" id="mastSub">Fill in your browser, sign on screen, and submit — or print the blank official form.</p>
+    </div>
   </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="tabs" role="tablist">
+      <button class="tab" id="tabFill" role="tab" aria-selected="true">Fill online</button>
+      <button class="tab" id="tabBlank" role="tab" aria-selected="false">Blank form · print</button>
+    </div>
+    <button class="btn" id="btnQuickPrint" type="button">Print form</button>
+  </div>
+  <nav class="stepper" id="stepper" aria-label="Form sections"></nav>
+</div>
+
+<main>
   <div id="notice"></div>
 
   <section id="fillView">
-    <div id="formHeader" class="card head"></div>
+    <div id="formHeader"></div>
     <form id="theForm" novalidate autocomplete="on"></form>
     <div class="actions">
-      <button class="btn primary" id="btnSubmit">Submit</button>
+      <button class="btn primary" id="btnSubmit">Submit to Management Office</button>
       <button class="btn" id="btnPrintFilled">Print filled form</button>
       <button class="btn" id="btnDownload">Download copy</button>
       <button class="btn danger-ghost" id="btnReset" type="button">Clear form</button>
@@ -140,11 +252,14 @@
   </section>
 
   <section id="blankView" hidden>
-    <div class="actions">
-      <button class="btn primary" id="btnPrintBlank">Print</button>
-      <button class="btn" id="btnBackFill">Back to “Fill online”</button>
+    <div class="blank-head">
+      <h2>Blank official form</h2>
+      <div class="actions" style="margin:0;position:static;background:none;padding:0">
+        <button class="btn primary" id="btnPrintBlank">Print blank form</button>
+        <button class="btn" id="btnBackFill">Back to “Fill online”</button>
+      </div>
     </div>
-    <p class="hint">Blank official form — print single-sided on A4. A black-and-white printer is fine.</p>
+    <p class="hint">Prints single-sided on A4. A black-and-white printer is fine — the layout is designed for it.</p>
     <div id="blankPreview" class="sheet-screen"></div>
   </section>
 </main>
@@ -309,7 +424,7 @@ function fieldRequired(f){
 function renderForm(){
   values.signed_date=values.signed_date||todayStr();
   var h="";
-  h+='<h2 class="sec">Instructions &amp; supporting documents</h2>';
+  h+='<div class="secblock"><div class="sechead"><span class="secno">i</span><h2 class="sec">Instructions &amp; supporting documents</h2></div>';
   h+='<div class="card"><p style="margin:0 0 6px">'+esc(def.intro)+'</p>';
   def.notes.forEach(function(n){
     if(n.type==="matrix"){
@@ -318,17 +433,60 @@ function renderForm(){
       h+="</table>";
     } else if(n.type==="p"){h+='<p style="margin:6px 0 0;font-size:13.5px">'+n.html+"</p>"}
   });
-  h+="</div>";
+  h+="</div></div>";
   def.sections.forEach(function(sec){
-    h+='<h2 class="sec">Section '+esc(sec.no)+" — "+esc(sec.title)+"</h2>";
-    h+='<div class="card" data-sec="'+esc(sec.no)+'">';
+    h+='<div class="secblock" id="secblock-'+esc(sec.no)+'" data-sec="'+esc(sec.no)+'">';
+    h+='<div class="sechead"><span class="secno">'+esc(sec.no)+'</span><h2 class="sec">'+esc(sec.title)+"</h2></div>";
+    h+='<div class="card">';
     sec.fields.forEach(function(f){h+=renderField(f)});
-    h+="</div>";
+    h+="</div></div>";
   });
   $("#theForm").innerHTML=h;
-  $all("#theForm .field").forEach(function(){});
   bindFieldEvents();
   refreshVisibility();
+  buildStepper();
+}
+
+/* ---------------- section stepper ---------------- */
+function buildStepper(){
+  var nav=$("#stepper");
+  if(!nav)return;
+  var h="";
+  def.sections.forEach(function(sec){
+    h+='<a class="step" data-sec="'+esc(sec.no)+'" href="#secblock-'+esc(sec.no)+'"><span class="n">'+esc(sec.no)+"</span>"+esc(sec.title)+"</a>";
+  });
+  nav.innerHTML=h;
+  $all("#stepper .step").forEach(function(a){
+    a.addEventListener("click",function(e){
+      e.preventDefault();
+      var t=document.getElementById("secblock-"+a.dataset.sec);
+      if(t)t.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  });
+  updateStepper();
+}
+function sectionComplete(sec){
+  var ok=true;
+  sec.fields.forEach(function(f){
+    if(!fieldVisible(f))return;
+    if(!fieldRequired(f))return;
+    if(f.type==="file"){if(!files[f.k])ok=false}
+    else if(f.type==="signature"){if(!sigs[f.k]||!sigs[f.k].length)ok=false}
+    else if(f.type==="check"){if(!values[f.k])ok=false}
+    else if(f.type==="radio"){
+      if(!values[f.k])ok=false;
+      if(f.other&&values[f.k]===f.opts[f.opts.length-1]&&!(values[f.other.key]||"").trim())ok=false;
+    }
+    else{if(!(values[f.k]||"").trim())ok=false}
+  });
+  return ok;
+}
+function updateStepper(){
+  $all("#stepper .step").forEach(function(a){
+    var sec=null;
+    def.sections.forEach(function(s){if(s.no===a.dataset.sec)sec=s});
+    if(sec)a.classList.toggle("done",sectionComplete(sec));
+  });
 }
 
 function renderField(f){
@@ -627,6 +785,7 @@ function saveDraft(){
   try{
     localStorage.setItem(draftKey(),JSON.stringify({v:values,s:sigs,at:Date.now()}));
   }catch(e){}
+  if(typeof updateStepper==="function"&&def)updateStepper();
 }
 function loadDraft(){
   try{
@@ -761,7 +920,10 @@ function boot(){
   if(!FORMS[formId])formId="vr-01";
   def=FORMS[formId];
   document.title=def.formNo+" — "+def.title+" — Kentish Lodge";
-  var sw='<select id="swForm" aria-label="Choose form" style="margin-left:auto;color:#111;border:1px solid #555;border-radius:6px;padding:4px 6px">';
+  var mt=$("#mastTitle"),me=$("#mastEyebrow");
+  if(mt)mt.textContent=def.title;
+  if(me)me.textContent=def.formNo+" · Official estate form";
+  var sw='<select id="swForm" aria-label="Choose form" style="margin-left:auto">';
   Object.keys(FORMS).forEach(function(k){
     sw+='<option value="'+k+'"'+(k===formId?" selected":"")+">"+esc(FORMS[k].formNo)+" — "+esc(FORMS[k].title)+"</option>";
   });
@@ -790,6 +952,24 @@ function boot(){
   $("#btnBackFill").addEventListener("click",function(){setMode("fill")});
   $("#btnPrintBlank").addEventListener("click",function(){showPrint(true)});
   $("#btnPrintFilled").addEventListener("click",function(){if(validate())showPrint(false)});
+  var tt=$("#themeToggle");
+  if(tt){tt.addEventListener("click",function(){
+    var cur=document.documentElement.dataset.theme==="dark"?"light":"dark";
+    document.documentElement.dataset.theme=cur;
+    try{localStorage.setItem("kl-form-theme",cur)}catch(e){}
+  })}
+  var qp=$("#btnQuickPrint");
+  if(qp){qp.addEventListener("click",function(){
+    if($("#fillView").hidden){showPrint(true)}else if(validate()){showPrint(false)}
+  })}
+  if("IntersectionObserver" in window){
+    var spy=new IntersectionObserver(function(ents){
+      ents.forEach(function(en){if(en.isIntersecting){
+        $all("#stepper .step").forEach(function(a){a.classList.toggle("active",a.dataset.sec===en.target.dataset.sec)});
+      }});
+    },{rootMargin:"-35% 0px -60% 0px"});
+    $all(".secblock").forEach(function(b){spy.observe(b)});
+  }
   $("#btnDownload").addEventListener("click",function(){if(validate()){values._ref=values._ref||refNo(def.fileSlug);downloadCopy()}});
   $("#btnSubmit").addEventListener("click",submitForm);
   $("#btnReset").addEventListener("click",function(){

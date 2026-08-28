@@ -99,6 +99,33 @@ check("print sheet shows ☑ for selected radio", sheet.indexOf("☑ Owner") !==
 const blankSheet = w1.renderSheet(true);
 check("blank sheet has no filled value", blankSheet.indexOf("12-34") === -1);
 
+// ---------- redesign features ----------
+check("masthead shows form title", (d1.querySelector("#mastTitle") || {}).textContent === "Vehicle & RFID Tag Registration Form");
+check("stepper built with 5 sections", d1.querySelectorAll("#stepper .step").length === 5);
+check("theme starts light or dark with data-theme set", ["light","dark"].indexOf(w1.document.documentElement.dataset.theme) !== -1);
+const tt = d1.querySelector("#themeToggle");
+const before = w1.document.documentElement.dataset.theme;
+tt.click();
+check("theme toggle flips theme", w1.document.documentElement.dataset.theme !== before);
+check("theme persisted", w1.localStorage.getItem("kl-form-theme") === w1.document.documentElement.dataset.theme);
+tt.click();
+// section completion stepper marks done when required fields fill
+check("stepper A not done initially", !d1.querySelector('#stepper .step[data-sec="A"]').classList.contains("done"));
+d1.querySelector('input[data-k="unit_no"]').value = "12-34";
+d1.querySelector('input[data-k="unit_no"]').dispatchEvent(new w1.Event("input", { bubbles: true }));
+d1.querySelector('input[data-k="applicant_name"]').value = "T";
+d1.querySelector('input[data-k="applicant_name"]').dispatchEvent(new w1.Event("input", { bubbles: true }));
+d1.querySelector('input[data-k="nric_fin"]').value = "S1";
+d1.querySelector('input[data-k="nric_fin"]').dispatchEvent(new w1.Event("input", { bubbles: true }));
+d1.querySelector('input[data-k="mobile"]').value = "9";
+d1.querySelector('input[data-k="mobile"]').dispatchEvent(new w1.Event("input", { bubbles: true }));
+d1.querySelector('input[data-k="email"]').value = "a@b.co";
+d1.querySelector('input[data-k="email"]').dispatchEvent(new w1.Event("input", { bubbles: true }));
+d1.querySelector('input[name="applicant_role"][value="Owner"]').click();
+check("stepper A done when section complete", d1.querySelector('#stepper .step[data-sec="A"]').classList.contains("done"));
+check("quick print button present", !!d1.querySelector("#btnQuickPrint"));
+check("secblock anchors exist", d1.querySelectorAll(".secblock[id^=secblock-]").length === 5); // one per section
+
 // ---------- VR-02 ----------
 const dom2 = makeDom("https://info.kentishlodge.com/forms/apply.html?form=vr-02");
 const w2 = dom2.window, d2 = w2.document;
