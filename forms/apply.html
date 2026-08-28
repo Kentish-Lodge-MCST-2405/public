@@ -359,16 +359,25 @@ function bindFieldEvents(){
   $all("#theForm input[data-k],#theForm textarea[data-k]").forEach(function(inp){
     inp.addEventListener("input",function(){
       values[inp.dataset.k]=inp.type==="checkbox"?(inp.checked?"yes":""):inp.value;
-      if(inp.type==="checkbox"){/* handled below too */}
       saveDraft();
     });
     if(inp.type==="checkbox"){inp.addEventListener("change",function(){values[inp.dataset.k]=inp.checked?"yes":"";saveDraft()})}
-    if(inp.type==="radio"){inp.addEventListener("change",function(){
+  });
+  // radio pills (radios are name-based, not data-k)
+  $all("#theForm input[type=radio]").forEach(function(inp){
+    inp.addEventListener("change",function(){
       values[inp.name]=inp.value;
       $all('.opt input[name="'+inp.name+'"]').forEach(function(r){r.closest(".opt").classList.toggle("on",r.checked)});
-      var sec=inp.closest(".card");if(sec){var f=findField(inp.name);if(f&&f.other){var oi=$('[data-k="'+f.other.key+'"]',sec);if(oi){oi.style.display=(inp.value===f.opts[f.opts.length-1])?"":"none"}}}
-      refreshVisibility();saveDraft();
-    })}
+      var f=findField(inp.name);
+      if(f&&f.other){
+        var sec=inp.closest(".card");
+        var oi=sec?$('[data-k="'+f.other.key+'"]',sec):null;
+        if(oi){oi.style.display=(inp.value===f.opts[f.opts.length-1])?"":"none"}
+      }
+      refreshVisibility();
+      clearErr(inp.name);
+      saveDraft();
+    });
   });
   // dropzones
   $all("#theForm .drop").forEach(function(dz){
