@@ -1,0 +1,11 @@
+{
+  "name": "kentish-lodge-public",
+  "private": true,
+  "description": "Kentish Lodge MCST public site — DOM smoke tests (dev only, not deployed)",
+  "scripts": {
+    "test": "node tests/apply.dom.test.js && node tests/tools.dom.test.js"
+  },
+  "dependencies": {
+    "jsdom": "^29.1.1"
+  }
+}

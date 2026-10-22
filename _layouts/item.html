@@ -35,6 +35,8 @@
           {% if page.category %}<span class="tag">{{ page.category }}</span>{% endif %}
           {% if page.version %}<span class="tag">v{{ page.version }}</span>{% endif %}
           {% if page.effective %}<span class="tag">Effective: {{ page.effective }}</span>{% endif %}
+          {% if page.owner %}<span class="tag">Owner: {{ page.owner }}</span>{% endif %}
+          {% if page.review_by %}<span class="tag">Review by: {{ page.review_by }}</span>{% endif %}
         </div>
         <div class="toolbar">
           {% assign repo = site.github.repository_url | default: '' %}
@@ -47,6 +49,12 @@
       <article class="content">
         {{ content }}
       </article>
+      {% if page.records and page.records.size > 0 %}
+      <section class="related">
+        <h2>Records this policy produces</h2>
+        <ul>{% for r in page.records %}<li>{{ r }}</li>{% endfor %}</ul>
+      </section>
+      {% endif %}
       {% if page.collection == 'bylaws' and page.policies and page.policies.size > 0 %}
       <section class="related">
         <h2>Related Policies</h2>

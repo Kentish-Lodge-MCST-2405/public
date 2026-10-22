@@ -8,6 +8,7 @@
     <p class="sidebar-estate">MCST Plan No. 2405</p>
     <ul class="sidebar-menu">
       <li><a class="sidebar-link" href="{{ '/' | relative_url }}">Home</a></li>
+      <li><a class="sidebar-link" href="{{ '/tools/issues.html' | relative_url }}">⚠ Report &amp; track issues</a></li>
       <li>
         <details>
           <summary>Announcements</summary>
@@ -195,6 +196,17 @@
                 </details>
               </li>
             {%- endfor -%}
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details class="sidebar-section">
+          <summary>
+            <span class="sidebar-label">Estate records (office)</span>
+          </summary>
+          <ul class="sidebar-section-list">
+            <li><a class="sidebar-link" href="{{ '/tools/visits.html' | relative_url }}">Site visits &amp; issues</a></li>
+            <li><a class="sidebar-link" href="{{ '/tools/letters.html' | relative_url }}">Official letters</a></li>
           </ul>
         </details>
       </li>

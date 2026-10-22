@@ -34,6 +34,12 @@ description: Official bylaws, policies, announcements, and resident forms for Ke
       <p><a href="{{ '/policies/' | relative_url }}">Browse policies →</a></p>
     </div>
     <div class="card">
+      <h3>Report &amp; Track Issues</h3>
+      <p>Something broken or not right? Report it online, keep your reference and PIN, and follow it through to resolution — every report gets a record.</p>
+      <p><a href="{{ '/tools/issues.html' | relative_url }}">Report an issue →</a></p>
+      <p><a href="{{ '/tools/issues.html' | relative_url }}">Track / follow up →</a></p>
+    </div>
+    <div class="card">
       <h3>Forms</h3>
       <p>Application forms for residents — vehicle &amp; RFID tag registration, authorisation letters, and more.</p>
       <p><a href="{{ '/forms/' | relative_url }}">Browse forms →</a></p>
@@ -61,8 +67,14 @@ description: Official bylaws, policies, announcements, and resident forms for Ke
     </div>
     <div class="card">
       <h3>Give Feedback</h3>
-      <p>Share suggestions, report issues, or request changes. Your input improves our community.</p>
+      <p>Suggestions and change requests on bylaws, policies or this site. (For maintenance issues, use <a href="{{ '/tools/issues.html' | relative_url }}">Report an issue</a>.)</p>
       <p><a href="{{ '/feedback/' | relative_url }}">Send feedback →</a></p>
+    </div>
+    <div class="card">
+      <h3>Estate records (office)</h3>
+      <p>Management tools: site visits &amp; inspections, issue handling, and official letters with recorded appeal rights. Key required.</p>
+      <p><a href="{{ '/tools/visits.html' | relative_url }}">Site visits &amp; issues →</a></p>
+      <p><a href="{{ '/tools/letters.html' | relative_url }}">Official letters →</a></p>
     </div>
     <div class="card">
       <h3>Transparency</h3>

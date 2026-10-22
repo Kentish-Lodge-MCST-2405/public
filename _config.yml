@@ -38,3 +38,16 @@ defaults:
       type: forms
     values:
       layout: item
+
+# Keep repo tooling out of the published site (tools/*.html stays published).
+exclude:
+  - backend/
+  - tests/
+  - node_modules/
+  - tools/gen-bylaw-index.mjs
+  - convertjsontomd.py
+  - extractedbylaws.json
+  - mcst-vehicle-forms.patch
+  - package.json
+  - package-lock.json
+  - README.md
