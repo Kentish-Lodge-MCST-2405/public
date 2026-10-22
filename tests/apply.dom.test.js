@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const { JSDOM } = require("jsdom");
 
-const htmlPath = "C:\\Users\\Desktop\\.openclaw-autoclaw\\agents\\kentish-agent\\workspace\\mcst-public\\forms\\apply.html";
+const htmlPath = require("path").resolve(__dirname, "..", "forms", "apply.html");
 const html = fs.readFileSync(htmlPath, "utf8");
 
 let failures = 0;
